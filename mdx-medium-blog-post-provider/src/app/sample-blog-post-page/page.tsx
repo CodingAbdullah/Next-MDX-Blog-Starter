@@ -3,11 +3,12 @@ import { Avatar } from "@/components/ui/avatar";
 import ArticleContent from "@/components/ArticleContent.mdx";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 // Custom Article component for containing MDX/JSX content for a blog post
 const Article = () => {  
   return (
-    <div className="min-h-screen flex flex-col"> 
+    <div className="min-h-screen flex flex-col bg-black"> 
       <main className="flex-grow px-4 py-8">
         <div className="max-w-4xl mx-auto">
           {/* Article Header */}
@@ -15,7 +16,7 @@ const Article = () => {
             <Badge className="mb-3 bg-green-900/60 text-green-100 border border-green-500/50">
                 Test Category
             </Badge>
-            <h1 className="text-3xl md:text-5xl font-bold mb-6 matrix-glow leading-tight">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 matrix-glow leading-tight text-green-300">
                 Test Blog Post
             </h1>
             <p className="text-xl text-green-200/80 mb-6 leading-relaxed">
@@ -60,11 +61,13 @@ const Article = () => {
                 <img src={"https://www.vecteezy.com/vector-art/22014159-avatar-icon-profile-icon-member-login-vector-isolated"} alt="No Name" />
               </Avatar>
               <div>
-                <h3 className="text-xl font-semibold mb-2 matrix-glow">Anonymous</h3>
-                <p className="text-green-200/80 mb-3">Software Engineer</p>
-                <Button variant="outline" className="border-green-500/30 text-green-300 hover:bg-green-500/10">
-                  Follow
-                </Button>
+                <h3 className="text-xl font-semibold mb-2 matrix-glow text-green-300">Anonymous</h3>
+                <p className="text-green-200/80 mb-3">Blogger. Software Engineer. Designer.</p>
+                <Link href="/">
+                  <Button variant="outline" className="border-green-500/30 text-green-300 hover:bg-green-500/10">
+                    Go Back To Home Page
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
