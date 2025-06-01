@@ -27,7 +27,7 @@ const Article = () => {
             {/* Author info and publish date */}
             <div className="flex items-center mb-6">
               <Avatar className="h-12 w-12 mr-4 border-2 border-green-500/30">
-                <Image src="/profile-icon.png" alt="No Name Exists" width={100} height={100} />
+                <Image src="https://mdx-blog-bucket.s3.us-east-2.amazonaws.com/user.PNG" alt="No Name Exists" width={100} height={100} />
               </Avatar>
               <div>
                 <p className="font-medium text-green-300">Anonymous</p>
@@ -42,13 +42,13 @@ const Article = () => {
             </div>
             
             {/* Cover image */}
-            <div className="rounded-lg overflow-hidden mb-8">
+            <div className="rounded-lg overflow-hidden mb-4">
                 <Image
-                  src="/iconduck-nextjs.png"
+                  src="https://mdx-blog-bucket.s3.us-east-2.amazonaws.com/article-image-cover.PNG"
                   alt="Article Cover Image"
-                  className="w-full object-cover h-[400px]"
-                  width={100}
-                  height={100}
+                  className="w-full object-cover h-[250px]"
+                  width={250}
+                  height={250}
                 />
             </div>
           </div>
@@ -61,13 +61,13 @@ const Article = () => {
           <div className="glass-card p-6 mb-12">
             <div className="flex items-start">
               <Avatar className="h-16 w-16 mr-6 border-2 border-green-500/30">
-                <Image src="/profile-icon.png" alt="No Name" width={100} height={100} />
+                <Image src="https://mdx-blog-bucket.s3.us-east-2.amazonaws.com/user.PNG" alt="No Name" width={100} height={100} />
               </Avatar>
               <div>
                 <h3 className="text-xl font-semibold mb-2 matrix-glow text-green-300">Anonymous</h3>
                 <p className="text-green-200/80 mb-3">Blogger. Software Engineer. Designer.</p>
                 <Link href="/">
-                  <Button variant="outline" className="border-green-500/30 text-green-300 hover:bg-green-500/10">
+                  <Button variant="outline" className="border-green-500/30 text-green-300">
                     Go Back To Home Page
                   </Button>
                 </Link>

@@ -7,7 +7,7 @@ const nextConfig = {
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   images: {
-    domains: ["<YOUR-BUCKET-NAME>.s3.<AWS-REGION>.amazonaws.com"]
+    domains: ["mdx-blog-bucket.s3.us-east-2.amazonaws.com"]
   },
   experimental: {
     mdxRs: true,
