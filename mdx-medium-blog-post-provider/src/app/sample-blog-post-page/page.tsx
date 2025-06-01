@@ -1,9 +1,10 @@
 // Custom Article Canvas Page for creating and publishing a Medium style blog post
 import { Avatar } from "@/components/ui/avatar";
-import ArticleContent from "@/components/ArticleContent.mdx";
+import ArticleContent from "@/markdown/ArticleContent.mdx";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import Image from "next/image";
 
 // Custom Article component for containing MDX/JSX content for a blog post
 const Article = () => {  
@@ -26,7 +27,7 @@ const Article = () => {
             {/* Author info and publish date */}
             <div className="flex items-center mb-6">
               <Avatar className="h-12 w-12 mr-4 border-2 border-green-500/30">
-                <img src="https://www.vecteezy.com/vector-art/22014159-avatar-icon-profile-icon-member-login-vector-isolated" alt="No Name Exists" />
+                <Image src="/profile-icon.png" alt="No Name Exists" width={100} height={100} />
               </Avatar>
               <div>
                 <p className="font-medium text-green-300">Anonymous</p>
@@ -42,10 +43,12 @@ const Article = () => {
             
             {/* Cover image */}
             <div className="rounded-lg overflow-hidden mb-8">
-                <img
-                  src="https://iconduck.com/icons/94662/nextjs"
+                <Image
+                  src="/iconduck-nextjs.png"
                   alt="Article Cover Image"
                   className="w-full object-cover h-[400px]"
+                  width={100}
+                  height={100}
                 />
             </div>
           </div>
@@ -58,7 +61,7 @@ const Article = () => {
           <div className="glass-card p-6 mb-12">
             <div className="flex items-start">
               <Avatar className="h-16 w-16 mr-6 border-2 border-green-500/30">
-                <img src={"https://www.vecteezy.com/vector-art/22014159-avatar-icon-profile-icon-member-login-vector-isolated"} alt="No Name" />
+                <Image src="/profile-icon.png" alt="No Name" width={100} height={100} />
               </Avatar>
               <div>
                 <h3 className="text-xl font-semibold mb-2 matrix-glow text-green-300">Anonymous</h3>
