@@ -1,10 +1,8 @@
 import type { MDXComponents } from 'mdx/types';
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import LanguageType from '@/utils/types/LanguageType';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { CodeBlock } from '@/components/CodeBlock';
 import { GitHubGist } from '@/components/GitHubGist';
 
 // Custom MDX components for writing Medium article style blog posts
@@ -38,27 +36,27 @@ slug: "/seo-in-mdx"
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ children, ...props }) => (
-      <h1 {...props} className={cn("text-3xl font-bold matrix-glow mt-8 mb-4", props.className)}>
-        {children}
+      <h1 {...props} className={cn("text-3xl font-bold text-green-300 matrix-glow mt-8 mb-4", props.className)}>
+      {children}
       </h1>
     ),
     h2: ({ children, ...props }) => (
-      <h2 {...props} className={cn("text-2xl font-bold matrix-glow mt-8 mb-4 border-b border-green-500/20 pb-2")}>
+      <h2 {...props} className={cn("text-2xl font-bold text-green-300 matrix-glow mt-8 mb-4 border-b border-green-500/20 pb-2", props.className)}>
         {children}
       </h2>
     ),
     h3: ({ children, ...props }) => (
-      <h3 {...props} className={cn("text-xl font-bold matrix-glow mt-6 mb-3", props.className)}>
+      <h3 {...props} className={cn("text-xl font-bold text-green-300  matrix-glow mt-6 mb-3", props.className)}>
         {children}
       </h3>
     ),
     h4: ({ children, ...props }) => (
-      <h4 {...props} className={cn("text-lg font-bold matrix-glow mt-6 mb-2", props.className)}>
+      <h4 {...props} className={cn("text-lg font-bold text-green-300 matrix-glow mt-6 mb-2", props.className)}>
         {children}
       </h4>
     ),
     h5: ({ children, ...props }) => (
-      <h5 {...props} className={cn("text-base font-bold matrix-glow mt-4 mb-2", props.className)}>
+      <h5 {...props} className={cn("text-base font-bold text-green-300  matrix-glow mt-4 mb-2", props.className)}>
         {children}
       </h5>
     ),
@@ -72,16 +70,31 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </p>
     ),
-    a: ({ children, href, ...props }) => {    
-      return (
-        <Link 
-          {...props} 
-          href={href || ''}
-          className={cn("text-green-400 hover:text-green-300 underline", props.className)}
-        >
-          {children}
-        </Link>
-      );
+    a: ({ children, href, ...props }) => {
+      if (href?.startsWith('/')) {
+        return (
+          <Link href={href} className={cn("text-green-400 hover:text-green-300 underline", props.className)} {...props}>
+            {children}
+          </Link>
+        );
+      }
+      else if (href?.startsWith('https') || href?.startsWith('http')) {
+        return (
+          <a href={href} className={cn("text-green-400 hover:text-green-300 underline", props.className)} {...props}>
+            {children}
+          </a>
+        );
+      }
+      else {
+        return (
+          <Link
+            {...props} 
+            href={href || ''}
+            className={cn("text-green-400 hover:text-green-300 underline", props.className)}>
+            {children}
+          </Link>
+        );
+      }
     },
     ul: ({ children, ...props }) => (
       <ul {...props} className={cn("list-disc pl-6 mb-4 space-y-1", props.className)}>
@@ -106,21 +119,19 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </blockquote>
     ),
-    img: (props: React.ImgHTMLAttributes<HTMLImageElement> & { caption?: string }) => {
-      const { caption, ...rest } = props as any;
-      return <Image caption={caption} {...rest} />;
-    },
+    img: (props) => (
+      <Image
+        width={100}
+        height={100}
+        sizes="100vw"
+        style={{ width: '100%', height: 'auto' }}
+        {...(props as ImageProps)}
+      />
+    ),
     pre: ({ className, ...props }) => {
       return <pre className="not-prose" {...props} />;
     },
-    code: (props: LanguageType) => {
-      // Check if it's a code block or inline code, regardless we will use the SyntaxHighlighter component
-      return (
-        <SyntaxHighlighter language={props.language} style={dark}>
-          {props.value}
-        </SyntaxHighlighter>
-      );
-    },
+    code: CodeBlock,
     table: ({ children, ...props }) => (
       <div className="overflow-x-auto mb-6">
         <table {...props} className="min-w-full border-collapse">

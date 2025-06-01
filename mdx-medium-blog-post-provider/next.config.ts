@@ -1,4 +1,4 @@
-import createMDX from '@next/mdx'
+import createMDX from '@next/mdx';
  
 // Adding acceptable page extensions to be used in this application
 // Adding external domains to be used in this application
@@ -8,12 +8,14 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   images: {
     domains: ["<YOUR-BUCKET-NAME>.s3.<AWS-REGION>.amazonaws.com"]
+  },
+  experimental: {
+    mdxRs: true,
+    viewTransition: true
   }
 }
  
-const withMDX = createMDX({
-  // Will add markdown plugins, if need be
-})
+const withMDX = createMDX({});
  
 // Wrapping app configurations with the withMDX function
 export default withMDX(nextConfig);
