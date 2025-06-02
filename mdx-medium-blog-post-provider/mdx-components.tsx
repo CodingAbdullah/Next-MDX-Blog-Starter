@@ -132,6 +132,21 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return <pre className="not-prose" {...props} />;
     },
     code: CodeBlock,
+    strong: ({ children, ...props }) => (
+      <strong {...props} className="font-bold">
+        {children}
+      </strong>
+    ),
+    em: ({ children, ...props }) => (
+      <em {...props} className="italic">
+        {children}
+      </em>
+    ),
+    del: ({ children, ...props }) => (
+      <del {...props} className="line-through">
+        {children}
+      </del>
+    ),
     table: ({ children, ...props }) => (
       <div className="overflow-x-auto mb-6">
         <table {...props} className="min-w-full border-collapse">
