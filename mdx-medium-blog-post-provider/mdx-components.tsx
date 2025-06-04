@@ -2,8 +2,8 @@ import type { MDXComponents } from 'mdx/types';
 import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { CodeBlock } from '@/components/CodeBlock';
-import { GitHubGist } from '@/components/GitHubGist';
+import { CodeBlock } from '@/components/customMDXComponents/CodeBlock';
+import { GitHubGist } from '@/components/customMDXComponents/GitHubGist';
 
 // Custom MDX components for writing Medium article style blog posts
 // Optimize Links and Images using Image and Link built-in components replacing img, a tags
