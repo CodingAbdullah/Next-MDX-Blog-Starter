@@ -1,3 +1,4 @@
+# Dockerize the Next.js application and run a production version in a container using this Dockerfile
 # Build stage
 FROM node:20-alpine AS builder
 
