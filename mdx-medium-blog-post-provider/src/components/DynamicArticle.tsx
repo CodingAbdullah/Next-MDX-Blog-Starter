@@ -4,7 +4,7 @@ import ArticleHeader from "@/components/ArticleHeader";
 import ArticleAuthorInfoList from "@/utils/constants/ArticleAuthorInfoList";
 import ArticleHeaderInfoList from "@/utils/constants/ArticleHeaderInfoList";
 import MDXRemoteArticle from "./MDXRemoteArticle";
-import { fetchArticle } from "@/utils/functions/crud/fetchArticle";
+import fetchArticle from "@/utils/functions/crud/fetchArticle";
 
 // Custom Dynamic Article component encompasses loading article content stored in a Supabase database
 export default async function DynamicArticle({ slug } : { slug: string }) {

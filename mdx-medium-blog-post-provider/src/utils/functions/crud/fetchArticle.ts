@@ -2,12 +2,12 @@ import getSupabaseClient from "../supabase_client/SupabaseClient";
 
 // Fetch an article from Supabase
 // Utilize a parameterized URL to pass in values for the GET request
-export async function fetchArticle(slug: string) {
+export default async function fetchArticle(articleName: string) {
   
   const { data, error } = await getSupabaseClient()
   .from('Article')
   .select('*')
-  .eq('slug', slug)
+  .eq('slug', articleName)
   .single(); // A single record should suffice, if the slug is valid
 
   // Conditionally return to the client, the result
