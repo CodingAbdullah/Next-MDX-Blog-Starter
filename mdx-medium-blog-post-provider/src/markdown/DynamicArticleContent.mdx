@@ -1,0 +1,48 @@
+---
+title: "Understand Dynamic MDX with Supabase"
+description: "Learn how to fetch, parse, and render dynamic MDX content from Supabase using Next.js and next-mdx-remote."
+date: "2025-06-03"
+tags: ["next.js", "mdx", "supabase", "next-mdx-remote", "dynamic content"]
+---
+
+# Understand Dynamic MDX with Supabase
+
+MDX opens the door to combining Markdown with JSX, making your blog or documentation highly flexible. But what if you don’t want to keep your MDX files in the file system? That’s where **Supabase** comes in.
+
+In this article, we explore how to **store and render MDX content dynamically from Supabase**, using `next-mdx-remote` in a Next.js App Router project.
+
+---
+
+## 🧠 Why Store MDX in Supabase?
+
+Storing MDX in Supabase enables:
+
+- Dynamic blog posts
+- Easier authoring through a CMS or dashboard
+- Version control and user-generated content
+- Centralized content API
+
+Instead of placing `.mdx` files in your repo, you fetch them from Supabase and render them as needed.
+
+---
+
+## 🛠️ Storing MDX in Supabase
+
+Create a table named `articles` in Supabase with columns like:
+
+- `id`: UUID
+- `slug`: `text`
+- `title`: `text`
+- `content`: `text` (your raw MDX string)
+- `created_at`: `timestamp`
+
+Here’s a sample row:
+
+```sql
+INSERT INTO articles (id, slug, title, content) VALUES (
+  uuid_generate_v4(),
+  'dynamic-mdx-with-supabase',
+  'Understand Dynamic MDX with Supabase',
+  '# Hello from Supabase\n\nThis MDX content is stored in the cloud!',
+  now()
+);
