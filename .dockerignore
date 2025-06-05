@@ -1,0 +1,13 @@
+# Ignoring unnecessary files for image production, reducing size for efficiency
+
+# Dependency cache — should be installed fresh in Docker
+node_modules
+
+# Next.js build output (regenerate in container)
+.next
+
+# Git data
+.git
+
+# Environment files — avoid leaking secrets into the image
+.env*

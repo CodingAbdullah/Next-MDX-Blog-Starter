@@ -37,6 +37,20 @@ export default function Home() {
           />
           Go to Sample Blog Post →
         </Link>
+        <br />
+        <Link
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="/dynamic/first-dynamic-blog-post"
+        >
+          <Image
+            aria-hidden
+            src="/file.svg"
+            alt="File icon"
+            width={16}
+            height={16}
+          />
+          Go to Dynamic Blog Post →
+        </Link>
       </footer>
     </div>
   );

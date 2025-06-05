@@ -1,9 +1,9 @@
 import createMDX from '@next/mdx';
- 
+ import type { NextConfig } from 'next';
+
 // Adding acceptable page extensions to be used in this application
 // Adding external domains to be used in this application
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   images: {
@@ -12,7 +12,8 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
     viewTransition: true
-  }
+  },
+  output: 'standalone' as const
 }
  
 const withMDX = createMDX({});
