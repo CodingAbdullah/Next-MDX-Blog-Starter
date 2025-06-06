@@ -3,18 +3,25 @@ import getSupabaseClient from "../supabase_client/SupabaseClient";
 // Fetch an article from Supabase
 // Utilize a parameterized URL to pass in values for the GET request
 export default async function fetchArticle(articleName: string) {
+  console.log('Fetching article with slug:', articleName);
   
   const { data, error } = await getSupabaseClient()
-  .from('Article')
-  .select('*')
-  .eq('slug', articleName)
-  .single(); // A single record should suffice, if the slug is valid
+    .from('Article')
+    .select('*')
+    .eq('slug', articleName.trim())
+    .single(); // A single record should suffice, if the slug is valid
 
-  // Conditionally return to the client, the result
+  // Add more detailed logging
   if (error) {
+    console.log('Error details:', {
+      code: error.code,
+      message: error.message,
+      details: error.details,
+      hint: error.hint
+    });
     throw new Error("Could not fetch requested Article");
   }
-  else {
-    return data;
-  }
+  
+  console.log('Query result:', data);
+  return data;
 }
