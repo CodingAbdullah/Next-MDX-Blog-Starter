@@ -2,7 +2,7 @@ import getSupabaseClient from "../supabase_client/SupabaseClient";
 
 // Fetch all articles from Supabase
 export default async function fetchAllArticles() {
-  const { data, error } = await getSupabaseClient()
+    const { data, error } = await getSupabaseClient()
     .from('Article')
     .select('*'); // Fetch all article posts
 

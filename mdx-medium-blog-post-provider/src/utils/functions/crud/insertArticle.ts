@@ -21,7 +21,7 @@ export default async function insertArticle(fileName: string) {
         .from('Article')
         .insert([
             {
-                slug: fileName,
+                slug: fileName.trim(),
                 title: "Dynamic Article Content",
                 description: 'Learn how to upload an MDX article to Supabase',
                 cover_image_url: 'https://mdx-blog-bucket.s3.us-east-2.amazonaws.com/article-image-cover.PNG',

@@ -22,6 +22,5 @@ export default async function fetchArticle(articleName: string) {
     throw new Error("Could not fetch requested Article");
   }
   
-  console.log('Query result:', data);
   return data;
 }
