@@ -1,43 +1,46 @@
-'use client';
-
-// Custom React component for handling GitHub Gists
-// Carefully handle inserting HTML into the DOM to avoid XSS attacks
-// This custom component will be used to handle that
-import { useEffect, useState } from 'react'
+// components/customMDXComponents/GitHubGist.tsx
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import GitHubGistType from '@/utils/types/GitHubGistType';
 
-export function GitHubGist({ id }: GitHubGistType) {
-  const [gistContent, setGistContent] = useState<string>('')
-  const [loading, setLoading] = useState(true)
+// GitHub Gist custom component
+// Perform the GET request to retrieve the requested GitHub Gist using its ID
+export async function GitHubGist({ id, figCaptionText }: GitHubGistType) {
+  let content = '';
+  let error = null;
 
-  useEffect(() => {
-    const fetchGist = async () => {
-      try {
-        const url = `https://api.github.com/gists/${id}`
-        
-        const response = await fetch(url)
-        const data = await response.text()
-        setGistContent(data)
-      } catch (error) {
-        console.error('Failed to load gist:', error)
-        setGistContent('Failed to load gist')
-      } finally {
-        setLoading(false)
-      }
+  // Run a try-catch to ensure errors are caught and handled gracefully
+  try {
+    const response = await fetch(`https://api.github.com/gists/${id}`);
+    const data = await response.json();
+
+    if (response.ok) {
+      const files = data.files;
+      const rawFileUrl = files[Object.keys(files)[0]].raw_url;
+
+      const fileResponse = await fetch(rawFileUrl);
+      content = await fileResponse.text();
+    } 
+    else {
+      throw new Error("Could not load GitHub Gist");
     }
-
-    fetchGist()
-  }, [id])
-
-  if (loading) {
-    return <div className="animate-pulse bg-gray-200 h-32 rounded"></div>
+  } 
+  catch (err) {
+    throw new Error("Could not load GitHub Gist");
   }
 
+  // Show error state
+  if (error) {
+    return <div className="text-red-600 bg-red-100 p-4 rounded-lg">{error}</div>;
+  }
+
+  // Render the GitHub Gist component using React-Syntax-Highlighting
   return (
-    <div className="my-6">
-      <pre className="bg-gray-50 p-4 rounded-lg overflow-x-auto">
-        <code>{gistContent}</code>
-      </pre>
-    </div>
-  )
+    <figure className='text-center'>
+      <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
+        {content}
+      </SyntaxHighlighter>
+      <figcaption className="mb-4 leading-relaxed text-green-200/90">{figCaptionText}</figcaption>
+    </figure>
+  );
 }
