@@ -85,7 +85,7 @@ In this project, you will find custom constants, functions, and types in the `/s
 ## 🗄️ Supabase Database Setup
 The project uses Supabase for database management. The `SupabaseClient` module is configured to interact with your Supabase instance. The instance is located in `/src/utils/functions/supabase_client`.
 
-**Ensure that the policies of the Supabase database enable you to perform the desired CRUD actions against your tables. You can modify these in the Suapbase console.**
+**Ensure that the policies of the Supabase database enable you to perform the desired CRUD actions against your tables. You can modify these in the Supabase console.**
 
 ### Environment Variables
 Create a `.env` file in the root directory and add your Supabase secrets:
@@ -99,7 +99,7 @@ SUPABASE_ANON_KEY=your_supabase_anon_key
 ``
 
 ## 🌩️ AWS
-This application utilizes the AWS S3 for the storage of images. You can find the external URL used to access these objects in the `next.config.ts` file. Feel free to use another service or modify the URL to point to a S3 bucket of your own.
+This application utilizes the AWS S3 service for the storage of images. You can find the external URL used to access these objects in the `next.config.ts` file. Feel free to use another service or modify the URL to point to a S3 bucket of your own.
 
 Images are used in the `.mdx` files and utilized via the custom `MDXImage` component covered earlier.
 
@@ -143,16 +143,16 @@ The following codeblock highlights the different command prompts that can be use
     - Insert an Article into Supabase
     npx tsx article-manager.ts insert article-slug
 
-    - Delete an Article into Supabase
+    - Delete an Article from Supabase
     npx tsx article-manager.ts delete article-slug
 
-    - Update an Article into Supabase
+    - Update an Article in Supabase
     npx tsx article-manager.ts update article-slug new-article-file
 
-    - Fetch a Single Article into Supabase
+    - Fetch a Single Article from Supabase
     npx tsx article-manager.ts fetch article-slug
 
-    - Fetch all Articles into Supabase
+    - Fetch all Articles from Supabase
     npx tsx article-manager.ts fetchAll
 
 The article slug is the name of the markdown file located in the `/src/markdown` directory minus the extension, `.mdx`.
@@ -160,7 +160,7 @@ The article slug is the name of the markdown file located in the `/src/markdown`
 The update statement takes in an additional parameter which is also the same thing (file name minus the `.mdx` extension located in the `/src/markdown` directory).
 
 ## 📊 Analytics
-Integrated in this setup project is Vercel Analytics (`@vercel/analytics`) to track user interactions and performance metrics of your personal blog.
+Integrated in this setup project is Vercel Analytics (`@vercel/analytics`) to track user interactions and performance metrics of the blog.
 
 ## ⚙️ Next.js Configuration
 The `next.config.ts` file is set up for working with AWS S3 and includes MDX extensions for enhanced functionality. Feel free to modify and add your own custom links to access storage and setting up other configurations.
