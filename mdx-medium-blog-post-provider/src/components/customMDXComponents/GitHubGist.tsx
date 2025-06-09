@@ -7,7 +7,7 @@ import GitHubGistType from '@/utils/types/GitHubGistType';
 // Perform the GET request to retrieve the requested GitHub Gist using its ID
 async function GitHubGist({ id, figCaptionText }: GitHubGistType) {
   let content = '';
-  let error = null;
+  const error = null;
 
   // Run a try-catch to ensure errors are caught and handled gracefully
   try {
@@ -26,7 +26,7 @@ async function GitHubGist({ id, figCaptionText }: GitHubGistType) {
     }
   } 
   catch (err) {
-    throw new Error("Could not load GitHub Gist");
+    throw new Error("Could not load GitHub Gist: " + err);
   }
 
   // Show error state
