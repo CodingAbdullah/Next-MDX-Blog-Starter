@@ -5,7 +5,7 @@ import GitHubGistType from '@/utils/types/GitHubGistType';
 
 // GitHub Gist custom component
 // Perform the GET request to retrieve the requested GitHub Gist using its ID
-export async function GitHubGist({ id, figCaptionText }: GitHubGistType) {
+async function GitHubGist({ id, figCaptionText }: GitHubGistType) {
   let content = '';
   let error = null;
 
@@ -44,3 +44,5 @@ export async function GitHubGist({ id, figCaptionText }: GitHubGistType) {
     </figure>
   );
 }
+
+export default GitHubGist;

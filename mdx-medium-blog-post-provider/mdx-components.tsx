@@ -2,9 +2,9 @@ import type { MDXComponents } from 'mdx/types';
 import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { CodeBlock } from '@/components/customMDXComponents/CodeBlock';
-import { GitHubGist } from '@/components/customMDXComponents/GitHubGist';
-
+import CodeBlock from '@/components/customMDXComponents/CodeBlock';
+import GitHubGist from '@/components/customMDXComponents/GitHubGist';
+import MDXImage from '@/components/customMDXComponents/MDXImage';
 // Custom MDX components for writing Medium article style blog posts
 // Optimize Links and Images using Image and Link built-in components replacing img, a tags
 // Code blocks, a, b, u, i, img, ul, ol, blockquote, h1, h2, h3, h4, h5, h6, custom component for handling GitHub Gists
@@ -202,6 +202,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     hr: ({ ...props }) => (
       <hr {...props} className="my-6 border-green-500/20" />
     ),
-    GitHubGist  
+    GitHubGist,
+    MDXImage
   }
 };

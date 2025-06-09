@@ -3,7 +3,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 // Custom code block component for handling code in MDX files
 // Visual Studio Code Dark Plus theme
-export const CodeBlock = ({ className = '', children }: { className?: string; children: string }) => {
+const CodeBlock = ({ className = '', children }: { className?: string; children: string }) => {
   const match = /language-(\w+)/.exec(className || '')
   return (
     <SyntaxHighlighter 
@@ -15,3 +15,5 @@ export const CodeBlock = ({ className = '', children }: { className?: string; ch
     </SyntaxHighlighter>
   )
 }
+
+export default CodeBlock;
