@@ -1,5 +1,5 @@
 import { Avatar } from "@radix-ui/react-avatar";
-import { Badge } from "../components/ui/badge";
+import { Badge } from "./ui/badge";
 import ArticleCoverImage from "./ArticleCoverImage";
 import ArticleHeaderInfoType from "@/utils/types/ArticleHeaderInfoType";
 import Image from "next/image";
