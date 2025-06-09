@@ -65,11 +65,17 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </h6>
     ),
-    p: ({ children, ...props }) => (
-      <p {...props} className={cn("mb-4 leading-relaxed text-green-200/90", props.className)}>
-        {children}
-      </p>
-    ),
+    p: ({ children, ...props }) => {
+      // Check if the children is a code block
+      if (typeof children === 'string' && children.startsWith('```')) {
+        return <>{children}</>;
+      }
+      return (
+        <p {...props} className={cn("mb-4 leading-relaxed text-green-200/90", props.className)}>
+          {children}
+        </p>
+      );
+    },
     a: ({ children, href, ...props }) => {
       if (href?.startsWith('/')) {
         return (
@@ -128,10 +134,29 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...(props as ImageProps)}
       />
     ),
-    pre: ({ className, ...props }) => {
-      return <pre className="not-prose" {...props} />;
-    },
-    code: CodeBlock,
+    pre: ({ children, ...props }) => {
+      const codeChild = 
+        typeof children === 'object' && 
+        children && 
+        'props' in children &&
+        children.props;
+    
+      if (codeChild) {
+        const { className, children: codeContent } = codeChild;
+    
+        return (
+          <CodeBlock className={className}>
+            {codeContent}
+          </CodeBlock>
+        );
+      }
+    
+      return (
+        <pre {...props} className={cn("not-prose my-6", props.className)}>
+          {children}
+        </pre>
+      );
+    },    
     strong: ({ children, ...props }) => (
       <strong {...props} className="font-bold">
         {children}
