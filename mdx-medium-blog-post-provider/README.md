@@ -29,7 +29,7 @@ The goal of this repository is to serve as a comprehensive starter kit for worki
 
 If you want, you can also run this project using the following command:
    ```bash
-   npx create-next-blog-app .
+   npx create-next-mdx-blog-app .
    ```
 This will instantly create and setup the starter kit project for you to work on.
 
@@ -65,7 +65,7 @@ Dynamic MDX content is rendered with the help of the `next-mdx-remote` package a
 ## 🖼️ MDX Components File
 The `mdx-components.tsx` file located in the root, integrates styling for built-in HTML elements as well as optimizing built-in elements such as `<a>` and `<img>` using the built-in components provided by Next.js (`<Image>` and `<Link>`). 
 
-For more details on what this file is and how it is utilized in a Next.js application, you can refer to the official docs here.
+For more details on what this file is and how it is utilized in a Next.js application, you can refer to the official docs <a href="https://nextjs.org/docs/app/api-reference/file-conventions/mdx-components">here</a>.
 
 ## 🧩 Custom React Components
 Custom React components are created for enhanced functionality when working with MDX. The following are located in the `customMDXComponents` directory inside the `components` directory of the project.
@@ -75,10 +75,13 @@ The project includes a custom `CodeBlock` component for syntax highlighting code
 
 Default theme is set to the `vscDarkPlus` theme. Feel free to modify the theme and even add your own syntax highlighting library if you so choose.
 
-You can read more about the library used in this project here.
+You can read more about the library used in this project <a href="https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/">here.</a>
+
 
 ### GitHub Gists
-For safety and ease of use, GitHub Gists can be integrated into MDX files to manage code snippets with its own custom component. Note that only GitHub Gists that are publicly available are supported. You can modify the component to integrate private Gists.
+For safety and ease of use, GitHub Gists can be integrated into MDX files to manage code snippets with its own custom component. 
+
+Note that only GitHub Gists that are publicly available are supported. You can modify the component to integrate private Gists.
 
 This custom component also utilizes the `react-syntax-highlighter` package for syntax highlighting the publicly accessible GitHub gists.
 
@@ -86,7 +89,9 @@ This custom component also utilizes the `react-syntax-highlighter` package for s
 The project comes with its own `MDXImage` component that utilizes the Next.js built-in `Image` component as well as the built-in `figure` and `figcaption` elements to integrate imaging and captions seamlessly.
 
 ## 🧩 Constants, Functions, & Types
-In this project, you will find custom constants, functions, and types in the `/src/utils/` directory. Certain constants serve as placeholders in this demo application. While functions and data types are integral to the function of this web application, feel free to check them out.
+In this project, you will find custom constants, functions, and types in the `/src/utils/` directory. Certain constants serve as placeholders in this demo application. 
+
+While functions and data types are integral to the function of this web application, feel free to check them out.
 
 ## 🗄️ Supabase Database Setup
 The project uses Supabase for database management. The `SupabaseClient` module is configured to interact with your Supabase instance. The instance is located in `/src/utils/functions/supabase_client`.
@@ -119,9 +124,7 @@ docker build -t mdx-medium-blog .
 ``
 
 ``
-docker run -e SUPABASE_URL=your_supabase_url \
-           -e SUPABASE_ANON_KEY=your_supabase_anon_key \
-           -p 3000:3000 mdx-medium-blog
+docker run -e SUPABASE_URL=your_supabase_url \ -e SUPABASE_ANON_KEY=your_supabase_anon_key \ -p 3000:3000 mdx-medium-blog
 ``
 
 ## 🔄 CRUD Operations and Supabase Actions

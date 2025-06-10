@@ -2,8 +2,17 @@
   "name": "create-next-mdx-blog-app",
   "version": "1.0.0",
   "bin": {
-    "create-next-blog-app": "./cli.js"
+    "create-next-mdx-blog-app": "./bin/create.js"
   },
+  "homepage": "https://next-mdx-blog-starter-sigma.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodingAbdullah/Next-MDX-Blog-Starter.git"
+  },
+  "keywords": [
+    "aws", "docker", "javascript", "jsx", "mdx", "next", "react", "sql", "supabase", "typescript" 
+  ],
+  "license": "MIT License",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -22,6 +31,7 @@
     "@vercel/analytics": "^1.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "degit": "^2.8.4",
     "execa": "^9.6.0",
     "gray-matter": "^4.0.3",
     "inquirer": "^12.6.3",
