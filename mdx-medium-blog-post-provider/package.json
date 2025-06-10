@@ -1,5 +1,5 @@
 {
-  "name": "create-next-blog-app",
+  "name": "create-next-mdx-blog-app",
   "version": "1.0.0",
   "bin": {
     "create-next-blog-app": "./cli.js"
