@@ -1,7 +1,9 @@
 {
-  "name": "mdx-medium-blog-post-provider",
-  "version": "0.1.0",
-  "private": true,
+  "name": "create-next-blog-app",
+  "version": "1.0.0",
+  "bin": {
+    "create-next-blog-app": "./cli.js"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -20,7 +22,9 @@
     "@vercel/analytics": "^1.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "execa": "^9.6.0",
     "gray-matter": "^4.0.3",
+    "inquirer": "^12.6.3",
     "lucide-react": "^0.511.0",
     "next": "15.3.2",
     "next-mdx-remote": "^5.0.0",

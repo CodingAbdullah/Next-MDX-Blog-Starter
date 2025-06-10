@@ -27,6 +27,12 @@ The goal of this repository is to serve as a comprehensive starter kit for worki
    npm run dev
    ```
 
+If you want, you can also run this project using the following command:
+   ```bash
+   npx create-next-blog-app .
+   ```
+This will instantly create and setup the starter kit project for you to work on.
+
 ## 🛠️ Tools
 ### AI Tools
 - **Cursor**: An AI-powered coding assistant that enhances productivity and code quality.
