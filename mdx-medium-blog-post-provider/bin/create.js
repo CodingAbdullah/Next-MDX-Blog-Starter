@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const execa = require('execa');
+const { execa } = require('execa');
 const path = require('path');
 const fs = require('fs');
 const inquirer = require('inquirer');
@@ -39,14 +39,17 @@ async function setup() {
   try {
     // Use degit to clone the repository into the current directory
     const emitter = degit(repoUrl, { cache: false, force: true });
-
     await emitter.clone(cwd);
+
+    // If there's no package.json, initialize it first
+    if (!hasPackageJson) {
+      console.log('Initializing npm project...');
+      await execa('npm', ['init', '-y'], { stdio: 'inherit' }); // Initialize package.json with default values
+    }
 
     // Install dependencies
     console.log('Installing dependencies...');
-    await execa('npm', ['install'], {
-      stdio: 'inherit',
-    });
+    await execa('npm', ['install'], { stdio: 'inherit' });
 
     console.log('Next.js MDX Blog setup completed!');
     console.log('To start the app, run:');
