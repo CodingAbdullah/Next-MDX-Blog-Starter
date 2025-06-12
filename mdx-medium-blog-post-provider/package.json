@@ -1,6 +1,6 @@
 {
   "name": "create-next-mdx-blog-app",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "bin": {
     "create-next-mdx-blog-app": "./bin/create.js"
   },
@@ -10,7 +10,16 @@
     "url": "git+https://github.com/CodingAbdullah/Next-MDX-Blog-Starter.git"
   },
   "keywords": [
-    "aws", "docker", "javascript", "jsx", "mdx", "next", "react", "sql", "supabase", "typescript" 
+    "aws",
+    "docker",
+    "javascript",
+    "jsx",
+    "mdx",
+    "next",
+    "react",
+    "sql",
+    "supabase",
+    "typescript"
   ],
   "license": "MIT License",
   "scripts": {
@@ -34,7 +43,7 @@
     "degit": "^2.8.4",
     "execa": "^9.6.0",
     "gray-matter": "^4.0.3",
-    "inquirer": "^12.6.3",
+    "inquirer": "^8.2.6",
     "lucide-react": "^0.511.0",
     "next": "15.3.2",
     "next-mdx-remote": "^5.0.0",
