@@ -33,6 +33,27 @@ If you want, you can also run this project using the following command:
    ```
 This will instantly create and setup the starter kit project for you to work on.
 
+## ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white) Package
+
+### Install via NPM
+
+```bash
+npm install create-next-mdx-blog-app
+```
+
+### Quick Start with NPX
+
+```bash
+npx create-next-mdx-blog-app .
+```
+
+### Package Information
+
+- **Package Name**: `create-next-mdx-blog-app`
+- **Version**: `1.0.5`
+- **License**: MIT
+- **Homepage**: [https://www.npmjs.com/package/create-next-mdx-blog-app](https://www.npmjs.com/package/create-next-mdx-blog-app/)
+
 ## 🛠️ Tools
 ### AI Tools
 - **Cursor**: An AI-powered coding assistant that enhances productivity and code quality.
