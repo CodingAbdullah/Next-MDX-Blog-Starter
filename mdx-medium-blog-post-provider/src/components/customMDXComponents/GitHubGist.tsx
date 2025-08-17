@@ -2,31 +2,27 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import GitHubGistType from '@/utils/types/GitHubGistType';
+import fs from 'fs';
+import path from 'path';
 
 // GitHub Gist custom component
-// Perform the GET request to retrieve the requested GitHub Gist using its ID
+// Read the requested GitHub Gist content from local file using its ID
 async function GitHubGist({ id, figCaptionText }: GitHubGistType) {
   let content = '';
-  const error = null;
+  let error = null;
 
   // Run a try-catch to ensure errors are caught and handled gracefully
   try {
-    const response = await fetch(`https://api.github.com/gists/${id}`);
-    const data = await response.json();
-
-    if (response.ok) {
-      const files = data.files;
-      const rawFileUrl = files[Object.keys(files)[0]].raw_url;
-
-      const fileResponse = await fetch(rawFileUrl);
-      content = await fileResponse.text();
-    } 
-    else {
-      throw new Error("Could not load GitHub Gist");
+    const filePath = path.join(process.cwd(), 'src', 'github_gists', `${id}.txt`);
+    
+    if (!fs.existsSync(filePath)) {
+      throw new Error("GitHub gist could not load");
     }
+    
+    content = fs.readFileSync(filePath, 'utf8');
   } 
-  catch (err) {
-    throw new Error("Could not load GitHub Gist: " + err);
+  catch {
+    error = "GitHub gist could not load";
   }
 
   // Show error state
