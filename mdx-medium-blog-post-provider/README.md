@@ -4,6 +4,15 @@ This project is inspired by the elegant design and functionality of **Loveable**
 
 The goal of this repository is to serve as a comprehensive starter kit for working with static and dynamic content using MDX, React, and Next.js (more specifically the App Router).
 
+### 🚀 SSG-Compliant Architecture
+This starter kit is built with **Static Site Generation (SSG)** compliance at its core, ensuring optimal performance and SEO benefits:
+
+- **Pre-rendered Pages**: All blog posts and content pages are statically generated at build time for lightning-fast loading
+- **Optimized Assets**: Images, fonts, and other assets are optimized for static delivery
+- **SEO-Ready**: Meta tags, structured data, and semantic HTML are generated statically for better search engine visibility
+- **CDN-Friendly**: Static output can be easily deployed to any CDN or static hosting provider
+- **Zero Runtime Dependencies**: Core content rendering requires no client-side JavaScript, ensuring accessibility and performance
+
 ## ⚙️ Project Setup
 
 ### Prerequisites
@@ -160,6 +169,22 @@ The `/scripts` folder contains various scripts to help set up the project and da
 - **SQL Scripts**: DDL and DML statements for initializing and populating the database.
 - **Powershell Script**: Script for setting up project on Windows.
 - **Bash Shell Script**: Script for setting up project on Linux, Mac, etc.
+
+### GitHub Gist Fetcher
+The project includes a GitHub Gist fetcher script that downloads public GitHub Gist content and exports it to a text file for local use.
+
+**Location**: `/scripts/github-gist-fetcher/fetch-github-gist.ts`
+
+**Usage**:
+```bash
+npx tsx scripts/github-gist-fetcher/fetch-github-gist.ts <gist-id>
+```
+
+**Features**:
+- Fetches public GitHub Gist content using the GitHub API
+- Exports the raw content from the fetch call to `/src/github_gists/<gist-id>.txt`
+- Automatically creates the output directory if it does not exist
+- Provides clear error handling and status messages
 
 This project directly integrates Supabase in the front-end using React Server components which removes the need for custom back-end APIs.
 
