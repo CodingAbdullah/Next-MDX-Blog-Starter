@@ -1,5 +1,33 @@
 // Custom Article Canvas Page for creating and publishing a Medium style blog post
 import DynamicArticle from "@/components/DynamicArticle";
+import type { Metadata } from 'next';
+
+// Generate dynamic metadata for the dynamic blog post page
+// Generate static paths for each published article
+// Modify to your own needs
+export async function generateMetadata({ params }: { params: Promise<{ dynamic_blog_post: string }> }): Promise<Metadata> {
+  const articleSlug = (await params).dynamic_blog_post;
+  
+  return {
+    title: `${articleSlug} | Create Next MDX Blog App`,
+    description: `Read the blog post: ${articleSlug}`,
+    keywords: ['blog', 'article', 'MDX', 'dynamic content', 'Next.js'],
+    openGraph: {
+      title: `${articleSlug} | Create Next MDX Blog App`,
+      description: `Read the blog post: ${articleSlug}`,
+      type: 'article'
+    }
+  };
+}
+
+// Static path generation
+export async function generateStaticParams() {
+  return [
+    {
+      dynamic_blog_post: 'DynamicArticleContent'
+    }
+  ];
+}
 
 // Custom Article component for containing MDX/JSX content for a blog post
 // Dynamic Article custom component handles fetching MDX content remotely (via Supabase)

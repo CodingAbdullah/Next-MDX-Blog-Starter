@@ -1,5 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from 'next';
+
+// Generate metadata for the home page
+export const metadata: Metadata = {
+  title: 'Create Next MDX Blog App',
+  description: 'A starter template for creating and publishing Medium style blog posts using Markdown, JSX, and Next.js',
+  keywords: ['blog', 'MDX', 'Next.js', 'markdown', 'articles'],
+  openGraph: {
+    title: 'Create Next MDX Blog App',
+    description: 'A starter template for creating and publishing Medium style blog posts using Markdown, JSX, and Next.js',
+    type: 'website'
+  }
+};
 
 // Home Page
 export default function Home() {

@@ -10,7 +10,7 @@ export default function ArticleAuthorBio({ authorInformation }: { authorInformat
         <div className="glass-card p-6 mb-12">
             <div className="flex items-start">
               <Avatar className="h-16 w-16 mr-6 border-2 border-green-500/30">
-                <Image src={authorInformation.authorProfileImageURL} alt="No Name" width={100} height={100} />
+                <Image src={authorInformation.authorProfileImageURL} alt="No Name" width={64} height={64} className="rounded-full object-cover" />
               </Avatar>
               <div>
                 <h3 className="text-xl font-semibold mb-2 matrix-glow text-green-300">{authorInformation.authorName}</h3>

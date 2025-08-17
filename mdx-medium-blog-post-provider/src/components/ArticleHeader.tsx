@@ -20,7 +20,7 @@ export default function ArticleHeader({ articleHeaderInformation } : { articleHe
             {/* Author info and publish date */}
             <div className="flex items-center mb-6">
                 <Avatar className="h-12 w-12 mr-4 border-2 border-green-500/30">
-                    <Image src={ articleHeaderInformation.articleAuthorInfo.authorProfileImageURL } alt="No Name Exists" width={100} height={100} />
+                    <Image src={ articleHeaderInformation.articleAuthorInfo.authorProfileImageURL } alt="No Name Exists" width={48} height={48} className="rounded-full object-cover" />
                 </Avatar>
                 <div>
                     <p className="font-medium text-green-300">{ articleHeaderInformation.articleAuthorInfo.authorName }</p>

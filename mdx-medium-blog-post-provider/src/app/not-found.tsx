@@ -1,5 +1,13 @@
 import { Button } from "../components/ui/button";
 import Link from "next/link";
+import type { Metadata } from 'next';
+
+// Generate metadata for the Not Found page
+export const metadata: Metadata = {
+  title: 'Page Not Found | Create Next MDX Blog App',
+  description: 'The page you are looking for could not be found',
+  robots: 'noindex, nofollow'
+};
 
 // Not Found page
 export default function NotFoundPage() {
