@@ -1,6 +1,6 @@
 {
   "name": "create-next-mdx-blog-app",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "bin": {
     "create-next-mdx-blog-app": "./bin/create.js"
   },
@@ -29,26 +29,26 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mdx-js/loader": "^3.1.0",
-    "@mdx-js/react": "^3.1.0",
-    "@next/mdx": "^15.3.2",
+    "@mdx-js/loader": "^3.1.1",
+    "@mdx-js/react": "^3.1.1",
+    "@next/mdx": "^16.1.1",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-slot": "^1.2.3",
-    "@supabase/supabase-js": "^2.49.8",
+    "@supabase/supabase-js": "^2.89.0",
     "@types/mdx": "^2.0.13",
     "@types/react-syntax-highlighter": "^15.5.13",
-    "@vercel/analytics": "^1.5.0",
+    "@vercel/analytics": "^1.6.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "degit": "^2.8.4",
     "execa": "^9.6.0",
     "gray-matter": "^4.0.3",
     "inquirer": "^8.2.6",
-    "lucide-react": "^0.511.0",
-    "next": "15.3.2",
+    "lucide-react": "^0.562.0",
+    "next": "^16.1.1",
     "next-mdx-remote": "^5.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "react-syntax-highlighter": "^15.6.1",
     "tailwind-merge": "^3.3.0",
     "tsx": "^4.19.4"
