@@ -47,24 +47,32 @@ function EditorToolbar({ mainFile, template }: { mainFile: string; template: 'va
   const { sandpack, dispatch } = useSandpack();
   const isTS = template === 'vanilla-ts';
 
-  const handleCopy = (): void => {
-    navigator.clipboard.writeText(sandpack.files[mainFile]?.code ?? '');
-    toast.success('Code copied to clipboard!');
+  const handleCopy = async (): Promise<void> => {
+    try {
+      await navigator.clipboard.writeText(sandpack.files[mainFile]?.code ?? '');
+      toast.success('Code copied to clipboard!');
+    } catch {
+      toast.error('Failed to copy code. Please try again.');
+    }
   };
 
   const handleDownload = (): void => {
-    const code = sandpack.files[mainFile]?.code ?? '';
-    const ext = isTS ? 'ts' : 'js';
-    const blob = new Blob([code], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `sandbox.${ext}`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    toast.success('Code downloaded!');
+    try {
+      const code = sandpack.files[mainFile]?.code ?? '';
+      const ext = isTS ? 'ts' : 'js';
+      const blob = new Blob([code], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `sandbox.${ext}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      toast.success('Code downloaded!');
+    } catch {
+      toast.error('Failed to download code. Please try again.');
+    }
   };
 
   return (
@@ -92,7 +100,7 @@ function EditorToolbar({ mainFile, template }: { mainFile: string; template: 'va
         <button onClick={handleDownload} title="Download" className="p-1.5 text-green-500 hover:text-green-300 hover:bg-green-500/10 rounded transition-colors">
           <Download className="h-3.5 w-3.5" />
         </button>
-        <button onClick={() => { sandpack.resetFile(mainFile); toast.success('Reset!'); }} title="Reset" className="p-1.5 text-green-500 hover:text-green-300 hover:bg-green-500/10 rounded transition-colors">
+        <button onClick={() => { try { sandpack.resetFile(mainFile); toast.success('Code reset to original!'); } catch { toast.error('Failed to reset code. Please try again.'); } }} title="Reset" className="p-1.5 text-green-500 hover:text-green-300 hover:bg-green-500/10 rounded transition-colors">
           <RotateCcw className="h-3.5 w-3.5" />
         </button>
       </div>
