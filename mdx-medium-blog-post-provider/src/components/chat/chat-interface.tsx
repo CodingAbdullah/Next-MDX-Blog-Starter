@@ -29,7 +29,7 @@ export function ChatInterface() {
     );
 
     return (
-        <div className="flex flex-col h-[calc(100vh-14rem)] glass-card rounded-lg overflow-hidden">
+        <div className="flex flex-col h-[calc(100dvh-10rem)] sm:h-[calc(100dvh-12rem)] md:h-[calc(100dvh-14rem)] min-h-[420px] glass-card rounded-lg overflow-hidden">
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-green-500/20 bg-[#071407]">
                 <div className="flex items-center gap-2">

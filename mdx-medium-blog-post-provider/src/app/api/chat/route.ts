@@ -28,7 +28,7 @@ export async function POST(req: Request) {
             tools: {
                 searchBlogTopics: tool({
                     description: "Search for topics and subjects covered in this technical blog",
-                    parameters: z.object({
+                    inputSchema: z.object({
                         query: z.string().describe("The topic or keyword to search for"),
                     }),
                     execute: async ({ query }) => {
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
                 }),
                 getCodeExample: tool({
                     description: "Get a runnable code example for a specific programming concept or API",
-                    parameters: z.object({
+                    inputSchema: z.object({
                         topic: z.string().describe("The programming concept, API, or pattern"),
                         language: z
                             .string()
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
                 }),
                 explainConcept: tool({
                     description: "Provide a detailed explanation of a technical concept related to web development",
-                    parameters: z.object({
+                    inputSchema: z.object({
                         concept: z.string().describe("The technical concept to explain"),
                         depth: z
                             .enum(["brief", "detailed"])

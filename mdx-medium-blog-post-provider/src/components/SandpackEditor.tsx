@@ -43,7 +43,7 @@ const matrixTheme: SandpackTheme = {
   },
 };
 
-function EditorToolbar({ mainFile, template }: { mainFile: string; template: 'vanilla' | 'vanilla-ts' }): JSX.Element {
+function EditorToolbar({ mainFile, template }: { mainFile: string; template: 'vanilla' | 'vanilla-ts' }) {
   const { sandpack, dispatch } = useSandpack();
   const isTS = template === 'vanilla-ts';
 
@@ -105,7 +105,7 @@ export interface SandpackEditorProps {
   template: 'vanilla' | 'vanilla-ts';
 }
 
-export default function SandpackEditor({ initialCode, template }: SandpackEditorProps): JSX.Element {
+export default function SandpackEditor({ initialCode, template }: SandpackEditorProps) {
   const mainFile = template === 'vanilla-ts' ? '/index.ts' : '/index.js';
 
   return (
@@ -128,7 +128,7 @@ export default function SandpackEditor({ initialCode, template }: SandpackEditor
           <SandpackCodeEditor
             showLineNumbers
             showInlineErrors
-            style={{ minHeight: '430px' }}
+            style={{ minHeight: 'clamp(260px, 50vw, 430px)' }}
           />
         </div>
 
@@ -141,7 +141,7 @@ export default function SandpackEditor({ initialCode, template }: SandpackEditor
           <SandpackConsole
             showHeader={false}
             resetOnPreviewRestart
-            style={{ minHeight: '430px' }}
+            style={{ minHeight: 'clamp(260px, 50vw, 430px)' }}
           />
         </div>
       </div>

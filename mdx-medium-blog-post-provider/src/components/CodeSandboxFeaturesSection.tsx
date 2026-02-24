@@ -1,6 +1,6 @@
 import { Copy, Play, Download, Shield } from "lucide-react";
 
-export default function CodeSandboxFeaturesSection(): JSX.Element {
+export default function CodeSandboxFeaturesSection() {
     return (
         <section className="pb-8 sm:pb-12">
             <h3 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 matrix-glow text-center">Sandbox Features</h3>

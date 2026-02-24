@@ -24,7 +24,7 @@ export function ChatMessages({ messages, isLoading, error }: ChatMessagesType) {
 
     if (messages.length === 0) {
         return (
-            <div className="flex-1 flex items-center justify-center p-8 bg-[#050d05]">
+            <div className="flex-1 flex items-center justify-center p-4 sm:p-8 bg-[#050d05]">
                 <div className="text-center max-w-md">
                     <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-500/10 border border-green-500/20 mx-auto mb-4">
                         <Bot className="h-8 w-8 text-green-400" />
@@ -56,7 +56,7 @@ export function ChatMessages({ messages, isLoading, error }: ChatMessagesType) {
                 <div
                     key={message.id}
                     className={cn(
-                        "flex gap-3 max-w-[85%]",
+                        "flex gap-3 max-w-[92%] sm:max-w-[85%]",
                         message.role === "user" ? "ml-auto flex-row-reverse" : "mr-auto"
                     )}
                 >
@@ -108,7 +108,7 @@ export function ChatMessages({ messages, isLoading, error }: ChatMessagesType) {
             ))}
 
             {isLoading && messages[messages.length - 1]?.role === "user" && (
-                <div className="flex gap-3 mr-auto max-w-[85%]">
+                <div className="flex gap-3 mr-auto max-w-[92%] sm:max-w-[85%]">
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black/40 border border-green-500/20">
                         <Bot className="h-4 w-4 text-green-400" />
                     </div>
