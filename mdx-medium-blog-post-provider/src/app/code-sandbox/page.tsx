@@ -32,7 +32,7 @@ export default function CodeSandboxPage() {
   const template: 'vanilla' | 'vanilla-ts' = runtime === 'typescript' ? 'vanilla-ts' : 'vanilla';
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black">
       <main className="flex-grow px-3 sm:px-4">
         <div className="max-w-6xl mx-auto py-4 sm:py-6 md:py-8">
 
