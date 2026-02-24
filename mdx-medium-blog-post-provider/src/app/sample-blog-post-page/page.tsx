@@ -1,8 +1,7 @@
 // Custom Article Canvas Page for creating and publishing a Medium style blog post
 import ArticleAuthorBio from "@/components/ArticleAuthorBio";
 import ArticleHeader from "@/components/ArticleHeader";
-import ArticleAuthorInfoList from "@/utils/constants/ArticleAuthorInfoList";
-import ArticleHeaderInfoList from "@/utils/constants/ArticleHeaderInfoList";
+import { ArticleAuthorInfoList, ArticleHeaderInfoList } from "@/utils/constants";
 import StaticArticle from "@/components/StaticArticle";
 import type { Metadata } from 'next';
 

@@ -1,7 +1,7 @@
 // components/customMDXComponents/GitHubGist.tsx
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import GitHubGistType from '@/utils/types/GitHubGistType';
+import type { GitHubGistType } from '@/utils/types';
 import fs from 'fs';
 import path from 'path';
 

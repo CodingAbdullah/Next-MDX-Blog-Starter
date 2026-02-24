@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ArticleCoverImageInfoType from "../utils/types/ArticleCoverImageType";
+import type { ArticleCoverImageInfoType } from "@/utils/types";
 
 // Article Cover Image Section component
 export default function ArticleCoverImage(coverImageInformation: ArticleCoverImageInfoType) {

@@ -20,14 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ dynamic_b
   };
 }
 
-// Static path generation
-export async function generateStaticParams() {
-  return [
-    {
-      dynamic_blog_post: 'DynamicArticleContent'
-    }
-  ];
-}
+// Force server-side rendering — this page fetches from Supabase at request time
+export const dynamic = 'force-dynamic';
 
 // Custom Article component for containing MDX/JSX content for a blog post
 // Dynamic Article custom component handles fetching MDX content remotely (via Supabase)
