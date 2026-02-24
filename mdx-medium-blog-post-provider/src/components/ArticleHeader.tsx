@@ -1,7 +1,7 @@
 import { Avatar } from "@radix-ui/react-avatar";
 import { Badge } from "./ui/badge";
 import ArticleCoverImage from "./ArticleCoverImage";
-import ArticleHeaderInfoType from "@/utils/types/ArticleHeaderInfoType";
+import type { ArticleHeaderInfoType } from "@/utils/types";
 import Image from "next/image";
 
 // Article Header custom component

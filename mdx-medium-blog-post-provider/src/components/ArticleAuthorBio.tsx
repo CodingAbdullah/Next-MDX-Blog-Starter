@@ -2,7 +2,7 @@ import { Avatar } from "@radix-ui/react-avatar";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import Image from "next/image";
-import ArticleAuthorInfoType from "@/utils/types/ArticleAuthorInfoType";
+import type { ArticleAuthorInfoType } from "@/utils/types";
 
 // Article Author Bio Section component
 export default function ArticleAuthorBio({ authorInformation }: { authorInformation: ArticleAuthorInfoType }) {

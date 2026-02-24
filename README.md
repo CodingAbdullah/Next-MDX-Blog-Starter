@@ -1,6 +1,6 @@
 # 🌟 Next-MDX-Blog-Starter
 ## 📖 Introduction
-This project is inspired by the elegant design and functionality of **Loveable**. It leverages the **Claude Sonnet 4** model for development, ensuring a robust and efficient coding experience. 
+This project is inspired by the elegant design and functionality of **Lovable**. It leverages the **Claude Sonnet 4.6** model for development, ensuring a robust and efficient coding experience.
 
 The goal of this repository is to serve as a comprehensive starter kit for working with static and dynamic content using MDX, React, and Next.js (more specifically the App Router).
 
@@ -50,15 +50,15 @@ npx create-next-mdx-blog-app .
 ### Package Information
 
 - **Package Name**: `create-next-mdx-blog-app`
-- **Version**: `1.0.8`
+- **Version**: `2.0.0`
 - **License**: MIT
 - **Homepage**: [https://www.npmjs.com/package/create-next-mdx-blog-app](https://www.npmjs.com/package/create-next-mdx-blog-app/)
 
 ## 🛠️ Tools
 ### AI Tools
 - **Cursor**: An AI-powered coding assistant that enhances productivity and code quality.
-- **Loveable**: A design inspiration that emphasizes user-friendly interfaces and experiences.
-- **Claude Sonnet 4**: A model that aids in development, providing intelligent suggestions and optimizations.
+- **Lovable**: A design inspiration that emphasizes user-friendly interfaces and experiences.
+- **Claude Sonnet 4.6**: A model that aids in development, providing intelligent suggestions and optimizations.
 
 ### Common NPM Libraries
 - **mdx**: A markdown format that allows you to write JSX in your markdown files, enabling rich content.
@@ -69,6 +69,12 @@ npx create-next-mdx-blog-app .
 - **react**: A JavaScript library for building user interfaces, allowing for the creation of reusable UI components.
 - **react-syntax-highlighter**: A library for syntax highlighting in React applications, making code snippets more readable.
 - **tsx**: Run TypeScript code without worrying about configuration! Run the `article-manager.ts` for manually working with published articles.
+- **@codesandbox/sandpack-react**: Powers the in-browser JavaScript/TypeScript code execution environment, running code entirely client-side with no server required.
+- **ai** (Vercel AI SDK): Provides streaming AI response primitives and transport utilities (`TextStreamChatTransport`, `streamText`, tool support) for building the interactive chatbot.
+- **@ai-sdk/anthropic**: Anthropic provider for the Vercel AI SDK, used to connect to Claude models.
+- **@ai-sdk/react**: React hooks (`useChat`) for building streaming AI chat interfaces.
+- **zod**: TypeScript-first schema validation library used to define and validate AI tool parameters.
+- **sonner**: Lightweight toast notification library used for user feedback in the Code Sandbox.
 
 ## 🌐 Static/Dynamic Rendering with MDX
 This project utilizes MDX for both static and dynamic rendering of blog posts. The two MDX files included in the project serve as examples of how to structure your content.
@@ -84,7 +90,7 @@ A helpful package known as `gray-matter` is used to format and separate frontmat
 Dynamic MDX content is rendered with the help of the `next-mdx-remote` package and utilizing the `MDXRemote` custom component.
 
 ## 🖼️ MDX Components File
-The `mdx-components.tsx` file located in the root, integrates styling for built-in HTML elements as well as optimizing built-in elements such as `<a>` and `<img>` using the built-in components provided by Next.js (`<Image>` and `<Link>`). 
+The `mdx-components.tsx` file located in the root, integrates styling for built-in HTML elements as well as optimizing built-in elements such as `<a>` and `<img>` using the built-in components provided by Next.js (`<Image>` and `<Link>`).
 
 For more details on what this file is and how it is utilized in a Next.js application, you can refer to the official docs <a href="https://nextjs.org/docs/app/api-reference/file-conventions/mdx-components">here</a>.
 
@@ -92,7 +98,7 @@ For more details on what this file is and how it is utilized in a Next.js applic
 Custom React components are created for enhanced functionality when working with MDX. The following are located in the `customMDXComponents` directory inside the `components` directory of the project.
 
 ### Syntax Highlighting
-The project includes a custom `CodeBlock` component for syntax highlighting code blocks using the `react-syntax-highlighter` package. 
+The project includes a custom `CodeBlock` component for syntax highlighting code blocks using the `react-syntax-highlighter` package.
 
 Default theme is set to the `vscDarkPlus` theme. Feel free to modify the theme and even add your own syntax highlighting library if you so choose.
 
@@ -100,7 +106,7 @@ You can read more about the library used in this project <a href="https://react-
 
 
 ### GitHub Gists
-For safety and ease of use, GitHub Gists can be integrated into MDX files to manage code snippets with its own custom component. 
+For safety and ease of use, GitHub Gists can be integrated into MDX files to manage code snippets with its own custom component.
 
 Note that only GitHub Gists that are publicly available are supported. You can modify the component to integrate private Gists.
 
@@ -109,8 +115,49 @@ This custom component also utilizes the `react-syntax-highlighter` package for s
 ### MDX Images
 The project comes with its own `MDXImage` component that utilizes the Next.js built-in `Image` component as well as the built-in `figure` and `figcaption` elements to integrate imaging and captions seamlessly.
 
+## 🖥️ Code Sandbox
+The project includes an interactive in-browser code execution environment powered by **Sandpack** (<b>route</b>: `/code-sandbox`).
+
+### Features
+- **JavaScript & TypeScript runtimes**: Switch between JS and TS with a single click. The editor reloads with a language-appropriate default snippet.
+- **Quick Examples**: Pre-loaded snippets covering Fibonacci, Async/Await, Data Structures (JS) and Types & Interfaces, Generics, Classes & OOP (TS) — load any with one click.
+- **Sandpack Editor**: Full code editor with line numbers, inline TypeScript errors, and a matrix-green custom theme (`JetBrains Mono`).
+- **Toolbar**: Run, Copy to clipboard, Download file, and Reset to default — all accessible from above the editor.
+- **Console Panel**: Live console output displayed side-by-side with the editor. Execution is entirely in-browser — no code reaches the server.
+- **Features Section**: Highlights Secure Sandbox, Instant Execution, Easy Copy, and JS & TypeScript support.
+
+### Components
+- `src/components/SandpackEditor.tsx` — Sandpack provider, matrix-themed editor, toolbar, and console panel.
+- `src/components/CodeSandboxFeaturesSection.tsx` — Feature highlights grid displayed below the editor.
+
+## 🤖 Blog Assistant Chatbot
+The project includes an interactive AI-powered chatbot optimised for readers of this technical blog (<b>route</b>: `/chat`).
+
+### Features
+- **Streaming responses**: Powered by the Vercel AI SDK (`TextStreamChatTransport`) and Anthropic's Claude Haiku model via an edge API route (`/api/chat`).
+- **Blog-focused tools**: Three tools are available to the model during a conversation:
+  - `searchBlogTopics` — searches a curated list of topics covered by this blog (JS, TS, React, Next.js, MDX, Docker, AWS, etc.)
+  - `getCodeExample` — signals the model to generate a runnable code example for a given concept and language.
+  - `explainConcept` — signals the model to produce a brief or detailed technical explanation.
+- **No persistence**: Conversations are ephemeral — nothing is stored on a server or in a database. A "New Chat" button clears the session.
+- **Matrix-green styling**: Consistent with the Code Sandbox, the chat UI uses the same dark/neon-green palette and `JetBrains Mono` font.
+- **Tool result display**: Each tool call and its result is rendered inline in the message thread via the `ChatToolResult` component.
+
+### Configuration
+- `src/utils/constants/AiChatConfig.ts` — Model name (`claude-haiku-4-5-20251001`), temperature, max tokens, and the blog-focused system prompt.
+- `src/utils/constants/ToolConfig.ts` — Icon, label, and colour mappings for each tool displayed in the UI.
+
+### Components
+- `src/components/chat/chat-interface.tsx` — Top-level client component; owns `useChat` state, "New Chat" handler, and layout.
+- `src/components/chat/chat-messages.tsx` — Message thread with auto-scroll, empty state, loading indicator, and error display.
+- `src/components/chat/chat-input.tsx` — Textarea + send button; supports `Enter` to send and `Shift+Enter` for newlines.
+- `src/components/chat/chat-tool-result.tsx` — Renders tool call and tool result states inline in the message thread.
+
+### API Route
+`src/app/api/chat/route.ts` — Next.js edge route. Accepts the `UIMessages` array, converts it to `CoreMessages` via `convertToModelMessages`, streams a response using `streamText` with the three blog tools, and returns `result.toTextStreamResponse()`.
+
 ## 🧩 Constants, Functions, & Types
-In this project, you will find custom constants, functions, and types in the `/src/utils/` directory. Certain constants serve as placeholders in this demo application. 
+In this project, you will find custom constants, functions, and types in the `/src/utils/` directory. Certain constants serve as placeholders in this demo application.
 
 While functions and data types are integral to the function of this web application, feel free to check them out.
 
@@ -119,16 +166,25 @@ The project uses Supabase for database management. The `SupabaseClient` module i
 
 **Ensure that the policies of the Supabase database enable you to perform the desired CRUD actions against your tables. You can modify these in the Supabase console.**
 
-### Environment Variables
-Create a `.env` file in the root directory and add your Supabase secrets:
+### Environment Variables & Credentials
+A `.env.example` file is provided at the root of the project listing all required environment variable keys with empty placeholders. Copy it to `.env.local` and fill in your values:
 
-``
-SUPABASE_URL=your_supabase_url
-``
+```bash
+cp .env.example .env.local
+```
 
-``
-SUPABASE_ANON_KEY=your_supabase_anon_key
-``
+| Variable | Required for |
+|---|---|
+| `SUPABASE_URL` | Dynamic blog post fetching (Supabase client) |
+| `SUPABASE_ANON_KEY` | Dynamic blog post fetching (Supabase client) |
+| `ANTHROPIC_API_KEY` | Blog Assistant chatbot (`/api/chat` edge route) |
+
+```
+# .env.local
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+ANTHROPIC_API_KEY=
+```
 
 ## 🌩️ AWS
 This application utilizes the AWS S3 service for the storage of images. You can find the external URL used to access these objects in the `next.config.ts` file. Feel free to use another service or modify the URL to point to a S3 bucket of your own.
@@ -136,16 +192,16 @@ This application utilizes the AWS S3 service for the storage of images. You can 
 Images are used in the `.mdx` files and utilized via the custom `MDXImage` component covered earlier.
 
 ## 🐳 Docker
-This application can be containerized using Docker. 
+This application can be containerized using Docker.
 
-To build an image, utilize the Dockerfile located in the root location of the repository and run the following commands to run this web application in a standalone container (passing in the Supabase credentials as well):
+To build an image, utilize the Dockerfile located in the root location of the repository and run the following commands to run this web application in a standalone container (passing in the credentials as well):
 
 ``
 docker build -t mdx-medium-blog .
 ``
 
 ``
-docker run -e SUPABASE_URL=your_supabase_url \ -e SUPABASE_ANON_KEY=your_supabase_anon_key \ -p 3000:3000 mdx-medium-blog
+docker run -e SUPABASE_URL=your_supabase_url \ -e SUPABASE_ANON_KEY=your_supabase_anon_key \ -e ANTHROPIC_API_KEY=your_anthropic_api_key \ -p 3000:3000 mdx-medium-blog
 ``
 
 ## 🔄 CRUD Operations and Supabase Actions
@@ -204,3 +260,7 @@ The `next.config.ts` file is set up for working with AWS S3 and includes MDX ext
 - [Supabase Documentation](https://supabase.com/docs)
 - [Docker Documentation](https://docs.docker.com/)
 - [React Syntax Highlighter Package](https://github.com/react-syntax-highlighter/react-syntax-highlighter)
+- [Sandpack Documentation](https://sandpack.codesandbox.io/docs)
+- [Vercel AI SDK Documentation](https://sdk.vercel.ai/docs)
+- [Anthropic AI SDK Provider](https://sdk.vercel.ai/providers/ai-sdk-providers/anthropic)
+- [Zod Documentation](https://zod.dev)

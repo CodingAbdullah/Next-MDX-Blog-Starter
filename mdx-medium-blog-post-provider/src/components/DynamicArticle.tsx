@@ -1,10 +1,9 @@
 // Custom Article Canvas Page for creating and publishing a Medium style blog post
 import ArticleAuthorBio from "@/components/ArticleAuthorBio";
 import ArticleHeader from "@/components/ArticleHeader";
-import ArticleAuthorInfoList from "@/utils/constants/ArticleAuthorInfoList";
-import ArticleHeaderInfoList from "@/utils/constants/ArticleHeaderInfoList";
+import { ArticleAuthorInfoList, ArticleHeaderInfoList } from "@/utils/constants";
 import MDXRemoteArticle from "./MDXRemoteArticle";
-import fetchArticle from "@/utils/functions/crud/fetchArticle";
+import { fetchArticle } from "@/utils/functions";
 
 // Custom Dynamic Article component encompasses loading article content stored in a Supabase database
 export default async function DynamicArticle({ slug } : { slug: string }) {
