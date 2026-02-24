@@ -38,7 +38,7 @@ export default function CodeSandboxClient() {
 
                 {/* Hero */}
                 <section className="py-4 sm:py-6 md:py-8 mb-8 text-center">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 matrix-glow">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 matrix-glow text-green-300">
                         Code Sandbox
                     </h1>
                     <p className="text-lg sm:text-xl text-green-200/80 mb-4 code-font">
@@ -75,7 +75,7 @@ export default function CodeSandboxClient() {
 
                 {/* Quick Examples */}
                 <section className="mb-8">
-                    <h2 className="text-xl font-bold mb-4 matrix-glow text-center">Quick Examples</h2>
+                    <h2 className="text-xl font-bold mb-4 matrix-glow text-center text-green-300">Quick Examples</h2>
                     <div className="flex flex-wrap gap-3 justify-center">
                         {Object.entries(examples).map(([key, ex]) => (
                             <Button
