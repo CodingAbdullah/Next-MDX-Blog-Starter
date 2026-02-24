@@ -29,6 +29,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^1.0.0",
+    "@ai-sdk/react": "^1.0.0",
+    "ai": "^5.0.0",
     "@codesandbox/sandpack-react": "^2.13.5",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
@@ -52,6 +55,7 @@
     "react-dom": "^19.2.3",
     "react-syntax-highlighter": "^15.6.1",
     "sonner": "^1.7.4",
+    "zod": "^3.24.0",
     "tailwind-merge": "^3.3.0",
     "tsx": "^4.19.4"
   },

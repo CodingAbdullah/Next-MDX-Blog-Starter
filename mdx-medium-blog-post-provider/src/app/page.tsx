@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Code2 } from "lucide-react";
+import { Bot, Code2 } from "lucide-react";
 import type { Metadata } from 'next';
 
 // Generate metadata for the home page
@@ -72,6 +72,14 @@ export default function Home() {
         >
           <Code2 aria-hidden width={16} height={16} />
           Go to Code Sandbox →
+        </Link>
+        <br />
+        <Link
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="/chat"
+        >
+          <Bot aria-hidden width={16} height={16} />
+          Go to Blog Chat →
         </Link>
       </footer>
     </div>
