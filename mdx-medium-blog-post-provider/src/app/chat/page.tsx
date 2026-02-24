@@ -1,6 +1,18 @@
-import { ChatInterface } from "@/components/chat/chat-interface";
+import type { Metadata } from 'next';
+import { ChatInterface } from '@/components/chat/chat-interface';
 
-// Blog Chat page — no auth, no persistence, matrix themed
+export const metadata: Metadata = {
+    title: 'Blog Assistant | Create Next MDX Blog App',
+    description: 'AI-powered blog assistant built with the Vercel AI SDK and Anthropic Claude. Ask anything about JavaScript, TypeScript, React, Next.js, MDX, and more topics covered in this blog.',
+    keywords: ['AI assistant', 'chatbot', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'MDX', 'Anthropic', 'Claude'],
+    openGraph: {
+        title: 'Blog Assistant | Create Next MDX Blog App',
+        description: 'AI-powered blog assistant built with the Vercel AI SDK and Anthropic Claude.',
+        type: 'website',
+    },
+};
+
+// Server component — delegates all interactive chat state to ChatInterface (client boundary)
 export default function ChatPage() {
     return (
         <div className="min-h-screen bg-black">
