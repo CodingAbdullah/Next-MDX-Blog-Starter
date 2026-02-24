@@ -37,7 +37,7 @@ export function ChatToolResult({
                 <Icon className={`h-4 w-4 ${config.color}`} />
                 <span className="text-sm font-medium text-green-300 code-font">{config.label}</span>
             </div>
-            <pre className="text-xs text-green-600 overflow-x-auto whitespace-pre-wrap code-font">
+            <pre className="text-xs text-green-600 overflow-x-auto whitespace-pre-wrap code-font matrix-scrollbar">
                 {JSON.stringify(toolInvocation.output, null, 2)}
             </pre>
         </div>

@@ -1,6 +1,6 @@
 # 🌟 Next-MDX-Blog-Starter
 ## 📖 Introduction
-This project is inspired by the elegant design and functionality of **Loveable**. It leverages the **Claude Sonnet 4** model for development, ensuring a robust and efficient coding experience.
+This project is inspired by the elegant design and functionality of **Lovable**. It leverages the **Claude Sonnet 4.6** model for development, ensuring a robust and efficient coding experience.
 
 The goal of this repository is to serve as a comprehensive starter kit for working with static and dynamic content using MDX, React, and Next.js (more specifically the App Router).
 
@@ -66,8 +66,8 @@ npx create-next-mdx-blog-app .
 ## 🛠️ Tools
 ### AI Tools
 - **Cursor**: An AI-powered coding assistant that enhances productivity and code quality.
-- **Loveable**: A design inspiration that emphasizes user-friendly interfaces and experiences.
-- **Claude Sonnet 4**: A model that aids in development, providing intelligent suggestions and optimizations.
+- **Lovable**: A design inspiration that emphasizes user-friendly interfaces and experiences.
+- **Claude Sonnet 4.6**: A model that aids in development, providing intelligent suggestions and optimizations.
 
 ### Common NPM Libraries
 - **mdx**: A markdown format that allows you to write JSX in your markdown files, enabling rich content.
@@ -203,7 +203,7 @@ Images are used in the `.mdx` files and utilized via the custom `MDXImage` compo
 ## 🐳 Docker
 This application can be containerized using Docker.
 
-To build an image, utilize the Dockerfile located in the root location of the repository and run the following commands to run this web application in a standalone container (passing in the Supabase credentials as well):
+To build an image, utilize the Dockerfile located in the root location of the repository and run the following commands to run this web application in a standalone container (passing in the credentials as well):
 
 ``
 docker build -t mdx-medium-blog .

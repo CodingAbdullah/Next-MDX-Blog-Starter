@@ -16,7 +16,7 @@ export default function ArticleAuthorBio({ authorInformation }: { authorInformat
                 <h3 className="text-xl font-semibold mb-2 matrix-glow text-green-300">{authorInformation.authorName}</h3>
                 <p className="text-green-200/80 mb-3">{authorInformation.authorDescription}</p>
                 <Link href="/">
-                  <Button variant="outline" className="border-green-500/30 text-green-300">
+                  <Button className="bg-green-600 hover:bg-green-700 text-white border-none">
                     Go Back To Home Page
                   </Button>
                 </Link>
