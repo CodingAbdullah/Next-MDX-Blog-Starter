@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Send } from "lucide-react";
-import type ChatInputType from "@/utils/types/ChatInputType";
+import type { ChatInputType } from "@/utils/types";
 
 // Chat Input — matrix themed
 export function ChatInput({ isLoading, onSendMessage }: ChatInputType) {

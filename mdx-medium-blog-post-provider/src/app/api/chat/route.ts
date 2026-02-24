@@ -1,7 +1,7 @@
 import { streamText, convertToModelMessages, stepCountIs, tool } from "ai";
 import { anthropic } from "@ai-sdk/anthropic";
 import { z } from "zod";
-import { AI_CHAT_CONFIG } from "@/utils/constants/AiChatConfig";
+import { AI_CHAT_CONFIG } from "@/utils/constants";
 
 export const runtime = "edge";
 

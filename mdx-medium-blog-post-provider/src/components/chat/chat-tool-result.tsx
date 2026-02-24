@@ -1,8 +1,8 @@
 "use client";
 
 import { Search } from "lucide-react";
-import type ToolInvocationPartType from "@/utils/types/ToolInvocationPartType";
-import { TOOL_CONFIG } from "@/utils/constants/ToolConfig";
+import type { ToolInvocationPartType } from "@/utils/types";
+import { TOOL_CONFIG } from "@/utils/constants";
 
 // Chat Tool Result — matrix themed
 export function ChatToolResult({

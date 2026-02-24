@@ -4,8 +4,7 @@ import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Bot, User, Loader2 } from "lucide-react";
 import { ChatToolResult } from "./chat-tool-result";
-import type ChatMessagesType from "@/utils/types/ChatMessagesType";
-import type ToolInvocationPartType from "@/utils/types/ToolInvocationPartType";
+import type { ChatMessagesType, ToolInvocationPartType } from "@/utils/types";
 
 const SUGGESTIONS = [
     "Explain React Server Components",

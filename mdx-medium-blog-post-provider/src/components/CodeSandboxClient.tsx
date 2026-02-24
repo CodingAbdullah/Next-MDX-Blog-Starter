@@ -6,7 +6,7 @@ import { Shield } from 'lucide-react';
 import { toast } from 'sonner';
 import CodeSandboxFeaturesSection from '@/components/CodeSandboxFeaturesSection';
 import SandpackEditor from '@/components/SandpackEditor';
-import { JS_DEFAULT, TS_DEFAULT, JS_EXAMPLES, TS_EXAMPLES } from '@/utils/constants/SandboxExamples';
+import { JS_DEFAULT, TS_DEFAULT, JS_EXAMPLES, TS_EXAMPLES } from '@/utils/constants';
 
 type Runtime = 'javascript' | 'typescript';
 

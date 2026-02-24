@@ -1,5 +1,5 @@
 import Image from "next/image";
-import MDXImageType from "@/utils/types/MDXImageType";
+import type { MDXImageType } from "@/utils/types";
 
 // MDXImage custom component
 // Utilizes the built-in Next.js Image component as well as the figcaption element
