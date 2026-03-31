@@ -1,5 +1,5 @@
 import createMDX from '@next/mdx';
- import type { NextConfig } from 'next';
+import type { NextConfig } from 'next';
 
 // Adding acceptable page extensions to be used in this application
 // Adding external domains to be used in this application

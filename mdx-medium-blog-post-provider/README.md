@@ -83,7 +83,7 @@ npx create-next-mdx-blog-app .
 - **@ai-sdk/anthropic**: Anthropic provider for the Vercel AI SDK, used to connect to Claude models.
 - **@ai-sdk/react**: React hooks (`useChat`) for building streaming AI chat interfaces.
 - **zod**: TypeScript-first schema validation library used to define and validate AI tool parameters.
-- **sonner**: Lightweight toast notification library used for user feedback in the Code Sandbox.
+- **sonner**: Lightweight toast notification library used for user feedback across the Code Sandbox, the `CodeBlock` copy button, and the GitHub Gist copy button.
 
 ## 🌐 Static/Dynamic Rendering with MDX
 This project utilizes MDX for both static and dynamic rendering of blog posts. The two MDX files included in the project serve as examples of how to structure your content.
@@ -111,18 +111,55 @@ The project includes a custom `CodeBlock` component for syntax highlighting code
 
 Default theme is set to the `vscDarkPlus` theme. Feel free to modify the theme and even add your own syntax highlighting library if you so choose.
 
+A **copy button** is rendered in the top-right corner of every code block. Clicking it writes the code to the clipboard and triggers a sonner toast notification confirming success or failure.
+
 You can read more about the library used in this project <a href="https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/">here.</a>
 
-
 ### GitHub Gists
-For safety and ease of use, GitHub Gists can be integrated into MDX files to manage code snippets with its own custom component.
+GitHub Gists can be embedded directly in MDX files using the `<GitHubGist>` custom component. The component fetches gist content live from the **GitHub REST API** at render time and caches the result for one hour via Next.js ISR (`next: { revalidate: 3600 }`).
 
-Note that only GitHub Gists that are publicly available are supported. You can modify the component to integrate private Gists.
+```mdx
+<GitHubGist id="your-gist-id" figCaptionText="Caption shown below the gist" />
+```
 
-This custom component also utilizes the `react-syntax-highlighter` package for syntax highlighting the publicly accessible GitHub gists.
+#### How it works
+1. `GitHubGist` calls `https://api.github.com/gists/<id>` to retrieve metadata (file name, detected language).
+2. It then fetches the raw file content from the `raw_url` returned by the API.
+3. The language is mapped to a Prism-compatible token using the built-in `GITHUB_GIST_LANGUAGE_MAP` constant (70+ languages supported — see `src/utils/constants/GitHubGistConstants.ts`).
+4. The code is rendered via `GistCodeBlock` (syntax-highlighted with `react-syntax-highlighter`) inside a scrollable container with a custom green scrollbar (`scrollbar-gist`).
+
+#### mdxgists.net
+Each rendered gist includes a header bar with:
+- The detected **language badge**
+- A **Copy** button that writes the raw content to clipboard with a sonner toast confirmation
+- A **mdxgists.net** link that opens the gist on [mdxgists.net](https://mdxgists.net) — a companion site for browsing and sharing MDX-ready gists
+
+The mdxgists.net URL is constructed as `<GIST_BASE_URL>/<GITHUB_USERNAME>/<gist-id>` using values from `GitHubGistConstants.ts`. Both values can be overridden via environment variables (see below).
+
+#### Components
+- `src/components/customMDXComponents/GitHubGist.tsx` — async Server Component; fetches from GitHub API, resolves language, builds the mdxgists.net URL, renders the full gist UI
+- `src/components/customMDXComponents/GistCodeBlock.tsx` — syntax-highlighted code display using `react-syntax-highlighter`
+- `src/components/customMDXComponents/GistCopyButton.tsx` — `"use client"` component; copy-to-clipboard with sonner toast + mdxgists.net external link
+
+#### Language Detection
+The `GITHUB_GIST_LANGUAGE_MAP` in `src/utils/constants/GitHubGistConstants.ts` maps GitHub's reported language names to Prism-compatible identifiers. Over 70 languages are supported out of the box including TypeScript, Python, Rust, Go, Solidity, YAML, SQL, and more. If a language is not in the map, the component falls back to `language.toLowerCase()`. If no language is detected, it falls back to `text`.
+
+#### GitHub OAuth Token (optional but recommended)
+Unauthenticated requests to the GitHub API are rate-limited to **60 requests per hour** per IP. For production use, set a `GITHUB_TOKEN` environment variable to increase this to **5,000 requests per hour**:
+
+```bash
+# .env.local
+GITHUB_TOKEN=ghp_your_personal_access_token
+```
+
+To generate a token: GitHub → Settings → Developer settings → Personal access tokens → Generate new token. The token only needs the **read-only** `gist` scope (or no scopes at all for public gists).
+
+> Only **public** gists are supported by default. The component can be modified to support private gists by adding the appropriate scopes to the token.
 
 ### MDX Images
 The project comes with its own `MDXImage` component that utilizes the Next.js built-in `Image` component as well as the built-in `figure` and `figcaption` elements to integrate imaging and captions seamlessly.
+
+Images are displayed inside a styled container with a **green glow border** and a **hover scale effect** consistent with the rest of the matrix-green design system.
 
 ## 🖥️ Code Sandbox
 The project includes an interactive in-browser code execution environment powered by **Sandpack** (<b>route</b>: `/code-sandbox`).
@@ -187,12 +224,18 @@ cp .env.example .env.local
 | `SUPABASE_URL` | Dynamic blog post fetching (Supabase client) |
 | `SUPABASE_ANON_KEY` | Dynamic blog post fetching (Supabase client) |
 | `ANTHROPIC_API_KEY` | Blog Assistant chatbot (`/api/chat` edge route) |
+| `GITHUB_TOKEN` | GitHub API authentication for `<GitHubGist>` — optional but raises rate limit from 60 to 5,000 req/hr |
+| `GITHUB_USERNAME` | Your GitHub username, used to construct the mdxgists.net URL (defaults to `CodingAbdullah`) |
+| `GIST_BASE_URL` | Base URL for mdxgists.net links (defaults to `https://mdxgists.net`) |
 
 ```
 # .env.local
 SUPABASE_URL=
 SUPABASE_ANON_KEY=
 ANTHROPIC_API_KEY=
+GITHUB_TOKEN=
+GITHUB_USERNAME=
+GIST_BASE_URL=
 ```
 
 ## 🌩️ AWS
@@ -210,7 +253,7 @@ docker build -t mdx-medium-blog .
 ``
 
 ``
-docker run -e SUPABASE_URL=your_supabase_url \ -e SUPABASE_ANON_KEY=your_supabase_anon_key \ -e ANTHROPIC_API_KEY=your_anthropic_api_key \ -p 3000:3000 mdx-medium-blog
+docker run -e SUPABASE_URL=your_supabase_url \ -e SUPABASE_ANON_KEY=your_supabase_anon_key \ -e ANTHROPIC_API_KEY=your_anthropic_api_key \ -e GITHUB_TOKEN=your_github_token \ -e GITHUB_USERNAME=your_github_username \ -e GIST_BASE_URL=https://mdxgists.net \ -p 3000:3000 mdx-medium-blog
 ``
 
 ## 🔄 CRUD Operations and Supabase Actions
@@ -227,7 +270,7 @@ The `/scripts` folder contains various scripts to help set up the project and da
 - **Bash Shell Script**: Script for setting up project on Linux, Mac, etc.
 
 ### GitHub Gist Fetcher
-The project includes a GitHub Gist fetcher script that downloads public GitHub Gist content and exports it to a text file for local use.
+> **Note:** This script is no longer required for rendering gists in MDX. The `<GitHubGist>` component now fetches content live from the GitHub API at render time. This script is retained for offline inspection or local caching workflows.
 
 **Location**: `/scripts/github-gist-fetcher/fetch-github-gist.ts`
 
@@ -269,6 +312,29 @@ The following codeblock highlights the different command prompts that can be use
 The article slug is the name of the markdown file located in the `/src/markdown` directory minus the extension, `.mdx`.
 
 The update statement takes in an additional parameter which is also the same thing (file name minus the `.mdx` extension located in the `/src/markdown` directory).
+
+## 📱 Mobile Responsiveness
+All components in the starter kit are built mobile-first using Tailwind CSS responsive prefixes (`sm:`, `md:`, `lg:`).
+
+Key responsive behaviours:
+
+| Component | Mobile behaviour |
+|---|---|
+| `ArticleHeader` | Title scales from `text-2xl` → `text-4xl`; author row stacks vertically on small screens |
+| `ArticleAuthorBio` | Avatar and text stack vertically; button goes full-width; text is center-aligned on mobile |
+| `GitHubGist` | Header wraps via `flex-wrap`; code area scrolls horizontally with a styled green scrollbar |
+| `CodeBlock` | Copy button is absolutely positioned and does not interfere with code flow |
+| `MDXImage` | Image container scales inline; hover effect applies on capable devices |
+| Chat & Code Sandbox | Responsive padding and height calculations across all breakpoints |
+
+The root layout exports a `viewport` configuration (via Next.js `Viewport` type) ensuring correct scaling on all mobile browsers:
+
+```ts
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+```
 
 ## 📊 Analytics
 Integrated in this setup project is Vercel Analytics (`@vercel/analytics`) to track user interactions and performance metrics of the blog.
