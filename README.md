@@ -59,7 +59,7 @@ npx create-next-mdx-blog-app .
 ### Package Information
 
 - **Package Name**: `create-next-mdx-blog-app`
-- **Version**: `2.1.1`
+- **Version**: `2.1.2`
 - **License**: MIT
 - **Homepage**: [https://www.npmjs.com/package/create-next-mdx-blog-app](https://www.npmjs.com/package/create-next-mdx-blog-app/)
 
@@ -160,6 +160,9 @@ To generate a token: GitHub → Settings → Developer settings → Personal acc
 The project comes with its own `MDXImage` component that utilizes the Next.js built-in `Image` component as well as the built-in `figure` and `figcaption` elements to integrate imaging and captions seamlessly.
 
 Images are displayed inside a styled container with a **green glow border** and a **hover scale effect** consistent with the rest of the matrix-green design system.
+
+### Article Header Actions
+A **Copy Link** button (`src/components/CopyLinkButton.tsx`) is rendered in the article header, writing the current page URL to the clipboard on click and displaying a brief "Copied!" confirmation via icon swap. **Social Share** buttons (`src/components/SocialShareButtons.tsx`) sit alongside it, opening pre-filled share dialogs for X (Twitter), LinkedIn, and Reddit in a new tab using the article title and URL.
 
 ## 🖥️ Code Sandbox
 The project includes an interactive in-browser code execution environment powered by **Sandpack** (<b>route</b>: `/code-sandbox`).

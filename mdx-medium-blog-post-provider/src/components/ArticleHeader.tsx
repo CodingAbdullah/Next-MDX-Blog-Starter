@@ -1,6 +1,8 @@
 import { Avatar } from "@radix-ui/react-avatar";
 import { Badge } from "./ui/badge";
 import ArticleCoverImage from "./ArticleCoverImage";
+import CopyLinkButton from "./CopyLinkButton";
+import SocialShareButtons from "./SocialShareButtons";
 import type { ArticleHeaderInfoType } from "@/utils/types";
 import Image from "next/image";
 
@@ -35,8 +37,13 @@ export default function ArticleHeader({ articleHeaderInformation } : { articleHe
                     </div>
                 </div>
             </div>
+            {/* Copy link and social share actions */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4 sm:mb-6">
+                <CopyLinkButton />
+                <SocialShareButtons articleTitle={ articleHeaderInformation.articleTitle } />
+            </div>
             {/* Cover image */}
-            <ArticleCoverImage coverImageURL={ articleHeaderInformation.articleCoverImageURL.coverImageURL } />        
+            <ArticleCoverImage coverImageURL={ articleHeaderInformation.articleCoverImageURL.coverImageURL } />
         </div>
     )
 }
