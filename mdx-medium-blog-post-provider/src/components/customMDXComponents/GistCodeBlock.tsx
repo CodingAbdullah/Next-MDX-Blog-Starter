@@ -6,7 +6,7 @@ interface GistCodeBlockProps {
   language: string;
 }
 
-export default function GistCodeBlock({ content, language }: GistCodeBlockProps) {
+export default function GistCodeBlock({ content, language }: GistCodeBlockProps): React.JSX.Element {
   return (
     <SyntaxHighlighter
       language={language}

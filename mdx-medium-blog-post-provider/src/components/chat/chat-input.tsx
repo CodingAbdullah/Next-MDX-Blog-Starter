@@ -7,11 +7,11 @@ import { Send } from "lucide-react";
 import type { ChatInputType } from "@/utils/types";
 
 // Chat Input — matrix themed
-export function ChatInput({ isLoading, onSendMessage }: ChatInputType) {
+export function ChatInput({ isLoading, onSendMessage }: ChatInputType): React.JSX.Element {
     const [input, setInput] = useState("");
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-    function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+    function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>): void {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             if (input.trim() && !isLoading) {
@@ -21,7 +21,7 @@ export function ChatInput({ isLoading, onSendMessage }: ChatInputType) {
         }
     }
 
-    function handleSubmit(e: React.FormEvent) {
+    function handleSubmit(e: React.FormEvent): void {
         e.preventDefault();
         if (input.trim() && !isLoading) {
             onSendMessage(input);

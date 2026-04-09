@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { ArticleCoverImageInfoType } from "@/utils/types";
 
 // Article Cover Image Section component
-export default function ArticleCoverImage(coverImageInformation: ArticleCoverImageInfoType) {
+export default function ArticleCoverImage(coverImageInformation: ArticleCoverImageInfoType): React.JSX.Element {
     return (
         <div className="rounded-lg overflow-hidden mb-4">
             <Image

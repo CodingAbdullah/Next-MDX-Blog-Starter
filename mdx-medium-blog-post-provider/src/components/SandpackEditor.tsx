@@ -43,7 +43,7 @@ const matrixTheme: SandpackTheme = {
   },
 };
 
-function EditorToolbar({ mainFile, template }: { mainFile: string; template: 'vanilla' | 'vanilla-ts' }) {
+function EditorToolbar({ mainFile, template }: { mainFile: string; template: 'vanilla' | 'vanilla-ts' }): React.JSX.Element {
   const { sandpack, dispatch } = useSandpack();
   const isTS = template === 'vanilla-ts';
 
@@ -113,7 +113,7 @@ export interface SandpackEditorProps {
   template: 'vanilla' | 'vanilla-ts';
 }
 
-export default function SandpackEditor({ initialCode, template }: SandpackEditorProps) {
+export default function SandpackEditor({ initialCode, template }: SandpackEditorProps): React.JSX.Element {
   const mainFile = template === 'vanilla-ts' ? '/index.ts' : '/index.js';
 
   return (

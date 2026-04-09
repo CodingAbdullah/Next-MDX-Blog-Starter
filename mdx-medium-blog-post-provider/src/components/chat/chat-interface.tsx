@@ -11,7 +11,7 @@ import { Bot, RotateCcw } from "lucide-react";
 const transport = new TextStreamChatTransport({ api: "/api/chat" });
 
 // Chat Interface — no sidebar, no persistence, matrix themed
-export function ChatInterface() {
+export function ChatInterface(): React.JSX.Element {
     const { messages, sendMessage, status, error, setMessages } = useChat({ transport });
 
     const isLoading = status === "submitted" || status === "streaming";

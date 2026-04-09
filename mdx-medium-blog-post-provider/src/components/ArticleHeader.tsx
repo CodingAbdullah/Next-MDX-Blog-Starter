@@ -7,7 +7,7 @@ import type { ArticleHeaderInfoType } from "@/utils/types";
 import Image from "next/image";
 
 // Article Header custom component
-export default function ArticleHeader({ articleHeaderInformation } : { articleHeaderInformation: ArticleHeaderInfoType }) {
+export default function ArticleHeader({ articleHeaderInformation } : { articleHeaderInformation: ArticleHeaderInfoType }): React.JSX.Element {
     return (
         <div className="mb-8">
             <Badge className="mb-3 bg-green-900/60 text-green-100 border border-green-500/50">

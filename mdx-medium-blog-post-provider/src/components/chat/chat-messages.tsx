@@ -14,7 +14,7 @@ const SUGGESTIONS = [
 ];
 
 // Chat Messages — matrix themed, auto-scrolling
-export function ChatMessages({ messages, isLoading, error }: ChatMessagesType) {
+export function ChatMessages({ messages, isLoading, error }: ChatMessagesType): React.JSX.Element {
     const bottomRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

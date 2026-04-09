@@ -5,13 +5,13 @@ import { toast } from 'sonner';
 
 // Custom code block component for handling code in MDX files
 // Visual Studio Code Dark Plus theme with copy functionality
-const CodeBlock = ({ className = '', children }: { className?: string; children: string }) => {
+const CodeBlock = ({ className = '', children }: { className?: string; children: string }): React.JSX.Element => {
   const match = /language-(\w+)/.exec(className || '');
   const language = match?.[1] || 'text';
   const code = String(children).trim();
 
   // Copy content and receive a toast message based on action
-  const copyToClipboard = async () => {
+  const copyToClipboard = async (): Promise<void> => {
     try {
       await navigator.clipboard.writeText(code);
       toast.success('Code copied!', {

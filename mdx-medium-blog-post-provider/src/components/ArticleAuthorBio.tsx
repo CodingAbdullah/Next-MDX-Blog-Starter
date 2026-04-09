@@ -5,7 +5,7 @@ import Image from "next/image";
 import type { ArticleAuthorInfoType } from "@/utils/types";
 
 // Article Author Bio Section component
-export default function ArticleAuthorBio({ authorInformation }: { authorInformation: ArticleAuthorInfoType }) {
+export default function ArticleAuthorBio({ authorInformation }: { authorInformation: ArticleAuthorInfoType }): React.JSX.Element {
     return (
         <div className="glass-card p-4 sm:p-6 mb-8 sm:mb-12">
             <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0">

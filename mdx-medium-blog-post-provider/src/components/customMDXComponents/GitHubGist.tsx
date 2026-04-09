@@ -3,7 +3,7 @@ import GistCopyButton from './GistCopyButton';
 import GistCodeBlock from './GistCodeBlock';
 import { GITHUB_USERNAME, GITHUB_GIST_LANGUAGE_MAP, GIST_BASE_URL } from '@/utils/constants';
 
-export default async function GitHubGist({ id, figCaptionText }: GitHubGistType) {
+export default async function GitHubGist({ id, figCaptionText }: GitHubGistType): Promise<React.JSX.Element> {
   try {
     const headers: HeadersInit = {
       'Accept': 'application/vnd.github.v3+json',

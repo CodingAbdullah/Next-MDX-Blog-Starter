@@ -59,7 +59,7 @@ npx create-next-mdx-blog-app .
 ### Package Information
 
 - **Package Name**: `create-next-mdx-blog-app`
-- **Version**: `2.1.2`
+- **Version**: `2.1.3`
 - **License**: MIT
 - **Homepage**: [https://www.npmjs.com/package/create-next-mdx-blog-app](https://www.npmjs.com/package/create-next-mdx-blog-app/)
 
@@ -163,6 +163,12 @@ Images are displayed inside a styled container with a **green glow border** and 
 
 ### Article Header Actions
 A **Copy Link** button (`src/components/CopyLinkButton.tsx`) is rendered in the article header, writing the current page URL to the clipboard on click and displaying a brief "Copied!" confirmation via icon swap. **Social Share** buttons (`src/components/SocialShareButtons.tsx`) sit alongside it, opening pre-filled share dialogs for X (Twitter), LinkedIn, and Reddit in a new tab using the article title and URL.
+
+### Reading Progress Bar
+A thin green bar (`src/components/ReadingProgressBar.tsx`) is fixed to the top of the viewport on all article pages, growing from left to right as the reader scrolls through the article. It uses a passive scroll listener for zero performance impact and includes `role="progressbar"` ARIA attributes for accessibility.
+
+### Back to Top Button
+A floating circular button (`src/components/BackToTopButton.tsx`) appears in the bottom-right corner of the screen once the reader has scrolled more than 400px down the page. Clicking it smoothly scrolls back to the top. The button is hidden when not needed and matches the green colour scheme of the rest of the UI.
 
 ## 🖥️ Code Sandbox
 The project includes an interactive in-browser code execution environment powered by **Sandpack** (<b>route</b>: `/code-sandbox`).

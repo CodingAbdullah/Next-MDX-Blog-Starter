@@ -11,7 +11,7 @@ import { JS_DEFAULT, TS_DEFAULT, JS_EXAMPLES, TS_EXAMPLES } from '@/utils/consta
 type Runtime = 'javascript' | 'typescript';
 
 // Client boundary for the Code Sandbox page — owns all interactive state
-export default function CodeSandboxClient() {
+export default function CodeSandboxClient(): React.JSX.Element {
     const [runtime, setRuntime] = useState<Runtime>('javascript');
     const [sandpackKey, setSandpackKey] = useState<number>(0);
     const [sandpackCode, setSandpackCode] = useState<string>(JS_DEFAULT);

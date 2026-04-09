@@ -3,7 +3,7 @@ import ArticleContent from "@/markdown/ArticleContent.mdx";
 
 // Custom Static Article component to be used for loading article content stored locally
 // Article Header information will be hardcoded and stored locally, the following is simply an example
-const StaticArticle = () => {  
+const StaticArticle = (): React.JSX.Element => {
   return (
     <div className="glass-card p-8 mb-8">
       <ArticleContent />

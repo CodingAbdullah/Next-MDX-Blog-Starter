@@ -6,8 +6,8 @@ interface GistCopyButtonProps {
   mdxGHGistURL: string;
 }
 
-export default function GistCopyButton({ content, mdxGHGistURL }: GistCopyButtonProps) {
-  const copyToClipboard = async () => {
+export default function GistCopyButton({ content, mdxGHGistURL }: GistCopyButtonProps): React.JSX.Element {
+  const copyToClipboard = async (): Promise<void> => {
     try {
       await navigator.clipboard.writeText(content);
       toast.success('GitHub Gist copied!', {

@@ -3,10 +3,12 @@ import ArticleAuthorBio from "@/components/ArticleAuthorBio";
 import ArticleHeader from "@/components/ArticleHeader";
 import { ArticleAuthorInfoList, ArticleHeaderInfoList } from "@/utils/constants";
 import MDXRemoteArticle from "./MDXRemoteArticle";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
+import BackToTopButton from "@/components/BackToTopButton";
 import { fetchArticle } from "@/utils/functions";
 
 // Custom Dynamic Article component encompasses loading article content stored in a Supabase database
-export default async function DynamicArticle({ slug } : { slug: string }) {
+export default async function DynamicArticle({ slug } : { slug: string }): Promise<React.JSX.Element> {
   // Make a call to the back-end and fetch article information
   const articleData = await fetchArticle(slug);
   
@@ -15,7 +17,9 @@ export default async function DynamicArticle({ slug } : { slug: string }) {
   }
   else {
     return (
-      <div className="min-h-screen flex flex-col bg-black"> 
+      <div className="min-h-screen flex flex-col bg-black">
+        <ReadingProgressBar />
+        <BackToTopButton />
         <main className="flex-grow px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <ArticleHeader articleHeaderInformation={ArticleHeaderInfoList} />

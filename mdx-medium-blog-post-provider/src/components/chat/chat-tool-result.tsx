@@ -9,7 +9,7 @@ export function ChatToolResult({
     toolInvocation,
 }: {
     toolInvocation: ToolInvocationPartType;
-}) {
+}): React.JSX.Element {
     const config = TOOL_CONFIG[toolInvocation.toolName] ?? {
         icon: Search,
         label: toolInvocation.toolName,

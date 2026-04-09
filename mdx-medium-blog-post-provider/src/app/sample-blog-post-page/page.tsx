@@ -3,6 +3,8 @@ import ArticleAuthorBio from "@/components/ArticleAuthorBio";
 import ArticleHeader from "@/components/ArticleHeader";
 import { ArticleAuthorInfoList, ArticleHeaderInfoList } from "@/utils/constants";
 import StaticArticle from "@/components/StaticArticle";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
+import BackToTopButton from "@/components/BackToTopButton";
 import type { Metadata } from 'next';
 
 // Generate metadata for the Sample Blog Post page
@@ -21,7 +23,9 @@ export const metadata: Metadata = {
 // Utilizes the Static Article custom component
 const SampleBlogPostPage = () => {  
   return (
-    <div className="min-h-screen flex flex-col bg-black"> 
+    <div className="min-h-screen flex flex-col bg-black">
+      <ReadingProgressBar />
+      <BackToTopButton />
       <main className="flex-grow px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <ArticleHeader articleHeaderInformation={ArticleHeaderInfoList} />
