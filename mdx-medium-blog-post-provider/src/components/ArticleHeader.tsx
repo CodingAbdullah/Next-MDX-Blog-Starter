@@ -5,9 +5,10 @@ import CopyLinkButton from "./CopyLinkButton";
 import SocialShareButtons from "./SocialShareButtons";
 import type { ArticleHeaderInfoType } from "@/utils/types";
 import Image from "next/image";
+import { Eye } from "lucide-react";
 
 // Article Header custom component
-export default function ArticleHeader({ articleHeaderInformation } : { articleHeaderInformation: ArticleHeaderInfoType }): React.JSX.Element {
+export default function ArticleHeader({ articleHeaderInformation, viewCount } : { articleHeaderInformation: ArticleHeaderInfoType; viewCount?: number }): React.JSX.Element {
     return (
         <div className="mb-8">
             <Badge className="mb-3 bg-green-900/60 text-green-100 border border-green-500/50">
@@ -33,6 +34,11 @@ export default function ArticleHeader({ articleHeaderInformation } : { articleHe
                             month: 'long',
                             day: 'numeric'
                         })} • { articleHeaderInformation.articleReadingTime }
+                        { viewCount !== undefined && (
+                            <span className="inline-flex items-center gap-1 ml-2">
+                                • <Eye className="inline h-3 w-3" /> { viewCount.toLocaleString() } views
+                            </span>
+                        )}
                         </p>
                     </div>
                 </div>

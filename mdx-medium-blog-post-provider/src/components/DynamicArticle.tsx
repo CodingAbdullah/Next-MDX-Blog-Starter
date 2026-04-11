@@ -5,13 +5,16 @@ import { ArticleAuthorInfoList, ArticleHeaderInfoList } from "@/utils/constants"
 import MDXRemoteArticle from "./MDXRemoteArticle";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import BackToTopButton from "@/components/BackToTopButton";
-import { fetchArticle } from "@/utils/functions";
+import { fetchArticle, incrementViewCount } from "@/utils/functions";
 
 // Custom Dynamic Article component encompasses loading article content stored in a Supabase database
 export default async function DynamicArticle({ slug } : { slug: string }): Promise<React.JSX.Element> {
   // Make a call to the back-end and fetch article information
-  const articleData = await fetchArticle(slug);
-  
+  const [articleData, viewCount] = await Promise.all([
+    fetchArticle(slug),
+    incrementViewCount(slug)
+  ]);
+
   if (!articleData || !articleData.content) {
     throw new Error("Invalid article");
   }
@@ -22,7 +25,7 @@ export default async function DynamicArticle({ slug } : { slug: string }): Promi
         <BackToTopButton />
         <main className="flex-grow px-4 py-8">
           <div className="max-w-4xl mx-auto">
-            <ArticleHeader articleHeaderInformation={ArticleHeaderInfoList} />
+            <ArticleHeader articleHeaderInformation={ArticleHeaderInfoList} viewCount={viewCount} />
             <div className="glass-card p-8 mb-8">
               <MDXRemoteArticle content={articleData.content} />
             </div>
