@@ -5,6 +5,7 @@ import { ArticleAuthorInfoList, ArticleHeaderInfoList } from "@/utils/constants"
 import StaticArticle from "@/components/StaticArticle";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import BackToTopButton from "@/components/BackToTopButton";
+import ViewCounter from "@/components/ViewCounter";
 import type { Metadata } from 'next';
 
 // Generate metadata for the Sample Blog Post page
@@ -28,7 +29,10 @@ const SampleBlogPostPage = () => {
       <BackToTopButton />
       <main className="flex-grow px-4 py-8">
         <div className="max-w-4xl mx-auto">
-          <ArticleHeader articleHeaderInformation={ArticleHeaderInfoList} />
+          <ArticleHeader
+              articleHeaderInformation={ArticleHeaderInfoList}
+              viewCounterSlot={<ViewCounter slug="sample-blog-post-page" />}
+            />
           <StaticArticle />
           <ArticleAuthorBio authorInformation={ArticleAuthorInfoList} />
         </div>
