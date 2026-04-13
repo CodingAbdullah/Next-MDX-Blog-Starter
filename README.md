@@ -59,7 +59,7 @@ npx create-next-mdx-blog-app .
 ### Package Information
 
 - **Package Name**: `create-next-mdx-blog-app`
-- **Version**: `2.1.3`
+- **Version**: `2.1.4`
 - **License**: MIT
 - **Homepage**: [https://www.npmjs.com/package/create-next-mdx-blog-app](https://www.npmjs.com/package/create-next-mdx-blog-app/)
 
@@ -170,6 +170,9 @@ A thin green bar (`src/components/ReadingProgressBar.tsx`) is fixed to the top o
 ### Back to Top Button
 A floating circular button (`src/components/BackToTopButton.tsx`) appears in the bottom-right corner of the screen once the reader has scrolled more than 400px down the page. Clicking it smoothly scrolls back to the top. The button is hidden when not needed and matches the green colour scheme of the rest of the UI.
 
+### View Counter
+Each article page displays a live view count stored in a dedicated `view_counts` Supabase table, incremented atomically via the `increment_view_count` RPC function. Dynamic pages increment server-side at render time; static pages use a `ViewCounter` client component that calls the `/api/views/[slug]` Route Handler after hydration.
+
 ## 🖥️ Code Sandbox
 The project includes an interactive in-browser code execution environment powered by **Sandpack** (<b>route</b>: `/code-sandbox`).
 
@@ -266,7 +269,7 @@ docker run -e SUPABASE_URL=your_supabase_url \ -e SUPABASE_ANON_KEY=your_supabas
 ``
 
 ## 🔄 CRUD Operations and Supabase Actions
-Implementation of the CRUD operation functions is stored in the `/src/utils/functions/crud` directory. This includes functions for creating, reading, updating, and deleting articles in the Supabase database.
+Implementation of the CRUD operation functions is stored in the `/src/utils/functions/crud` directory. This includes functions for creating, reading, updating, and deleting articles in the Supabase database. Supabase RPC functions (such as `incrementViewCount`) are kept separately in `/src/utils/functions/rpc`.
 
 The `article-manager.ts` file utilizes these CRUD functions to successfully perform the desired actions.
 
