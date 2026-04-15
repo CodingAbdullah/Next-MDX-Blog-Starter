@@ -38,19 +38,25 @@ async function setup() {
 
   try {
     // Use degit to clone the repository into the current directory
+    console.log('Cloning repository...');
     const emitter = degit(repoUrl, { cache: false, force: true });
     await emitter.clone(cwd);
 
     // Install dependencies inside the cloned app subdirectory
     console.log('Installing dependencies...');
-    await execa('npm', ['install', '--omit=optional'], {
+    await execa('npm', ['install'], {
       stdio: 'inherit',
       cwd: path.join(cwd, 'mdx-medium-blog-post-provider')
     });
 
     console.log('Next.js MDX Blog setup completed!');
-    console.log('To start the app, run:');
+    console.log('');
+    console.log('Before starting the app, configure your environment variables:');
     console.log('  cd mdx-medium-blog-post-provider');
+    console.log('  cp .env.example .env.local');
+    console.log('  # Fill in SUPABASE_URL, SUPABASE_ANON_KEY, ANTHROPIC_API_KEY, and others in .env.local');
+    console.log('');
+    console.log('Then start the development server:');
     console.log('  npm run dev');
   } 
   catch (error) {

@@ -1,6 +1,6 @@
 {
   "name": "create-next-mdx-blog-app",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "bin": {
     "create-next-mdx-blog-app": "./bin/create.js"
   },

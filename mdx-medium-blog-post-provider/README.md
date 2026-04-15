@@ -16,7 +16,7 @@ This starter kit is built with **Static Site Generation (SSG)** compliance at it
 ## ⚙️ Project Setup
 
 ### Prerequisites
-- **Node.js**: Ensure you have Node.js installed (version 15.x or later).
+- **Node.js**: Ensure you have Node.js installed (version 18.17.0 or later).
 - **NPM**: Node Package Manager comes with Node.js.
 
 ### Installation
@@ -31,7 +31,13 @@ This starter kit is built with **Static Site Generation (SSG)** compliance at it
    npm install
    ```
 
-3. Start the development server:
+3. Configure environment variables:
+   ```bash
+   cp .env.example .env.local
+   # Fill in SUPABASE_URL, SUPABASE_ANON_KEY, ANTHROPIC_API_KEY, and others in .env.local
+   ```
+
+4. Start the development server:
    ```bash
    npm run dev
    ```
@@ -40,7 +46,7 @@ If you want, you can also run this project using the following command:
    ```bash
    npx create-next-mdx-blog-app .
    ```
-This will instantly create and setup the starter kit project for you to work on.
+This will clone the repository, install dependencies, and guide you through environment setup automatically.
 
 ## ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white) Package
 
@@ -59,7 +65,7 @@ npx create-next-mdx-blog-app .
 ### Package Information
 
 - **Package Name**: `create-next-mdx-blog-app`
-- **Version**: `2.1.4`
+- **Version**: `2.1.5`
 - **License**: MIT
 - **Homepage**: [https://www.npmjs.com/package/create-next-mdx-blog-app](https://www.npmjs.com/package/create-next-mdx-blog-app/)
 
