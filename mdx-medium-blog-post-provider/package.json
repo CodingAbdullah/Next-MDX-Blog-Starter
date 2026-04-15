@@ -1,11 +1,19 @@
 {
   "name": "create-next-mdx-blog-app",
   "version": "2.1.5",
+  "description": "A production-ready technical blog starter kit built with Next.js, MDX, Supabase, and TypeScript.",
+  "author": {
+    "name": "Abdullah Muhammad",
+    "url": "https://github.com/CodingAbdullah"
+  },
   "files": [
     "bin/"
   ],
   "bin": {
     "create-next-mdx-blog-app": "./bin/create.js"
+  },
+  "engines": {
+    "node": ">=18.17.0"
   },
   "homepage": "https://next-mdx-blog-starter-sigma.vercel.app/",
   "repository": {
@@ -24,7 +32,7 @@
     "supabase",
     "typescript"
   ],
-  "license": "MIT License",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
