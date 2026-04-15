@@ -41,18 +41,16 @@ async function setup() {
     const emitter = degit(repoUrl, { cache: false, force: true });
     await emitter.clone(cwd);
 
-    // If there's no package.json, initialize it first
-    if (!hasPackageJson) {
-      console.log('Initializing npm project...');
-      await execa('npm', ['init', '-y'], { stdio: 'inherit' }); // Initialize package.json with default values
-    }
-
-    // Install dependencies
+    // Install dependencies inside the cloned app subdirectory
     console.log('Installing dependencies...');
-    await execa('npm', ['install'], { stdio: 'inherit' });
+    await execa('npm', ['install', '--omit=optional'], {
+      stdio: 'inherit',
+      cwd: path.join(cwd, 'mdx-medium-blog-post-provider')
+    });
 
     console.log('Next.js MDX Blog setup completed!');
     console.log('To start the app, run:');
+    console.log('  cd mdx-medium-blog-post-provider');
     console.log('  npm run dev');
   } 
   catch (error) {
