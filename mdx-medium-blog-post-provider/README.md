@@ -50,13 +50,9 @@ This will clone the repository, install dependencies, and guide you through envi
 
 ## ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white) Package
 
-### Install via NPM
+### Quick Start
 
-```bash
-npm install create-next-mdx-blog-app
-```
-
-### Quick Start with NPX
+**`npx create-next-mdx-blog-app .`**
 
 ```bash
 npx create-next-mdx-blog-app .
