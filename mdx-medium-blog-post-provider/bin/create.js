@@ -1,8 +1,6 @@
 #!/usr/bin/env node
-const { execa } = require('execa');
 const path = require('path');
 const fs = require('fs');
-const inquirer = require('inquirer');
 const degit = require('degit');
 
 // GitHub repository URL of the template (the repo you want to clone)
@@ -20,16 +18,15 @@ async function setup() {
   }
 
   // Ask the user if they want to set up the blog
-  const answers = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'install',
-      message: 'Do you want to set up a Next.js MDX blog app here?',
-      default: true,
-    },
-  ]);
+  // inquirer v9+ is ESM-only — use dynamic import and the @inquirer/prompts confirm helper
+  const { confirm } = await import('@inquirer/prompts');
+  const { execa } = await import('execa');
+  const install = await confirm({
+    message: 'Do you want to set up a Next.js MDX blog app here?',
+    default: true,
+  });
 
-  if (!answers.install) {
+  if (!install) {
     console.log('Aborted the installation.');
     return;
   }
@@ -37,22 +34,22 @@ async function setup() {
   console.log('Setting up the Next.js MDX blog app...');
 
   try {
-    // Use degit to clone the repository into the current directory
+    // Clone only the Next.js app subdirectory directly into cwd
+    // so the user gets project files at the root without repo meta-files
     console.log('Cloning repository...');
-    const emitter = degit(repoUrl, { cache: false, force: true });
+    const emitter = degit(`${repoUrl}/mdx-medium-blog-post-provider`, { cache: false, force: true });
     await emitter.clone(cwd);
 
-    // Install dependencies inside the cloned app subdirectory
+    // Install dependencies — app root is now cwd
     console.log('Installing dependencies...');
     await execa('npm', ['install'], {
       stdio: 'inherit',
-      cwd: path.join(cwd, 'mdx-medium-blog-post-provider')
+      cwd,
     });
 
     console.log('Next.js MDX Blog setup completed!');
     console.log('');
     console.log('Before starting the app, configure your environment variables:');
-    console.log('  cd mdx-medium-blog-post-provider');
     console.log('  cp .env.example .env.local');
     console.log('  # Fill in SUPABASE_URL, SUPABASE_ANON_KEY, ANTHROPIC_API_KEY, and others in .env.local');
     console.log('');
