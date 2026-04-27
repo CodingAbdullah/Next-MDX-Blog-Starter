@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Bot, Code2, FileText, Globe } from "lucide-react";
 import type { Metadata } from 'next';
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 export const metadata: Metadata = {
   title: 'Create Next MDX Blog App',
@@ -87,6 +88,10 @@ export default function Home() {
             </li>
           ))}
         </ul>
+
+        <section className="mt-10 sm:mt-14">
+          <NewsletterSignup />
+        </section>
       </main>
 
     </div>
