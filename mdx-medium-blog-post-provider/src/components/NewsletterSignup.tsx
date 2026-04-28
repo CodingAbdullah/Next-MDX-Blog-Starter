@@ -5,27 +5,11 @@ import { Mail, Loader2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import type { SubscribeReason } from "@/utils/types";
-
-type SubmitStatus = "idle" | "submitting" | "success";
-
-export interface NewsletterSignupProps {
-    heading?: string;
-    description?: string;
-    className?: string;
-}
-
-interface ApiErrorResponse {
-    ok: false;
-    reason: SubscribeReason;
-    message: string;
-}
-
-interface ApiSuccessResponse {
-    ok: true;
-}
-
-type ApiResponse = ApiErrorResponse | ApiSuccessResponse;
+import type {
+    NewsletterSignupType,
+    NewsletterSubmitStatus,
+    SubscribeApiResponse,
+} from "@/utils/types";
 
 const isClientValidEmail = (value: string): boolean => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
@@ -35,9 +19,9 @@ export default function NewsletterSignup({
     heading = "Subscribe to the newsletter",
     description = "Get new articles, code samples, and project updates delivered straight to your inbox.",
     className,
-}: NewsletterSignupProps): React.JSX.Element {
+}: NewsletterSignupType): React.JSX.Element {
     const [email, setEmail] = useState<string>("");
-    const [status, setStatus] = useState<SubmitStatus>("idle");
+    const [status, setStatus] = useState<NewsletterSubmitStatus>("idle");
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
@@ -60,7 +44,7 @@ export default function NewsletterSignup({
                 body: JSON.stringify({ email: email.trim() }),
             });
 
-            const payload = (await response.json()) as ApiResponse;
+            const payload = (await response.json()) as SubscribeApiResponse;
 
             if (response.ok && payload.ok) {
                 setStatus("success");
