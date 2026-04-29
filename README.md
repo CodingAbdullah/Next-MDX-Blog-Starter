@@ -61,7 +61,7 @@ npx create-next-mdx-blog-app .
 ### Package Information
 
 - **Package Name**: `create-next-mdx-blog-app`
-- **Version**: `2.1.5`
+- **Version**: `2.1.8`
 - **License**: MIT
 - **Homepage**: [https://www.npmjs.com/package/create-next-mdx-blog-app](https://www.npmjs.com/package/create-next-mdx-blog-app/)
 
@@ -216,6 +216,35 @@ The project includes an interactive AI-powered chatbot optimised for readers of 
 ### API Route
 `src/app/api/chat/route.ts` — Next.js edge route. Accepts the `UIMessages` array, converts it to `CoreMessages` via `convertToModelMessages`, streams a response using `streamText` with the three blog tools, and returns `result.toTextStreamResponse()`.
 
+## 📬 Newsletter Subscription
+The project ships with an integrated **newsletter signup form** powered by [Resend](https://resend.com). Visitors can subscribe from the home page or from the bottom of any article; new subscribers are added to a Resend **Audience** and immediately receive a welcome email.
+
+### Components & Routes
+- `src/components/NewsletterSignup.tsx` — reusable client component with `matrix` (article pages, glass-card + green) and `neutral` (home page, white/black/silver shadcn) visual variants.
+- `src/app/api/newsletter/subscribe/route.ts` — Node-runtime POST handler; validates the email with Zod and forwards it to the Resend SDK.
+- `src/utils/functions/newsletter/subscribeToNewsletter.ts` — server-side helper that adds the contact to your Resend Audience and triggers the welcome email.
+- `src/utils/functions/newsletter/welcomeEmailTemplate.ts` — builds the subject + HTML/text bodies for the confirmation email.
+- `src/utils/functions/resend_client/ResendClient.ts` — server-only Resend client factory.
+
+### Setup Steps
+1. Create a Resend account at [resend.com](https://resend.com).
+2. **API Key** — go to **API Keys → Create API Key** and grant it access to **Sending** and **Audiences**. Copy the key into `RESEND_API_KEY` in `.env.local`.
+3. **Audience** — go to **Audiences → Create Audience**, give it a name, and copy the generated UUID into `RESEND_AUDIENCE_ID` in `.env.local`.
+4. Restart `npm run dev` after editing `.env.local` so Next.js picks up the new variables.
+
+### Environment Variables
+| Variable | Required for |
+|---|---|
+| `RESEND_API_KEY` | Authenticating with the Resend API |
+| `RESEND_AUDIENCE_ID` | The Resend Audience that new subscribers are added to |
+
+### ⚠️ ***Important: A verified sending domain on Resend is required for the email-sending feature to fully work.***
+Out of the box the welcome email is sent from **`onboarding@resend.dev`**, which is Resend's sandbox sender. **`onboarding@resend.dev` is only allowed to deliver to the email address that owns your Resend account** — sending to any other recipient will be rejected by Resend.
+
+> 🚨 ***You MUST set up and verify your own sending domain on Resend (Resend dashboard → Domains → Add Domain, then complete the SPF / DKIM DNS records) before the newsletter can deliver welcome emails to real subscribers.*** Once your domain is verified, update the `WELCOME_EMAIL_FROM` constant in `src/utils/functions/newsletter/subscribeToNewsletter.ts` to an address on that domain (for example `newsletter@yourdomain.com`).
+
+If the domain step is skipped, the contact will still be added to your Resend Audience, but the welcome email will silently fail (the failure is logged to the server console as `[newsletter] Resend emails.send returned an error: ...`).
+
 ## 🧩 Constants, Functions, & Types
 In this project, you will find custom constants, functions, and types in the `/src/utils/` directory. Certain constants serve as placeholders in this demo application.
 
@@ -241,6 +270,8 @@ cp .env.example .env.local
 | `GITHUB_TOKEN` | GitHub API authentication for `<GitHubGist>` — optional but raises rate limit from 60 to 5,000 req/hr |
 | `GITHUB_USERNAME` | Your GitHub username, used to construct the mdxgists.net URL (defaults to `CodingAbdullah`) |
 | `GIST_BASE_URL` | Base URL for mdxgists.net links (defaults to `https://mdxgists.net`) |
+| `RESEND_API_KEY` | Newsletter signup — authenticates with the Resend API (see the **Newsletter Subscription** section below) |
+| `RESEND_AUDIENCE_ID` | Newsletter signup — the Resend Audience that new subscribers are added to |
 
 ```
 # .env.local
@@ -250,6 +281,8 @@ ANTHROPIC_API_KEY=
 GITHUB_TOKEN=
 GITHUB_USERNAME=
 GIST_BASE_URL=
+RESEND_API_KEY=
+RESEND_AUDIENCE_ID=
 ```
 
 ## 🌩️ AWS
@@ -267,7 +300,7 @@ docker build -t mdx-medium-blog .
 ``
 
 ``
-docker run -e SUPABASE_URL=your_supabase_url \ -e SUPABASE_ANON_KEY=your_supabase_anon_key \ -e ANTHROPIC_API_KEY=your_anthropic_api_key \ -e GITHUB_TOKEN=your_github_token \ -e GITHUB_USERNAME=your_github_username \ -e GIST_BASE_URL=https://mdxgists.net \ -p 3000:3000 mdx-medium-blog
+docker run -e SUPABASE_URL=your_supabase_url \ -e SUPABASE_ANON_KEY=your_supabase_anon_key \ -e ANTHROPIC_API_KEY=your_anthropic_api_key \ -e GITHUB_TOKEN=your_github_token \ -e GITHUB_USERNAME=your_github_username \ -e GIST_BASE_URL=https://mdxgists.net \ -e RESEND_API_KEY=your_resend_api_key \ -e RESEND_AUDIENCE_ID=your_resend_audience_id \ -p 3000:3000 mdx-medium-blog
 ``
 
 ## 🔄 CRUD Operations and Supabase Actions

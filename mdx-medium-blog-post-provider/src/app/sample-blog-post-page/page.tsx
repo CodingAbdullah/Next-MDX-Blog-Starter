@@ -6,6 +6,7 @@ import StaticArticle from "@/components/StaticArticle";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import BackToTopButton from "@/components/BackToTopButton";
 import ViewCounter from "@/components/ViewCounter";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import type { Metadata } from 'next';
 
 // Generate metadata for the Sample Blog Post page
@@ -35,6 +36,7 @@ const SampleBlogPostPage = () => {
             />
           <StaticArticle />
           <ArticleAuthorBio authorInformation={ArticleAuthorInfoList} />
+          <NewsletterSignup />
         </div>
       </main>
     </div>
