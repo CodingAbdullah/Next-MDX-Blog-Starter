@@ -27,6 +27,12 @@ const subscribeToNewsletter = async (email: string): Promise<SubscribeResult> =>
             return { ok: true };
         }
 
+        console.error("[newsletter] Resend contacts.create returned an error:", {
+            name: error.name,
+            statusCode: error.statusCode,
+            message: error.message,
+        });
+
         // Resend reports duplicates with HTTP 409. Falling back to a message
         // sniff guards against minor SDK changes without leaking SDK details.
         if (
@@ -53,7 +59,8 @@ const subscribeToNewsletter = async (email: string): Promise<SubscribeResult> =>
             reason: "server_error",
             message: "Unable to subscribe at this time. Please try again later.",
         };
-    } catch {
+    } catch (caught) {
+        console.error("[newsletter] subscribeToNewsletter threw an exception:", caught);
         return {
             ok: false,
             reason: "server_error",
