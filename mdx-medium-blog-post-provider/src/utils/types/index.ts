@@ -21,4 +21,5 @@ export type {
     NewsletterSubmitStatus,
     NewsletterSignupVariant,
     NewsletterSignupVariantClassNames,
+    WelcomeEmailContent,
 } from "./NewsletterType";

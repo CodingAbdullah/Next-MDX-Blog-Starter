@@ -32,6 +32,13 @@ export type SubscribeApiResponse =
     | SubscribeApiSuccessResponse
     | SubscribeApiErrorResponse;
 
+// Pre-rendered welcome email content sent to a new subscriber.
+export interface WelcomeEmailContent {
+    subject: string;
+    html: string;
+    text: string;
+}
+
 // UI submission state for the NewsletterSignup component.
 export type NewsletterSubmitStatus = "idle" | "submitting" | "success";
 
