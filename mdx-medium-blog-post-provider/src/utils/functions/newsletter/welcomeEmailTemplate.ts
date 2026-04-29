@@ -20,6 +20,8 @@ const buildWelcomeEmail = (email: string): WelcomeEmailContent => {
         "",
         "Thank you once again.",
         "",
+        "Note: This email was sent using the Resend email service.",
+        "",
         "Regards,",
         "The Dev Team",
     ].join("\n");
@@ -30,6 +32,7 @@ const buildWelcomeEmail = (email: string): WelcomeEmailContent => {
         <p>Hello ${safeEmail},</p>
         <p>Thanks for subscribing to this service via email. We are notifying you via email to let you know that we have received your subscription request on our end.</p>
         <p>Thank you once again.</p>
+        <p style="color: #555; font-size: 14px;"><em>Note: This email was sent using the Resend email service.</em></p>
         <p style="margin-top: 24px;">Regards,<br />The Dev Team</p>
     </body>
 </html>`;
