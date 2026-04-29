@@ -90,7 +90,7 @@ export default function Home() {
         </ul>
 
         <section className="mt-10 sm:mt-14">
-          <NewsletterSignup />
+          <NewsletterSignup variant="neutral" />
         </section>
       </main>
 

@@ -35,9 +35,29 @@ export type SubscribeApiResponse =
 // UI submission state for the NewsletterSignup component.
 export type NewsletterSubmitStatus = "idle" | "submitting" | "success";
 
+// Visual themes supported by the NewsletterSignup component.
+//   - "matrix"  : glass-card with green accents, matches ArticleAuthorBio.
+//   - "neutral" : white/black/silver shadcn card, matches the home page nav cards.
+export type NewsletterSignupVariant = "matrix" | "neutral";
+
+// Per-variant Tailwind class strings consumed by the NewsletterSignup component.
+export interface NewsletterSignupVariantClassNames {
+    container: string;
+    iconBadge: string;
+    iconBadgeIcon: string;
+    heading: string;
+    description: string;
+    input: string;
+    button: string;
+    successIcon: string;
+    successHeading: string;
+    successBody: string;
+}
+
 // Props accepted by the NewsletterSignup component.
 export default interface NewsletterSignupType {
     heading?: string;
     description?: string;
     className?: string;
+    variant?: NewsletterSignupVariant;
 }

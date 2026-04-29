@@ -19,4 +19,6 @@ export type {
     SubscribeApiSuccessResponse,
     SubscribeApiErrorResponse,
     NewsletterSubmitStatus,
+    NewsletterSignupVariant,
+    NewsletterSignupVariantClassNames,
 } from "./NewsletterType";

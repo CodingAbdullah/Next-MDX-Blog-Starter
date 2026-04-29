@@ -3,13 +3,43 @@
 import { useState, type FormEvent } from "react";
 import { Mail, Loader2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import type {
     NewsletterSignupType,
+    NewsletterSignupVariant,
+    NewsletterSignupVariantClassNames,
     NewsletterSubmitStatus,
     SubscribeApiResponse,
 } from "@/utils/types";
+
+const VARIANT_CLASS_NAMES: Record<NewsletterSignupVariant, NewsletterSignupVariantClassNames> = {
+    matrix: {
+        container: "glass-card p-6 sm:p-8 mb-8 sm:mb-12",
+        iconBadge: "border-green-500/30 bg-green-500/10",
+        iconBadgeIcon: "text-green-300",
+        heading: "matrix-glow text-green-300",
+        description: "text-green-200/80",
+        input: "border-green-500/30 bg-black/40 text-green-100 placeholder:text-green-200/40 focus-visible:ring-green-500/50",
+        button: "bg-green-600 hover:bg-green-700 text-white border-none",
+        successIcon: "text-green-400",
+        successHeading: "matrix-glow text-green-300",
+        successBody: "text-green-200/80",
+    },
+    neutral: {
+        container: "rounded-xl border border-border bg-card p-6 sm:p-8 mb-8 sm:mb-12 shadow-sm",
+        iconBadge: "border border-border bg-background",
+        iconBadgeIcon: "text-foreground",
+        heading: "text-foreground",
+        description: "text-muted-foreground font-[family-name:var(--font-geist-mono)]",
+        input: "",
+        button: "",
+        successIcon: "text-foreground",
+        successHeading: "text-foreground",
+        successBody: "text-muted-foreground font-[family-name:var(--font-geist-mono)]",
+    },
+};
 
 const isClientValidEmail = (value: string): boolean => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
@@ -19,9 +49,11 @@ export default function NewsletterSignup({
     heading = "Subscribe to the newsletter",
     description = "Get new articles, code samples, and project updates delivered straight to your inbox.",
     className,
+    variant = "matrix",
 }: NewsletterSignupType): React.JSX.Element {
     const [email, setEmail] = useState<string>("");
     const [status, setStatus] = useState<NewsletterSubmitStatus>("idle");
+    const styles = VARIANT_CLASS_NAMES[variant];
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
@@ -64,17 +96,15 @@ export default function NewsletterSignup({
         }
     };
 
-    const containerClass = `glass-card p-6 sm:p-8 mb-8 sm:mb-12 ${className ?? ""}`.trim();
-
     if (status === "success") {
         return (
-            <div className={containerClass} aria-live="polite">
+            <div className={cn(styles.container, className)} aria-live="polite">
                 <div className="flex flex-col items-center text-center gap-3">
-                    <CheckCircle2 className="h-8 w-8 text-green-400" aria-hidden />
-                    <h3 className="text-lg sm:text-xl font-semibold matrix-glow text-green-300">
+                    <CheckCircle2 className={cn("h-8 w-8", styles.successIcon)} aria-hidden />
+                    <h3 className={cn("text-lg sm:text-xl font-semibold", styles.successHeading)}>
                         Thanks for subscribing!
                     </h3>
-                    <p className="text-green-200/80 text-sm sm:text-base max-w-md">
+                    <p className={cn("text-sm sm:text-base max-w-md", styles.successBody)}>
                         Check your inbox for a confirmation. You can unsubscribe any time.
                     </p>
                 </div>
@@ -85,17 +115,22 @@ export default function NewsletterSignup({
     const isSubmitting = status === "submitting";
 
     return (
-        <div className={containerClass}>
+        <div className={cn(styles.container, className)}>
             <div className="flex flex-col gap-4 sm:gap-5">
                 <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-green-500/30 bg-green-500/10">
-                        <Mail className="h-4 w-4 text-green-300" aria-hidden />
+                    <span
+                        className={cn(
+                            "flex h-9 w-9 items-center justify-center rounded-lg",
+                            styles.iconBadge
+                        )}
+                    >
+                        <Mail className={cn("h-4 w-4", styles.iconBadgeIcon)} aria-hidden />
                     </span>
-                    <h3 className="text-lg sm:text-xl font-semibold matrix-glow text-green-300">
+                    <h3 className={cn("text-lg sm:text-xl font-semibold", styles.heading)}>
                         {heading}
                     </h3>
                 </div>
-                <p className="text-green-200/80 text-sm sm:text-base">{description}</p>
+                <p className={cn("text-sm sm:text-base", styles.description)}>{description}</p>
                 <form
                     onSubmit={handleSubmit}
                     className="flex flex-col sm:flex-row gap-3 sm:gap-2"
@@ -114,12 +149,12 @@ export default function NewsletterSignup({
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                         disabled={isSubmitting}
-                        className="flex-1 border-green-500/30 bg-black/40 text-green-100 placeholder:text-green-200/40 focus-visible:ring-green-500/50"
+                        className={cn("flex-1", styles.input)}
                     />
                     <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="bg-green-600 hover:bg-green-700 text-white border-none w-full sm:w-auto"
+                        className={cn("w-full sm:w-auto", styles.button)}
                     >
                         {isSubmitting ? (
                             <>
