@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 // Server component — delegates all interactive state to CodeSandboxClient
 export default function CodeSandboxPage() {
     return (
-        <div className="min-h-screen flex flex-col bg-black">
+        <div className="min-h-screen flex flex-col bg-background">
             <CodeSandboxClient />
         </div>
     );

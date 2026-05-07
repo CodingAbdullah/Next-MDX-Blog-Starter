@@ -13,8 +13,8 @@ export default function ArticleAuthorBio({ authorInformation }: { authorInformat
                 <Image src={authorInformation.authorProfileImageURL} alt="No Name" width={64} height={64} className="rounded-full object-cover" />
               </Avatar>
               <div className="text-center sm:text-left w-full">
-                <h3 className="text-lg sm:text-xl font-semibold mb-2 matrix-glow text-green-300">{authorInformation.authorName}</h3>
-                <p className="text-green-200/80 mb-3 text-sm sm:text-base">{authorInformation.authorDescription}</p>
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 matrix-glow text-green-700 dark:text-green-300">{authorInformation.authorName}</h3>
+                <p className="text-green-800/70 dark:text-green-200/80 mb-3 text-sm sm:text-base">{authorInformation.authorDescription}</p>
                 <Link href="/">
                   <Button className="bg-green-600 hover:bg-green-700 text-white border-none w-full sm:w-auto text-sm sm:text-base">
                     Go Back To Home Page

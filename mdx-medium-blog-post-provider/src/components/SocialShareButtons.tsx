@@ -16,14 +16,14 @@ export default function SocialShareButtons({ articleTitle }: SocialShareButtonsT
 
     return (
         <div className="flex items-center gap-2 flex-wrap w-full sm:w-auto">
-            <span className="text-xs sm:text-sm text-green-400/70">Share:</span>
+            <span className="text-xs sm:text-sm text-green-600/70 dark:text-green-400/70">Share:</span>
             {(Object.keys(PLATFORM_CONFIG) as SocialPlatform[]).map((platform) => (
                 <Button
                     key={platform}
                     variant="outline"
                     size="sm"
                     onClick={() => handleShare(platform)}
-                    className="border-green-500/40 bg-green-900/20 text-green-300 hover:bg-green-800/40 hover:text-green-200 transition-colors text-xs px-3"
+                    className="border-green-500/40 bg-green-50 text-green-700 hover:bg-green-100 hover:text-green-800 dark:bg-green-900/20 dark:text-green-300 dark:hover:bg-green-800/40 dark:hover:text-green-200 transition-colors text-xs px-3"
                     aria-label={`Share on ${PLATFORM_CONFIG[platform].label}`}
                 >
                     {PLATFORM_CONFIG[platform].label}

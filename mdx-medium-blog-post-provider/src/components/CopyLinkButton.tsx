@@ -13,7 +13,7 @@ export default function CopyLinkButton(): React.JSX.Element {
             await navigator.clipboard.writeText(window.location.href);
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
-        } 
+        }
         catch {
             // Clipboard API unavailable — silently ignore
         }
@@ -24,7 +24,7 @@ export default function CopyLinkButton(): React.JSX.Element {
             variant="outline"
             size="sm"
             onClick={handleCopy}
-            className="border-green-500/40 bg-green-900/20 text-green-300 hover:bg-green-800/40 hover:text-green-200 transition-colors text-xs w-full sm:w-auto"
+            className="border-green-500/40 bg-green-50 text-green-700 hover:bg-green-100 hover:text-green-800 dark:bg-green-900/20 dark:text-green-300 dark:hover:bg-green-800/40 dark:hover:text-green-200 transition-colors text-xs w-full sm:w-auto"
             aria-label="Copy article link to clipboard"
         >
             {copied ? (

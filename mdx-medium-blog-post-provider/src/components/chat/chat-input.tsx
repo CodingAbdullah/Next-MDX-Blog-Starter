@@ -32,7 +32,7 @@ export function ChatInput({ isLoading, onSendMessage }: ChatInputType): React.JS
     return (
         <form
             onSubmit={handleSubmit}
-            className="flex items-end gap-2 p-4 border-t border-green-500/20 bg-[#050d05]"
+            className="flex items-end gap-2 p-4 border-t border-green-400/30 dark:border-green-500/20 bg-white/60 dark:bg-[#050d05]"
         >
             <Textarea
                 ref={textareaRef}
@@ -41,14 +41,14 @@ export function ChatInput({ isLoading, onSendMessage }: ChatInputType): React.JS
                 onKeyDown={handleKeyDown}
                 placeholder="Ask about JavaScript, TypeScript, React, Next.js, MDX..."
                 disabled={isLoading}
-                className="min-h-[44px] max-h-[200px] resize-none bg-[#071407] border-green-500/30 text-green-100 placeholder:text-green-800 focus-visible:ring-green-500/50 focus-visible:border-green-400/60 code-font text-sm"
+                className="min-h-[44px] max-h-[200px] resize-none bg-white dark:bg-[#071407] border-green-300/60 dark:border-green-500/30 text-gray-900 dark:text-green-100 placeholder:text-gray-400 dark:placeholder:text-green-800 focus-visible:ring-green-500/50 focus-visible:border-green-400/60 code-font text-sm"
                 rows={1}
             />
             <Button
                 type="submit"
                 size="icon"
                 disabled={isLoading || !input.trim()}
-                className="shrink-0 bg-green-600 hover:bg-green-700 disabled:bg-green-900/40 disabled:text-green-700 text-white border border-green-500/40"
+                className="shrink-0 bg-green-600 hover:bg-green-700 disabled:bg-green-200 disabled:text-green-500 dark:disabled:bg-green-900/40 dark:disabled:text-green-700 text-white border border-green-500/40"
             >
                 <Send className="h-4 w-4" />
             </Button>

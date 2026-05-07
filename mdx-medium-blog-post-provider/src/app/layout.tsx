@@ -1,26 +1,30 @@
 import "@/app/globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import { Toaster } from "sonner";
 import type { Viewport } from "next";
+import ThemeProvider from "@/components/ThemeProvider";
+import ThemeToggle from "@/components/ThemeToggle";
+import ThemedToaster from "@/components/ThemedToaster";
 
 export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
+    width: "device-width",
+    initialScale: 1,
 };
 
-// Root Layout for the simple Next.js application
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body>
-        <Analytics mode="production" />
-        {children}
-        <Toaster theme="dark" position="bottom-right" richColors />
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en" suppressHydrationWarning>
+            <body>
+                <ThemeProvider>
+                    <Analytics mode="production" />
+                    <ThemeToggle />
+                    {children}
+                    <ThemedToaster />
+                </ThemeProvider>
+            </body>
+        </html>
+    );
 }

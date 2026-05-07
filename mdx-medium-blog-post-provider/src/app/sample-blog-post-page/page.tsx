@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 // Utilizes the Static Article custom component
 const SampleBlogPostPage = () => {  
   return (
-    <div className="min-h-screen flex flex-col bg-black">
+    <div className="min-h-screen flex flex-col bg-background">
       <ReadingProgressBar />
       <BackToTopButton />
       <main className="flex-grow px-4 py-8">

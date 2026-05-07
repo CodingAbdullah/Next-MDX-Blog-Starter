@@ -11,13 +11,13 @@ import { Eye } from "lucide-react";
 export default function ArticleHeader({ articleHeaderInformation, viewCount, viewCounterSlot } : { articleHeaderInformation: ArticleHeaderInfoType; viewCount?: number; viewCounterSlot?: React.ReactNode }): React.JSX.Element {
     return (
         <div className="mb-8">
-            <Badge className="mb-3 bg-green-900/60 text-green-100 border border-green-500/50">
+            <Badge className="mb-3 bg-green-50 text-green-800 border border-green-300/60 dark:bg-green-900/60 dark:text-green-100 dark:border-green-500/50">
                 { articleHeaderInformation.articleTags[0] }
             </Badge>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 matrix-glow leading-tight text-green-300">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 matrix-glow leading-tight text-green-700 dark:text-green-300">
                 { articleHeaderInformation.articleTitle }
             </h1>
-            <p className="text-base sm:text-xl text-green-200/80 mb-4 sm:mb-6 leading-relaxed">
+            <p className="text-base sm:text-xl text-green-800/70 dark:text-green-200/80 mb-4 sm:mb-6 leading-relaxed">
                 { articleHeaderInformation.articleDescription }
             </p>
             {/* Author info and publish date */}
@@ -27,8 +27,8 @@ export default function ArticleHeader({ articleHeaderInformation, viewCount, vie
                         <Image src={ articleHeaderInformation.articleAuthorInfo.authorProfileImageURL } alt="No Name Exists" width={48} height={48} className="rounded-full object-cover" />
                     </Avatar>
                     <div>
-                        <p className="font-medium text-green-300 text-sm sm:text-base">{ articleHeaderInformation.articleAuthorInfo.authorName }</p>
-                        <p className="text-xs sm:text-sm text-green-400/70">
+                        <p className="font-medium text-green-700 dark:text-green-300 text-sm sm:text-base">{ articleHeaderInformation.articleAuthorInfo.authorName }</p>
+                        <p className="text-xs sm:text-sm text-green-600/70 dark:text-green-400/70">
                         Published on {new Date(Date.now()).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',

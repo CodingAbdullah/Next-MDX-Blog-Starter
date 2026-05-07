@@ -17,15 +17,15 @@ import type {
 const VARIANT_CLASS_NAMES: Record<NewsletterSignupVariant, NewsletterSignupVariantClassNames> = {
     matrix: {
         container: "glass-card p-6 sm:p-8 mb-8 sm:mb-12",
-        iconBadge: "border-green-500/30 bg-green-500/10",
-        iconBadgeIcon: "text-green-300",
-        heading: "matrix-glow text-green-300",
-        description: "text-green-200/80",
-        input: "border-green-500/30 bg-black/40 text-green-100 placeholder:text-green-200/40 focus-visible:ring-green-500/50",
+        iconBadge: "border-green-400/40 bg-green-100 dark:border-green-500/30 dark:bg-green-500/10",
+        iconBadgeIcon: "text-green-600 dark:text-green-300",
+        heading: "matrix-glow text-green-700 dark:text-green-300",
+        description: "text-green-800/70 dark:text-green-200/80",
+        input: "border-green-400/40 bg-white/80 text-green-900 placeholder:text-green-500/50 focus-visible:ring-green-500/50 dark:border-green-500/30 dark:bg-black/40 dark:text-green-100 dark:placeholder:text-green-200/40",
         button: "bg-green-600 hover:bg-green-700 text-white border-none",
-        successIcon: "text-green-400",
-        successHeading: "matrix-glow text-green-300",
-        successBody: "text-green-200/80",
+        successIcon: "text-green-600 dark:text-green-400",
+        successHeading: "matrix-glow text-green-700 dark:text-green-300",
+        successBody: "text-green-800/70 dark:text-green-200/80",
     },
     neutral: {
         container: "rounded-xl border border-border bg-card p-6 sm:p-8 mb-8 sm:mb-12 shadow-sm",

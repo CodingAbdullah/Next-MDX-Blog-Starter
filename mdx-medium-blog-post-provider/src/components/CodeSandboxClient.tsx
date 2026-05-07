@@ -38,27 +38,27 @@ export default function CodeSandboxClient(): React.JSX.Element {
 
                 {/* Hero */}
                 <section className="py-4 sm:py-6 md:py-8 mb-8 text-center">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 matrix-glow text-green-300">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 matrix-glow text-green-700 dark:text-green-300">
                         Code Sandbox
                     </h1>
-                    <p className="text-lg sm:text-xl text-green-200/80 mb-4 code-font">
+                    <p className="text-lg sm:text-xl text-green-700/80 dark:text-green-200/80 mb-4 code-font">
                         Interactive JavaScript & TypeScript execution environment
                     </p>
                     <div className="flex items-center justify-center gap-2 mb-6">
-                        <Shield className="h-5 w-5 text-green-400" />
-                        <span className="text-xs sm:text-sm text-green-400 font-medium code-font">
+                        <Shield className="h-5 w-5 text-green-600 dark:text-green-400" />
+                        <span className="text-xs sm:text-sm text-green-600 dark:text-green-400 font-medium code-font">
                             Sandpack In-Browser Execution • No Server Required • Isolated Sandbox
                         </span>
                     </div>
 
                     {/* Runtime selector */}
                     <div className="flex items-center justify-center gap-3">
-                        <span className="text-sm text-green-200/70 code-font">Runtime:</span>
+                        <span className="text-sm text-green-700/70 dark:text-green-200/70 code-font">Runtime:</span>
                         <Button
                             variant="outline"
                             size="sm"
                             onClick={() => handleSetRuntime('javascript')}
-                            className={`glass-card border-green-500/30 ${runtime === 'javascript' ? 'bg-green-500/20 text-green-100 border-green-400/50' : 'text-green-200'} hover:text-green-100 hover:bg-green-500/10`}
+                            className={`glass-card border-green-500/30 ${runtime === 'javascript' ? 'bg-green-600/10 text-green-800 border-green-400/50 dark:bg-green-500/20 dark:text-green-100' : 'text-green-700 dark:text-green-200'} hover:text-green-800 hover:bg-green-100 dark:hover:text-green-100 dark:hover:bg-green-500/10`}
                         >
                             JavaScript
                         </Button>
@@ -66,7 +66,7 @@ export default function CodeSandboxClient(): React.JSX.Element {
                             variant="outline"
                             size="sm"
                             onClick={() => handleSetRuntime('typescript')}
-                            className={`glass-card border-green-500/30 ${runtime === 'typescript' ? 'bg-green-500/20 text-green-100 border-green-400/50' : 'text-green-200'} hover:text-green-100 hover:bg-green-500/10`}
+                            className={`glass-card border-green-500/30 ${runtime === 'typescript' ? 'bg-green-600/10 text-green-800 border-green-400/50 dark:bg-green-500/20 dark:text-green-100' : 'text-green-700 dark:text-green-200'} hover:text-green-800 hover:bg-green-100 dark:hover:text-green-100 dark:hover:bg-green-500/10`}
                         >
                             TypeScript
                         </Button>
@@ -75,7 +75,7 @@ export default function CodeSandboxClient(): React.JSX.Element {
 
                 {/* Quick Examples */}
                 <section className="mb-8">
-                    <h2 className="text-xl font-bold mb-4 matrix-glow text-center text-green-300">Quick Examples</h2>
+                    <h2 className="text-xl font-bold mb-4 matrix-glow text-center text-green-700 dark:text-green-300">Quick Examples</h2>
                     <div className="flex flex-wrap gap-3 justify-center">
                         {Object.entries(examples).map(([key, ex]) => (
                             <Button
@@ -83,7 +83,7 @@ export default function CodeSandboxClient(): React.JSX.Element {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => loadExample(ex.name, ex.code)}
-                                className="glass-card border-green-500/30 text-green-200 hover:text-green-100 hover:bg-green-500/10"
+                                className="glass-card border-green-500/30 text-green-700 hover:text-green-800 hover:bg-green-100 dark:text-green-200 dark:hover:text-green-100 dark:hover:bg-green-500/10"
                             >
                                 {ex.name}
                             </Button>

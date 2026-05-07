@@ -50,17 +50,17 @@ export default function Home() {
       {/* Hero */}
       <header className="flex flex-col items-center gap-4 mb-10 sm:mb-14 text-center w-full max-w-2xl">
         <Image
-          className="dark:invert"
+          className="dark:[filter:invert(55%)_sepia(79%)_saturate(450%)_hue-rotate(98deg)_brightness(95%)_drop-shadow(0_0_8px_rgba(0,255,0,0.35))]"
           src="/next.svg"
           alt="Next.js logo"
           width={160}
           height={34}
           priority
         />
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight matrix-glow text-foreground dark:text-green-300">
           Next MDX Blog Starter
         </h1>
-        <p className="text-sm sm:text-base text-muted-foreground font-[family-name:var(--font-geist-mono)]">
+        <p className="text-sm sm:text-base text-muted-foreground dark:text-green-200/80 font-[family-name:var(--font-geist-mono)]">
           A starter template for creating and publishing&nbsp;
           <strong>Medium-style blog posts</strong> using Markdown, JSX, and Next.js.
         </p>
@@ -73,14 +73,14 @@ export default function Home() {
             <li key={href}>
               <Link
                 href={href}
-                className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-sm hover:bg-accent hover:text-accent-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring hover:bg-accent hover:text-accent-foreground dark:border-green-500/20 dark:hover:border-green-400/30 dark:hover:shadow-[0_0_12px_rgba(0,200,0,0.15)]"
               >
-                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-background">
-                  <Icon className="h-4 w-4" aria-hidden />
+                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-background dark:border-green-500/20">
+                  <Icon className="h-4 w-4 dark:text-green-400" aria-hidden />
                 </span>
                 <span className="flex flex-col gap-1 min-w-0">
-                  <span className="text-sm font-semibold leading-tight">{label}</span>
-                  <span className="text-xs text-muted-foreground leading-snug font-[family-name:var(--font-geist-mono)]">
+                  <span className="text-sm font-semibold leading-tight dark:text-green-200">{label}</span>
+                  <span className="text-xs text-muted-foreground dark:text-green-400/70 leading-snug font-[family-name:var(--font-geist-mono)]">
                     {description}
                   </span>
                 </span>
@@ -90,7 +90,7 @@ export default function Home() {
         </ul>
 
         <section className="mt-10 sm:mt-14">
-          <NewsletterSignup variant="neutral" />
+          <NewsletterSignup variant="matrix" />
         </section>
       </main>
 

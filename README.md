@@ -61,7 +61,7 @@ npx create-next-mdx-blog-app .
 ### Package Information
 
 - **Package Name**: `create-next-mdx-blog-app`
-- **Version**: `2.1.8`
+- **Version**: `2.1.9`
 - **License**: MIT
 - **Homepage**: [https://www.npmjs.com/package/create-next-mdx-blog-app](https://www.npmjs.com/package/create-next-mdx-blog-app/)
 
@@ -171,6 +171,9 @@ A thin green bar (`src/components/ReadingProgressBar.tsx`) is fixed to the top o
 
 ### Back to Top Button
 A floating circular button (`src/components/BackToTopButton.tsx`) appears in the bottom-right corner of the screen once the reader has scrolled more than 400px down the page. Clicking it smoothly scrolls back to the top. The button is hidden when not needed and matches the green colour scheme of the rest of the UI.
+
+### Light / Dark Mode Toggle
+A theme toggle button (`src/components/ThemeToggle.tsx`) is rendered in the site header, allowing readers to switch between **dark** (default) and **light** modes. Theme state is managed by `next-themes` via the `ThemeProvider` wrapper (`src/components/ThemeProvider.tsx`) mounted in the root layout. The active theme is persisted to `localStorage` automatically. Toast notifications use `ThemedToaster` (`src/components/ThemedToaster.tsx`), a thin wrapper around `sonner` that picks the correct Sonner theme to match the active colour scheme.
 
 ### View Counter
 Each article page displays a live view count stored in a dedicated `view_counts` Supabase table, incremented atomically via the `increment_view_count` RPC function. Dynamic pages increment server-side at render time; static pages use a `ViewCounter` client component that calls the `/api/views/[slug]` Route Handler after hydration.

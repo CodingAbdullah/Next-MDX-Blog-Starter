@@ -21,7 +21,7 @@ export default async function DynamicArticle({ slug } : { slug: string }): Promi
   }
   else {
     return (
-      <div className="min-h-screen flex flex-col bg-black">
+      <div className="min-h-screen flex flex-col bg-background">
         <ReadingProgressBar />
         <BackToTopButton />
         <main className="flex-grow px-4 py-8">
