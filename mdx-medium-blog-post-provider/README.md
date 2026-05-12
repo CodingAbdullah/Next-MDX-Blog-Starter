@@ -61,7 +61,7 @@ npx create-next-mdx-blog-app .
 ### Package Information
 
 - **Package Name**: `create-next-mdx-blog-app`
-- **Version**: `2.1.9`
+- **Version**: `2.1.10`
 - **License**: MIT
 - **Homepage**: [https://www.npmjs.com/package/create-next-mdx-blog-app](https://www.npmjs.com/package/create-next-mdx-blog-app/)
 
@@ -388,6 +388,9 @@ export const viewport: Viewport = {
 
 ## 📊 Analytics
 Integrated in this setup project is Vercel Analytics (`@vercel/analytics`) to track user interactions and performance metrics of the blog.
+
+## 🗺️ Sitemap & Robots
+A `sitemap.xml` is auto-generated at build time via `src/app/sitemap.ts`, covering all static routes and every dynamic article slug fetched from Supabase. A companion `robots.txt` is served from `src/app/robots.ts`, permitting all crawlers and pointing them to the generated sitemap for full search engine discoverability.
 
 ## ⚙️ Next.js Configuration
 The `next.config.ts` file is set up for working with AWS S3 and includes MDX extensions for enhanced functionality. Feel free to modify and add your own custom links to access storage and setting up other configurations.
