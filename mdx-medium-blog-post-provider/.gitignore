@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# rtk (local developer tooling)
+.rtk/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

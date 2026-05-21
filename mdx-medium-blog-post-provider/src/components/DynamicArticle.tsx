@@ -1,6 +1,7 @@
 // Custom Article Canvas Page for creating and publishing a Medium style blog post
 import ArticleAuthorBio from "@/components/ArticleAuthorBio";
 import ArticleHeader from "@/components/ArticleHeader";
+import ArticleSummarizer from "@/components/ArticleSummarizer";
 import { ArticleAuthorInfoList, ArticleHeaderInfoList } from "@/utils/constants";
 import MDXRemoteArticle from "./MDXRemoteArticle";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
@@ -27,6 +28,7 @@ export default async function DynamicArticle({ slug } : { slug: string }): Promi
         <main className="flex-grow px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <ArticleHeader articleHeaderInformation={ArticleHeaderInfoList} viewCount={viewCount} />
+            <ArticleSummarizer slug={slug} />
             <div className="glass-card p-8 mb-8">
               <MDXRemoteArticle content={articleData.content} />
             </div>

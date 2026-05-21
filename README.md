@@ -61,7 +61,7 @@ npx create-next-mdx-blog-app .
 ### Package Information
 
 - **Package Name**: `create-next-mdx-blog-app`
-- **Version**: `2.1.10`
+- **Version**: `2.2.0`
 - **License**: MIT
 - **Homepage**: [https://www.npmjs.com/package/create-next-mdx-blog-app](https://www.npmjs.com/package/create-next-mdx-blog-app/)
 
@@ -81,7 +81,7 @@ npx create-next-mdx-blog-app .
 - **react-syntax-highlighter**: A library for syntax highlighting in React applications, making code snippets more readable.
 - **tsx**: Run TypeScript code without worrying about configuration! Run the `article-manager.ts` for manually working with published articles.
 - **@codesandbox/sandpack-react**: Powers the in-browser JavaScript/TypeScript code execution environment, running code entirely client-side with no server required.
-- **ai** (Vercel AI SDK): Provides streaming AI response primitives and transport utilities (`TextStreamChatTransport`, `streamText`, tool support) for building the interactive chatbot.
+- **ai** (Vercel AI SDK): Provides streaming AI response primitives and transport utilities (`TextStreamChatTransport`, `streamText`, tool support) used by both the interactive chatbot and the AI article summarizer.
 - **@ai-sdk/anthropic**: Anthropic provider for the Vercel AI SDK, used to connect to Claude models.
 - **@ai-sdk/react**: React hooks (`useChat`) for building streaming AI chat interfaces.
 - **zod**: TypeScript-first schema validation library used to define and validate AI tool parameters.
@@ -218,6 +218,9 @@ The project includes an interactive AI-powered chatbot optimised for readers of 
 
 ### API Route
 `src/app/api/chat/route.ts` — Next.js edge route. Accepts the `UIMessages` array, converts it to `CoreMessages` via `convertToModelMessages`, streams a response using `streamText` with the three blog tools, and returns `result.toTextStreamResponse()`.
+
+## ✨ AI Article Summarizer
+A **Generate TL;DR** button above every dynamic article streams a short Claude Haiku summary into a collapsible green panel. The slug is the only thing sent over the wire — `src/app/api/summarize/[slug]/route.ts` (edge) fetches the article server-side, applies an origin allow-list (`NEXT_PUBLIC_SITE_URL`) + per-IP rate limit (10/min) + 1-hour in-memory cache, then calls `streamText` and writes the final text to cache via `after()`. The client (`src/components/ArticleSummarizer.tsx`) uses `AbortController` to cancel in-flight requests on close/unmount. Model and prompt live in `src/utils/constants/AiSummaryConfig.ts`.
 
 ## 📬 Newsletter Subscription
 The project ships with an integrated **newsletter signup form** powered by [Resend](https://resend.com). Visitors can subscribe from the home page or from the bottom of any article; new subscribers are added to a Resend **Audience** and immediately receive a welcome email.

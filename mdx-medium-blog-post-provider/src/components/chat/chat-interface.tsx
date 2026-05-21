@@ -29,7 +29,7 @@ export function ChatInterface(): React.JSX.Element {
     );
 
     return (
-        <div className="flex flex-col h-[calc(100dvh-10rem)] sm:h-[calc(100dvh-12rem)] md:h-[calc(100dvh-14rem)] min-h-[420px] glass-card rounded-lg overflow-hidden">
+        <div className="flex flex-col h-[600px] sm:h-[640px] md:h-[680px] max-h-[80dvh] glass-card rounded-lg overflow-hidden">
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-green-500/20 bg-green-50 dark:bg-[#071407]">
                 <div className="flex items-center gap-2">

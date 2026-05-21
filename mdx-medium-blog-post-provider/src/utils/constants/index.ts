@@ -1,6 +1,7 @@
 export { default as ArticleAuthorInfoList } from "./ArticleAuthorInfoList";
 export { default as ArticleHeaderInfoList } from "./ArticleHeaderInfoList";
 export { AI_CHAT_CONFIG } from "./AiChatConfig";
+export { AI_SUMMARY_CONFIG } from "./AiSummaryConfig";
 export { TOOL_CONFIG } from "./ToolConfig";
 export {
     JS_DEFAULT,
