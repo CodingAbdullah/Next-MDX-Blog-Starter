@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'mdx-blog-bucket.s3.us-east-2.amazonaws.com'
+        hostname: '*.s3.us-east-2.amazonaws.com'
       }
     ]
   },

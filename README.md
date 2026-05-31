@@ -61,7 +61,7 @@ npx create-next-mdx-blog-app .
 ### Package Information
 
 - **Package Name**: `create-next-mdx-blog-app`
-- **Version**: `2.2.0`
+- **Version**: `2.2.1`
 - **License**: MIT
 - **Homepage**: [https://www.npmjs.com/package/create-next-mdx-blog-app](https://www.npmjs.com/package/create-next-mdx-blog-app/)
 
@@ -221,6 +221,9 @@ The project includes an interactive AI-powered chatbot optimised for readers of 
 
 ## ✨ AI Article Summarizer
 A **Generate TL;DR** button above every dynamic article streams a short Claude Haiku summary into a collapsible green panel. The slug is the only thing sent over the wire — `src/app/api/summarize/[slug]/route.ts` (edge) fetches the article server-side, applies an origin allow-list (`NEXT_PUBLIC_SITE_URL`) + per-IP rate limit (10/min) + 1-hour in-memory cache, then calls `streamText` and writes the final text to cache via `after()`. The client (`src/components/ArticleSummarizer.tsx`) uses `AbortController` to cancel in-flight requests on close/unmount. Model and prompt live in `src/utils/constants/AiSummaryConfig.ts`.
+
+## 👥 Author Profile Pages
+A `/authors` index lists every distinct contributor pulled from the Supabase `Article` table, with per-author profile routes at `/authors/[slug]` showing their bio, avatar, and every article they've published.
 
 ## 📬 Newsletter Subscription
 The project ships with an integrated **newsletter signup form** powered by [Resend](https://resend.com). Visitors can subscribe from the home page or from the bottom of any article; new subscribers are added to a Resend **Audience** and immediately receive a welcome email.

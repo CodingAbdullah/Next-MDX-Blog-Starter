@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Bot, Code2, FileText, Globe } from "lucide-react";
+import { Bot, Code2, FileText, Globe, Users } from "lucide-react";
 import type { Metadata } from 'next';
 import NewsletterSignup from "@/components/NewsletterSignup";
 
@@ -39,6 +39,12 @@ const NAV_CARDS = [
     icon: Bot,
     label: 'Blog Assistant',
     description: 'AI chatbot powered by the Vercel AI SDK and Anthropic Claude.',
+  },
+  {
+    href: '/authors',
+    icon: Users,
+    label: 'Authors',
+    description: 'Browse every contributor and view all articles by a specific author.',
   },
 ];
 
