@@ -16,9 +16,9 @@ export default async function fetchAllAuthors(): Promise<AuthorProfile[]> {
     const { data, error } = await getSupabaseClient()
         .from("Article")
         .select("articleAuthorName, articleAuthorDescription, articleAuthorProfileImageURL")
-        // Starter-kit only: scoped to the seed `DynamicArticleContent` row so the demo renders with sample data.
+        // Starter-kit only: scoped to the seed author so the demo renders with sample data.
         // Remove this `.eq` once real articles are inserted so every author appears on /authors.
-        .eq("slug", "DynamicArticleContent");
+        .eq("articleAuthorName", "Abdullah Muhammad.");
 
     if (error) {
         throw new Error("Could not fetch authors");
