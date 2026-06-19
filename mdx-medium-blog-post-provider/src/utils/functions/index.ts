@@ -2,7 +2,7 @@ export { deleteArticle, fetchAllArticles, fetchArticle, fetchArticlesByAuthor, i
 export type { AuthorArticleSummary } from "./crud";
 export { fetchAllAuthors, slugifyAuthorName } from "./authors";
 export type { AuthorProfile } from "./authors";
-export { incrementViewCount } from "./rpc";
+export { incrementViewCount, searchArticles } from "./rpc";
 export { getSupabaseClient } from "./supabase_client";
 export { getResendClient } from "./resend_client";
 export { subscribeToNewsletter } from "./newsletter";

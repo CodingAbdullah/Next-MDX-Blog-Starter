@@ -11,6 +11,13 @@ export type { default as ToolConfigType } from "./ToolConfigType";
 export type { default as ToolInvocationPartType } from "./ToolInvocationPartType";
 export type { default as SocialShareButtonsType, SocialPlatform, PlatformConfig } from "./SocialShareButtonsType";
 export type {
+    SearchResult,
+    SearchApiResponse,
+    SearchApiSuccessResponse,
+    SearchApiErrorResponse,
+    SearchStatus,
+} from "./SearchType";
+export type {
     default as NewsletterSignupType,
     SubscribeResult,
     SubscribeReason,
