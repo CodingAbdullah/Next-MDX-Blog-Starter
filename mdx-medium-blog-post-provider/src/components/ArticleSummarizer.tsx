@@ -141,9 +141,8 @@ export default function ArticleSummarizer({ slug }: { slug: string }): React.JSX
             </div>
 
             {open && (state !== "idle") && (
-                <div
+                <section
                     id="article-summary-panel"
-                    role="region"
                     aria-label="AI generated article summary"
                     className="mt-3 rounded-lg border border-green-500/30 bg-green-50/60 dark:bg-green-900/20 dark:border-green-500/30 p-4"
                 >
@@ -176,7 +175,7 @@ export default function ArticleSummarizer({ slug }: { slug: string }): React.JSX
                             )}
                         </div>
                     )}
-                </div>
+                </section>
             )}
         </div>
     );

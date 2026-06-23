@@ -17,6 +17,7 @@ This project was developed with the help of **Claude** (Anthropic) and **Cursor*
 - [AI Features](#-ai-features)
 - [Code Sandbox](#%EF%B8%8F-code-sandbox)
 - [Author Profile Pages](#-author-profile-pages)
+- [Search](#-search)
 - [Newsletter Subscription](#-newsletter-subscription)
 - [Supabase Database](#%EF%B8%8F-supabase-database)
 - [Article Manager CLI](#%EF%B8%8F-article-manager-cli)
@@ -41,7 +42,7 @@ Scaffold the blog into an empty directory:
 npx create-next-mdx-blog-app .
 ```
 
-The installer ([`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/), v2.2.2, MIT) clones the app, installs dependencies, and prints the environment setup steps.
+The installer ([`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/), v2.2.3, MIT) clones the app, installs dependencies, and prints the environment setup steps.
 
 ### Option 2 — Manual clone
 
@@ -250,6 +251,29 @@ Components: `src/components/SandpackEditor.tsx` (provider, editor, toolbar, cons
 ## 👥 Author Profile Pages
 
 A `/authors` index lists every distinct contributor pulled from the Supabase `Article` table, with per-author profile routes at `/authors/[slug]` showing their bio, avatar, and every article they've published.
+
+## 🔍 Search
+
+Full-text search across published articles at `/search`, powered by native Postgres `tsvector` — no external search service required.
+
+- **Search-as-you-type** — `src/components/ArticleSearch.tsx` debounces input (300 ms), cancels stale requests with `AbortController`, caches repeated queries, and waits for at least 2 characters before querying
+- **Prefix matching** — partial words match while you type (`reac` → `react`)
+- **Ranked, weighted results** — scored by `ts_rank` with column weights (title > tags > description > content) and returned as lightweight summaries (the heavy `content` column is excluded)
+- **Request flow** — `GET /api/search?q=…` (`src/app/api/search/route.ts`) → `searchArticles()` (`src/utils/functions/rpc/searchArticles.ts`) → the `search_articles` Postgres RPC
+
+### One-time setup
+
+Run **`scripts/sql/DDL/createSearchArticlesFunction.sql`** once in the Supabase SQL editor. It creates the weighted GIN index and the `search_articles` function. Search returns an error until this script is deployed.
+
+### ⚠️ Change the hardcoded author filter
+
+The shipped function locks results to a single author:
+
+```sql
+AND a."articleAuthorName" = 'Abdullah Muhammad.'
+```
+
+Before deploying, replace `'Abdullah Muhammad.'` with **your own author name** — it must match the `articleAuthorName` values in your `Article` table **exactly**, including any trailing punctuation. Alternatively, **delete that line entirely** to search across all authors. Re-run the script after editing.
 
 ## 📬 Newsletter Subscription
 

@@ -87,6 +87,7 @@ function EditorToolbar({ mainFile, template }: { mainFile: string; template: 'va
       {/* Actions */}
       <div className="flex items-center gap-1.5">
         <button
+          type="button"
           onClick={() => dispatch({ type: 'refresh' })}
           className="flex items-center gap-1.5 px-3 py-1.5 bg-green-600 hover:bg-green-700 active:bg-green-800 text-white text-xs font-bold rounded code-font transition-colors"
         >
@@ -94,13 +95,13 @@ function EditorToolbar({ mainFile, template }: { mainFile: string; template: 'va
           Run
         </button>
         <div className="w-px h-4 bg-green-500/20 mx-0.5" />
-        <button onClick={handleCopy} title="Copy" className="p-1.5 text-green-500 hover:text-green-300 hover:bg-green-500/10 rounded transition-colors">
+        <button type="button" onClick={handleCopy} title="Copy" className="p-1.5 text-green-500 hover:text-green-300 hover:bg-green-500/10 rounded transition-colors">
           <Copy className="h-3.5 w-3.5" />
         </button>
-        <button onClick={handleDownload} title="Download" className="p-1.5 text-green-500 hover:text-green-300 hover:bg-green-500/10 rounded transition-colors">
+        <button type="button" onClick={handleDownload} title="Download" className="p-1.5 text-green-500 hover:text-green-300 hover:bg-green-500/10 rounded transition-colors">
           <Download className="h-3.5 w-3.5" />
         </button>
-        <button onClick={() => { try { sandpack.resetFile(mainFile); toast.success('Code reset to original!'); } catch { toast.error('Failed to reset code. Please try again.'); } }} title="Reset" className="p-1.5 text-green-500 hover:text-green-300 hover:bg-green-500/10 rounded transition-colors">
+        <button type="button" onClick={() => { try { sandpack.resetFile(mainFile); toast.success('Code reset to original!'); } catch { toast.error('Failed to reset code. Please try again.'); } }} title="Reset" className="p-1.5 text-green-500 hover:text-green-300 hover:bg-green-500/10 rounded transition-colors">
           <RotateCcw className="h-3.5 w-3.5" />
         </button>
       </div>

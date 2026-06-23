@@ -37,6 +37,7 @@ const CodeBlock = ({ className = '', children }: { className?: string; children:
     <div className="relative my-6 group">
       <div className="absolute top-3 right-3 z-10">
         <button
+          type="button"
           onClick={copyToClipboard}
           className="flex items-center gap-1 text-xs text-green-400/70 hover:text-green-300 transition-colors duration-200 bg-black/60 hover:bg-black/80 px-2 py-1 rounded border border-green-500/20 backdrop-blur-sm"
         >

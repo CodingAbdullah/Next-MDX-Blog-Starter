@@ -32,6 +32,7 @@ export default function GistCopyButton({ content, mdxGHGistURL }: GistCopyButton
   return (
     <div className="flex items-center gap-2 shrink-0">
       <button
+        type="button"
         onClick={copyToClipboard}
         className="flex items-center gap-1 text-xs text-green-400/70 hover:text-green-300 transition-colors duration-200 bg-green-500/10 hover:bg-green-500/20 px-2 py-1 rounded border border-green-500/20"
       >

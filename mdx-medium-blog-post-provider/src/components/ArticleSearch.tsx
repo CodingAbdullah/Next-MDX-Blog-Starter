@@ -9,6 +9,8 @@ import { Badge } from "./ui/badge";
 import type { SearchApiResponse, SearchResult, SearchStatus } from "@/utils/types";
 
 const DEBOUNCE_MS = 300;
+// Skip the cheapest-but-noisiest calls — single characters match too much to be useful.
+const MIN_QUERY_LENGTH = 2;
 
 // Client-side full-text search box. Debounces input, cancels stale requests,
 // and renders ranked results from GET /api/search. Results link to the dynamic
@@ -19,6 +21,10 @@ export default function ArticleSearch(): React.JSX.Element {
     const [results, setResults] = useState<SearchResult[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
     const abortRef = useRef<AbortController | null>(null);
+    // Per-session cache: repeated queries (e.g. backspace then retype) are served
+    // locally instead of hitting Supabase again. Created lazily (see below) so the
+    // Map isn't rebuilt and discarded on every render.
+    const cacheRef = useRef<Map<string, SearchResult[]> | null>(null);
 
     useEffect(() => {
         const trimmed = query.trim();
@@ -26,9 +32,21 @@ export default function ArticleSearch(): React.JSX.Element {
         // Cancel any in-flight request before starting a new one.
         abortRef.current?.abort();
 
-        if (trimmed === "") {
+        if (trimmed.length < MIN_QUERY_LENGTH) {
             setStatus("idle");
             setResults([]);
+            setErrorMessage("");
+            return;
+        }
+
+        // Lazily allocate the cache on first use, never on render.
+        const cache = (cacheRef.current ??= new Map<string, SearchResult[]>());
+
+        // Serve repeated queries from cache — no Supabase round trip.
+        const cached = cache.get(trimmed);
+        if (cached) {
+            setResults(cached);
+            setStatus("success");
             setErrorMessage("");
             return;
         }
@@ -45,6 +63,7 @@ export default function ArticleSearch(): React.JSX.Element {
                 const payload = (await response.json()) as SearchApiResponse;
 
                 if (response.ok && payload.ok) {
+                    cache.set(trimmed, payload.results);
                     setResults(payload.results);
                     setStatus("success");
                     return;
@@ -76,7 +95,7 @@ export default function ArticleSearch(): React.JSX.Element {
         setQuery(event.target.value);
     };
 
-    const hasQuery = query.trim() !== "";
+    const belowMinLength = query.trim().length < MIN_QUERY_LENGTH;
 
     return (
         <div className="flex flex-col gap-6">
@@ -175,9 +194,9 @@ export default function ArticleSearch(): React.JSX.Element {
                     </>
                 )}
 
-                {!hasQuery && (
+                {belowMinLength && (
                     <p className="text-sm text-green-800/60 dark:text-green-200/60 text-center">
-                        Start typing to search across every published article.
+                        Type at least {MIN_QUERY_LENGTH} characters to search across every published article.
                     </p>
                 )}
             </div>
