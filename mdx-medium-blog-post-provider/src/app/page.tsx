@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Bot, Code2, FileText, Globe, Search, Users } from "lucide-react";
+import { Bot, Code2, FileText, Globe, Search, Tags, Users } from "lucide-react";
 import type { Metadata } from 'next';
 import NewsletterSignup from "@/components/NewsletterSignup";
 
@@ -45,6 +45,12 @@ const NAV_CARDS = [
     icon: Users,
     label: 'Authors',
     description: 'Browse every contributor and view all articles by a specific author.',
+  },
+  {
+    href: '/tags',
+    icon: Tags,
+    label: 'Tags',
+    description: 'Browse articles by topic across every tag used in the blog.',
   },
   {
     href: '/search',

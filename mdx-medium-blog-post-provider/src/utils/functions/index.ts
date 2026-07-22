@@ -1,7 +1,9 @@
-export { deleteArticle, fetchAllArticles, fetchArticle, fetchArticlesByAuthor, insertArticle, updateArticle } from "./crud";
-export type { AuthorArticleSummary } from "./crud";
+export { deleteArticle, fetchAllArticles, fetchArticle, fetchArticleFeed, fetchArticlesByAuthor, fetchArticlesByTag, insertArticle, updateArticle } from "./crud";
+export type { ArticleFeedItem, AuthorArticleSummary, TagArticleSummary } from "./crud";
 export { fetchAllAuthors, slugifyAuthorName } from "./authors";
 export type { AuthorProfile } from "./authors";
+export { fetchAllTags, slugifyTag } from "./tags";
+export type { TagSummary } from "./tags";
 export { incrementViewCount, searchArticles } from "./rpc";
 export { getSupabaseClient } from "./supabase_client";
 export { getResendClient } from "./resend_client";

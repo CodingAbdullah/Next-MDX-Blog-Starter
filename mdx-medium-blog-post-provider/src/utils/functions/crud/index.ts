@@ -1,7 +1,11 @@
 export { default as deleteArticle } from "./deleteArticle";
 export { default as fetchAllArticles } from "./fetchAllArticles";
 export { default as fetchArticle } from "./fetchArticle";
+export { default as fetchArticleFeed } from "./fetchArticleFeed";
+export type { ArticleFeedItem } from "./fetchArticleFeed";
 export { default as fetchArticlesByAuthor } from "./fetchArticlesByAuthor";
 export type { AuthorArticleSummary } from "./fetchArticlesByAuthor";
+export { default as fetchArticlesByTag } from "./fetchArticlesByTag";
+export type { TagArticleSummary } from "./fetchArticlesByTag";
 export { default as insertArticle } from "./insertArticle";
 export { default as updateArticle } from "./updateArticle";
