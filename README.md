@@ -35,6 +35,7 @@ npm run dev
 | 🧩 **Custom MDX Components** | Syntax-highlighted `CodeBlock` with copy button, live `GitHubGist` embeds (GitHub REST API + [mdxgists.net](https://mdxgists.net)), and optimized `MDXImage` |
 | 🗄️ **Supabase Integration** | Direct Server Component data access — no custom backend APIs — plus a typed CRUD CLI (`article-manager.ts`) and an atomic view counter |
 | 👥 **Author Profile Pages** | `/authors` index and per-author pages with bio, avatar, and published articles |
+| 🏷 **Tags** | `/tags` index of every distinct tag with per-tag archive pages at `/tags/[tag]` |
 | 📬 **Newsletter** | Resend-powered signup with audience management and welcome emails |
 | 🎨 **Reader Experience** | Dark/light theme toggle, reading progress bar, back-to-top button, copy-link and social share buttons — all in a matrix-green design system |
 | 🔍 **SEO-Ready** | Auto-generated `sitemap.xml` and `robots.txt`, static metadata, semantic HTML |
@@ -68,7 +69,7 @@ The application lives entirely inside [`mdx-medium-blog-post-provider/`](./mdx-m
 ## ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white) Package
 
 - **Package**: [`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/)
-- **Version**: `2.2.2`
+- **Version**: `2.2.4`
 - **License**: MIT
 
 ## 🛠️ Built With AI Tools

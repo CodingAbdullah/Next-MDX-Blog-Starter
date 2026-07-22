@@ -18,6 +18,7 @@ This project was developed with the help of **Claude** (Anthropic) and **Cursor*
 - [Code Sandbox](#%EF%B8%8F-code-sandbox)
 - [Author Profile Pages](#-author-profile-pages)
 - [Search](#-search)
+- [Tags](#-tags)
 - [Newsletter Subscription](#-newsletter-subscription)
 - [Supabase Database](#%EF%B8%8F-supabase-database)
 - [Article Manager CLI](#%EF%B8%8F-article-manager-cli)
@@ -42,7 +43,7 @@ Scaffold the blog into an empty directory:
 npx create-next-mdx-blog-app .
 ```
 
-The installer ([`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/), v2.2.3, MIT) clones the app, installs dependencies, and prints the environment setup steps.
+The installer ([`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/), v2.2.4, MIT) clones the app, installs dependencies, and prints the environment setup steps.
 
 ### Option 2 — Manual clone
 
@@ -274,6 +275,14 @@ AND a."articleAuthorName" = 'Abdullah Muhammad.'
 ```
 
 Before deploying, replace `'Abdullah Muhammad.'` with **your own author name** — it must match the `articleAuthorName` values in your `Article` table **exactly**, including any trailing punctuation. Alternatively, **delete that line entirely** to search across all authors. Re-run the script after editing.
+
+## 🏷 Tags
+
+Browse articles by topic at `/tags`, which lists every distinct tag pulled from the Supabase `Article` table, with per-tag archive pages at `/tags/[tag]`.
+
+- `fetchAllTags()` (`src/utils/functions/tags/fetchAllTags.ts`) — deduplicates tags case-insensitively and counts how many articles carry each one
+- `fetchArticlesByTag()` (`src/utils/functions/crud/fetchArticlesByTag.ts`) — returns every article carrying a given tag, newest first
+- `slugifyTag()` (`src/utils/functions/tags/slugifyTag.ts`) — normalizes tag names into URL-safe slugs (e.g. `"DevOps"` → `"devops"`), so casing/spacing variants still resolve to the same tag page
 
 ## 📬 Newsletter Subscription
 
