@@ -10,10 +10,12 @@ export interface TagSummary {
 
 // Fetch every distinct tag found across all Article rows
 // Deduplicates by slug (case-insensitive) and counts each article once per tag
+// Scoped to articles authored by "Abdullah Muhammad." only
 export default async function fetchAllTags(): Promise<TagSummary[]> {
     const { data, error } = await getSupabaseClient()
         .from("Article")
-        .select("tags");
+        .select("tags")
+        .eq("articleAuthorName", "Abdullah Muhammad.");
 
     if (error) {
         throw new Error("Could not fetch tags");

@@ -15,10 +15,12 @@ export interface TagArticleSummary {
 
 // Fetch all articles carrying a given tag, newest first
 // Matches by slugified tag so casing/spacing variants ("DevOps" vs "devops") still resolve
+// Scoped to articles authored by "Abdullah Muhammad." only
 export default async function fetchArticlesByTag(tagSlug: string): Promise<TagArticleSummary[]> {
     const { data, error } = await getSupabaseClient()
         .from("Article")
         .select("slug, title, description, cover_image_url, tags, date, reading_time")
+        .eq("articleAuthorName", "Abdullah Muhammad.")
         .order("date", { ascending: false });
 
     if (error) {
