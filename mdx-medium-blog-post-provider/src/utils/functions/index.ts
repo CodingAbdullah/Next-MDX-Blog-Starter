@@ -1,5 +1,5 @@
-export { deleteArticle, fetchAllArticles, fetchArticle, fetchArticleFeed, fetchArticlesByAuthor, fetchArticlesByTag, insertArticle, updateArticle } from "./crud";
-export type { ArticleFeedItem, AuthorArticleSummary, TagArticleSummary } from "./crud";
+export { deleteArticle, fetchAllArticles, fetchArticle, fetchArticleFeed, fetchArticlesByAuthor, fetchArticlesByTag, fetchRelatedArticles, insertArticle, updateArticle } from "./crud";
+export type { ArticleFeedItem, AuthorArticleSummary, TagArticleSummary, RelatedArticleSummary } from "./crud";
 export { fetchAllAuthors, slugifyAuthorName } from "./authors";
 export type { AuthorProfile } from "./authors";
 export { fetchAllTags, slugifyTag } from "./tags";

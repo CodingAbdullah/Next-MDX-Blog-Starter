@@ -7,6 +7,7 @@ import MDXRemoteArticle from "./MDXRemoteArticle";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import BackToTopButton from "@/components/BackToTopButton";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import RelatedArticles from "@/components/RelatedArticles";
 import { fetchArticle, incrementViewCount } from "@/utils/functions";
 
 // Custom Dynamic Article component encompasses loading article content stored in a Supabase database
@@ -33,6 +34,7 @@ export default async function DynamicArticle({ slug } : { slug: string }): Promi
               <MDXRemoteArticle content={articleData.content} />
             </div>
             <ArticleAuthorBio authorInformation={ArticleAuthorInfoList} />
+            <RelatedArticles slug={slug} tags={articleData.tags ?? []} />
             <NewsletterSignup />
           </div>
         </main>

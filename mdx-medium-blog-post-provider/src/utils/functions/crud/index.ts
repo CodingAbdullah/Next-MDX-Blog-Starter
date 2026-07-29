@@ -7,5 +7,7 @@ export { default as fetchArticlesByAuthor } from "./fetchArticlesByAuthor";
 export type { AuthorArticleSummary } from "./fetchArticlesByAuthor";
 export { default as fetchArticlesByTag } from "./fetchArticlesByTag";
 export type { TagArticleSummary } from "./fetchArticlesByTag";
+export { default as fetchRelatedArticles } from "./fetchRelatedArticles";
+export type { RelatedArticleSummary } from "./fetchRelatedArticles";
 export { default as insertArticle } from "./insertArticle";
 export { default as updateArticle } from "./updateArticle";

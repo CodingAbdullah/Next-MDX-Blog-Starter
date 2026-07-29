@@ -43,7 +43,7 @@ Scaffold the blog into an empty directory:
 npx create-next-mdx-blog-app .
 ```
 
-The installer ([`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/), v2.2.4, MIT) clones the app, installs dependencies, and prints the environment setup steps.
+The installer ([`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/), v2.2.5, MIT) clones the app, installs dependencies, and prints the environment setup steps.
 
 ### Option 2 — Manual clone
 
@@ -209,6 +209,7 @@ Wraps the Next.js `<Image>` component with `<figure>`/`<figcaption>` for seamles
 | **Copy link** | `src/components/CopyLinkButton.tsx` | Article-header button; copies the page URL with a brief icon-swap confirmation |
 | **Social share** | `src/components/SocialShareButtons.tsx` | Pre-filled share dialogs for X (Twitter), LinkedIn, and Reddit using the article title and URL |
 | **View counter** | `src/components/ViewCounter.tsx` | Live per-article view count in a Supabase `view_counts` table, incremented atomically via the `increment_view_count` RPC. Dynamic pages increment server-side; static pages call the `/api/views/[slug]` route after hydration |
+| **Related articles** | `src/components/RelatedArticles.tsx` | Shown at the bottom of every dynamic article; surfaces up to 5 other articles ranked by shared tags (then publish date) via `fetchRelatedArticles()` |
 
 ## 🤖 AI Features
 
