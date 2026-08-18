@@ -20,7 +20,7 @@ export default function CodeSandboxFeaturesSection(): React.JSX.Element {
                     </div>
                     <h4 className="text-lg font-semibold mb-2 matrix-glow text-green-700 dark:text-green-300">Instant Execution</h4>
                     <p className="text-sm text-green-700/70 dark:text-green-200/70 code-font">
-                        Sandpack bundles and runs JS/TS directly in the browser with zero cold start
+                        Sandpack, Pyodide, and sql.js bundle and run code directly in the browser with zero cold start
                     </p>
                 </div>
                 <div className="glass-card p-6 text-center">
@@ -36,9 +36,9 @@ export default function CodeSandboxFeaturesSection(): React.JSX.Element {
                     <div className="w-12 h-12 bg-green-100 dark:bg-green-500/20 rounded-lg flex items-center justify-center mx-auto mb-4 border border-green-300/50 dark:border-green-500/30">
                         <Download className="h-6 w-6 text-green-600 dark:text-green-400" />
                     </div>
-                    <h4 className="text-lg font-semibold mb-2 matrix-glow text-green-700 dark:text-green-300">JS & TypeScript</h4>
+                    <h4 className="text-lg font-semibold mb-2 matrix-glow text-green-700 dark:text-green-300">5 Languages</h4>
                     <p className="text-sm text-green-700/70 dark:text-green-200/70 code-font">
-                        Full TypeScript compiler support with inline type errors in the editor
+                        JavaScript, TypeScript, HTML/CSS, Python (Pyodide), and SQL (sql.js) — all in one sandbox
                     </p>
                 </div>
             </div>

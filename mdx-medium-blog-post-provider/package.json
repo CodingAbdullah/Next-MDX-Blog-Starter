@@ -1,6 +1,6 @@
 {
   "name": "create-next-mdx-blog-app",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "A production-ready technical blog starter kit built with Next.js, MDX, Supabase, and TypeScript.",
   "author": {
     "name": "Abdullah Muhammad",
@@ -62,6 +62,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "@types/sql.js": "^1.4.9",
     "@vercel/analytics": "^2.0.1",
     "ai": "^6.0.190",
     "class-variance-authority": "^0.7.1",

@@ -32,7 +32,7 @@ const NAV_CARDS = [
     href: '/code-sandbox',
     icon: Code2,
     label: 'Code Sandbox',
-    description: 'In-browser JavaScript & TypeScript execution powered by Sandpack.',
+    description: 'In-browser JavaScript, TypeScript, HTML/CSS, Python & SQL execution.',
   },
   {
     href: '/chat',

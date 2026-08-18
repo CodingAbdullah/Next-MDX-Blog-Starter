@@ -43,7 +43,7 @@ Scaffold the blog into an empty directory:
 npx create-next-mdx-blog-app .
 ```
 
-The installer ([`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/), v2.2.5, MIT) clones the app, installs dependencies, and prints the environment setup steps.
+The installer ([`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/), v2.2.6, MIT) clones the app, installs dependencies, and prints the environment setup steps.
 
 ### Option 2 — Manual clone
 
@@ -130,7 +130,7 @@ This starter kit is **SSG-first**: Static Site Generation is preferred everywher
 | Image storage | AWS S3 (via Next `<Image>`) |
 | Styling / UI | Tailwind CSS, shadcn/ui, `lucide-react`, `class-variance-authority` |
 | AI | Vercel AI SDK (`ai`, `@ai-sdk/anthropic`, `@ai-sdk/react`), `zod` |
-| Code sandbox | `@codesandbox/sandpack-react` |
+| Code sandbox | `@codesandbox/sandpack-react` (JS/TS/HTML), Pyodide (Python), sql.js (SQL) |
 | Syntax highlighting | `react-syntax-highlighter` |
 | Email | Resend (`resend`) |
 | Notifications | `sonner` toasts |
@@ -240,15 +240,16 @@ A **Generate TL;DR** button above every dynamic article streams a short summary 
 
 ## 🖥️ Code Sandbox
 
-An interactive in-browser code execution environment powered by **Sandpack** at `/code-sandbox`.
+An interactive in-browser code execution environment at `/code-sandbox` spanning five languages — **JavaScript, TypeScript, HTML/CSS, Python, and SQL** — all executing **entirely client-side**; no code reaches the server.
 
-- **JavaScript & TypeScript runtimes** — switch with one click; the editor reloads with a language-appropriate default snippet
-- **Quick Examples** — pre-loaded snippets (Fibonacci, Async/Await, Data Structures for JS; Types & Interfaces, Generics, Classes & OOP for TS) defined in `src/utils/constants/SandboxExamples.ts`
-- **Full editor** — line numbers, inline TypeScript errors, matrix-green custom theme with `JetBrains Mono`
-- **Toolbar** — Run, Copy, Download, and Reset
-- **Live console panel** side-by-side with the editor — execution is **entirely in-browser**; no code reaches the server
+- **JavaScript & TypeScript** — powered by **Sandpack** (`@codesandbox/sandpack-react`); switch with one click and the editor reloads with a language-appropriate default snippet. Full editor with line numbers, inline TypeScript errors, and a live console panel side-by-side with the code.
+- **HTML/CSS** — also powered by Sandpack, using its `static` template for multi-file editing (`index.html` + `styles.css`) with tabbed files and a **live rendered preview** in place of the console.
+- **Python** — powered by **Pyodide** (CPython compiled to WebAssembly), loaded on demand from a version-pinned CDN and executed inside a dedicated **Web Worker** so the UI never blocks. `print()` output streams into a console panel line by line.
+- **SQL** — powered by **sql.js** (SQLite compiled to WebAssembly), also loaded from CDN and run inside its own Web Worker against a fresh in-memory database on every run. `SELECT` results render as a scrollable table; other statements (`CREATE`, `INSERT`, `UPDATE`) confirm with a row-count message.
+- **Quick Examples** — pre-loaded snippets per language (Fibonacci, Async/Await, Data Structures for JS; Types & Interfaces, Generics, Classes & OOP for TS; Responsive Card, Flexbox Layout, CSS Animation for HTML/CSS; Fibonacci, Data Structures, Classes & OOP for Python; Joins, Aggregation, Filtering & Sorting for SQL) defined in `src/utils/constants/SandboxExamples.ts`
+- **Consistent toolbar** across every language — Run, Copy, Download, and Reset — with a shared matrix-green theme and `JetBrains Mono` font
 
-Components: `src/components/SandpackEditor.tsx` (provider, editor, toolbar, console) and `CodeSandboxFeaturesSection.tsx` (feature highlights grid).
+Components: `src/components/SandpackEditor.tsx` (JS/TS/HTML — provider, editor, toolbar, console/preview), `PyodideSandbox.tsx` (Python), `SqlSandbox.tsx` (SQL), and `CodeSandboxFeaturesSection.tsx` (feature highlights grid). The Python and SQL runtimes ship as static Web Worker scripts in `public/workers/` (`pyodide-worker.js`, `sql-worker.js`) — kept outside the Next.js bundler since Pyodide's and sql.js's browser builds aren't reliably bundle-safe.
 
 ## 👥 Author Profile Pages
 
@@ -431,6 +432,8 @@ The project also remains compatible with **Vercel** and pure **static hosting** 
 - [Docker Documentation](https://docs.docker.com/)
 - [React Syntax Highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter)
 - [Sandpack Documentation](https://sandpack.codesandbox.io/docs)
+- [Pyodide Documentation](https://pyodide.org/en/stable/)
+- [sql.js Documentation](https://sql.js.org/documentation/)
 - [Vercel AI SDK Documentation](https://sdk.vercel.ai/docs)
 - [Anthropic AI SDK Provider](https://sdk.vercel.ai/providers/ai-sdk-providers/anthropic)
 - [Resend Documentation](https://resend.com/docs)
