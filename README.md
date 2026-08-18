@@ -31,7 +31,7 @@ npm run dev
 | 📝 **Static + Dynamic MDX** | Blog posts pre-rendered at build time (SSG-first) or rendered server-side on demand via `next-mdx-remote`, with `gray-matter` frontmatter parsing |
 | 🤖 **AI Blog Assistant** | Streaming chatbot (`/chat`) powered by Claude Haiku via the Vercel AI SDK, with blog-focused tool calling |
 | ✨ **AI Article Summarizer** | One-click streaming TL;DR panel on every dynamic article, with origin allow-listing, rate limiting, and caching |
-| 🖥️ **In-Browser Code Sandbox** | Sandpack-powered JS/TS editor (`/code-sandbox`) with live console — all execution stays client-side |
+| 🖥️ **In-Browser Code Sandbox** | 5-language editor (`/code-sandbox`) — JS/TS/HTML via Sandpack, Python via Pyodide, SQL via sql.js — all execution stays client-side |
 | 🧩 **Custom MDX Components** | Syntax-highlighted `CodeBlock` with copy button, live `GitHubGist` embeds (GitHub REST API + [mdxgists.net](https://mdxgists.net)), and optimized `MDXImage` |
 | 🗄️ **Supabase Integration** | Direct Server Component data access — no custom backend APIs — plus a typed CRUD CLI (`article-manager.ts`) and an atomic view counter |
 | 👥 **Author Profile Pages** | `/authors` index and per-author pages with bio, avatar, and published articles |
@@ -70,7 +70,7 @@ The application lives entirely inside [`mdx-medium-blog-post-provider/`](./mdx-m
 ## ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white) Package
 
 - **Package**: [`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/)
-- **Version**: `2.2.5`
+- **Version**: `2.2.6`
 - **License**: MIT
 
 ## 🛠️ Built With AI Tools
