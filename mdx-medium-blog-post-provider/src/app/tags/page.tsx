@@ -24,7 +24,7 @@ export default async function TagsIndexPage(): Promise<React.JSX.Element> {
 
     return (
         <div className="min-h-screen flex flex-col bg-background">
-            <main className="flex-grow px-4 py-8 sm:py-12">
+            <main id="main-content" className="flex-grow px-4 py-8 sm:py-12">
                 <div className="max-w-4xl mx-auto">
                     <header className="mb-8 sm:mb-12 text-center">
                         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 matrix-glow text-green-700 dark:text-green-300">

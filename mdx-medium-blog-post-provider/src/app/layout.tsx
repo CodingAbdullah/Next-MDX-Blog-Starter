@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next";
 import ThemeProvider from "@/components/ThemeProvider";
 import ThemeToggle from "@/components/ThemeToggle";
 import ThemedToaster from "@/components/ThemedToaster";
+import SkipToContent from "@/components/SkipToContent";
 
 export const viewport: Viewport = {
     width: "device-width",
@@ -28,6 +29,7 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <body>
                 <ThemeProvider>
+                    <SkipToContent />
                     <Analytics mode="production" />
                     <ThemeToggle />
                     {children}

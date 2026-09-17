@@ -85,7 +85,7 @@ export default function Home() {
       </header>
 
       {/* Navigation cards */}
-      <main className="w-full max-w-3xl">
+      <main id="main-content" className="w-full max-w-3xl">
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {NAV_CARDS.map(({ href, icon: Icon, label, description }) => (
             <li key={href}>

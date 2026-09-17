@@ -68,7 +68,7 @@ export default async function AuthorProfilePage({ params }: { params: Promise<{ 
 
     return (
         <div className="min-h-screen flex flex-col bg-background">
-            <main className="flex-grow px-4 py-8 sm:py-12">
+            <main id="main-content" className="flex-grow px-4 py-8 sm:py-12">
                 <div className="max-w-4xl mx-auto">
                     {/* Author bio header */}
                     <section className="glass-card p-6 sm:p-8 mb-8 sm:mb-12">
