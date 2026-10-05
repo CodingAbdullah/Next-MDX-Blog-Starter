@@ -5,6 +5,8 @@ import ThemeProvider from "@/components/ThemeProvider";
 import ThemeToggle from "@/components/ThemeToggle";
 import ThemedToaster from "@/components/ThemedToaster";
 import SkipToContent from "@/components/SkipToContent";
+import ContrastScript from "@/components/ContrastScript";
+import ContrastToggle from "@/components/ContrastToggle";
 
 export const viewport: Viewport = {
     width: "device-width",
@@ -28,9 +30,11 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body>
+                <ContrastScript />
                 <ThemeProvider>
                     <SkipToContent />
                     <Analytics mode="production" />
+                    <ContrastToggle />
                     <ThemeToggle />
                     {children}
                     <ThemedToaster />

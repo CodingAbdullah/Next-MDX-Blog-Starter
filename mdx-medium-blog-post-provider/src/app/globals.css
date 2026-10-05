@@ -326,3 +326,122 @@
     border: 1px solid rgba(34, 197, 94, 0.2);
   }
 }
+
+/* ── HIGH CONTRAST MODE ──
+   Toggled via <html data-contrast="high"> (see ContrastToggle / ContrastScript).
+   Kept outside @layer so it wins over utilities without !important. */
+
+/* Light high contrast */
+[data-contrast="high"] {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0 0 0);
+  --primary: oklch(0.32 0.1 150);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.94 0.03 150);
+  --secondary-foreground: oklch(0.2 0.07 150);
+  --muted: oklch(0.94 0 0);
+  --muted-foreground: oklch(0.25 0 0);
+  --accent: oklch(0.94 0.03 150);
+  --accent-foreground: oklch(0.2 0.07 150);
+  --destructive: oklch(0.42 0.17 27);
+  --border: oklch(0.2 0 0);
+  --input: oklch(0.2 0 0);
+  --ring: oklch(0.32 0.1 150);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0 0 0);
+  --sidebar-primary: oklch(0.32 0.1 150);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.94 0.03 150);
+  --sidebar-accent-foreground: oklch(0.2 0.07 150);
+  --sidebar-border: oklch(0.2 0 0);
+  --sidebar-ring: oklch(0.32 0.1 150);
+
+  --body-grid: none;
+
+  --scrollbar-track: #ffffff;
+  --scrollbar-thumb: rgb(20, 83, 45);
+  --scrollbar-thumb-hover: rgb(5, 46, 22);
+
+  /* Solid replacements for the translucent green-* text and border utilities */
+  --hc-text: oklch(0.27 0.07 152);
+  --hc-border: oklch(0.27 0.07 152);
+}
+
+/* Dark high contrast */
+.dark[data-contrast="high"] {
+  --background: oklch(0 0 0);
+  --foreground: oklch(1 0 0);
+  --card: oklch(0 0 0);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0 0 0);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(1 0 0);
+  --primary-foreground: oklch(0 0 0);
+  --secondary: oklch(0.22 0 0);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.22 0 0);
+  --muted-foreground: oklch(0.9 0 0);
+  --accent: oklch(0.22 0 0);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.78 0.16 22);
+  --border: oklch(0.85 0 0);
+  --input: oklch(0.85 0 0);
+  --ring: oklch(0.93 0.14 150);
+  --sidebar: oklch(0 0 0);
+  --sidebar-foreground: oklch(1 0 0);
+  --sidebar-primary: oklch(1 0 0);
+  --sidebar-primary-foreground: oklch(0 0 0);
+  --sidebar-accent: oklch(0.22 0 0);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(0.85 0 0);
+  --sidebar-ring: oklch(0.93 0.14 150);
+
+  --scrollbar-track: #000000;
+  --scrollbar-thumb: rgb(134, 239, 172);
+  --scrollbar-thumb-hover: rgb(187, 247, 208);
+
+  --hc-text: oklch(0.93 0.14 150);
+  --hc-border: oklch(0.87 0.15 154);
+}
+
+/* Surfaces that stay dark in both themes (sandboxes, chat, error pages) keep bright accents */
+[data-contrast="high"] :is(.bg-black, [class*="bg-[#0"]) {
+  --hc-text: oklch(0.93 0.14 150);
+  --hc-border: oklch(0.87 0.15 154);
+}
+
+/* Flatten every green text shade/opacity to one solid, AAA-contrast colour */
+[data-contrast="high"] :is([class^="text-green-"], [class*=" text-green-"]),
+.dark[data-contrast="high"] [class*="dark:text-green-"] {
+  color: var(--hc-text);
+}
+
+[data-contrast="high"] :is([class^="border-green-"], [class*=" border-green-"]),
+.dark[data-contrast="high"] [class*="dark:border-green-"] {
+  border-color: var(--hc-border);
+}
+
+[data-contrast="high"] .glass-card,
+[data-contrast="high"] .glass-card:hover {
+  background: var(--card);
+  border-color: var(--border);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+[data-contrast="high"] .matrix-glow {
+  text-shadow: none;
+}
+
+[data-contrast="high"] .hero-section {
+  background: none;
+}
+
+[data-contrast="high"] :focus-visible {
+  outline: 3px solid var(--hc-text);
+  outline-offset: 2px;
+}

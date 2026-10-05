@@ -38,7 +38,7 @@ npm run dev
 | 🏷 **Tags** | `/tags` index of every distinct tag with per-tag archive pages at `/tags/[tag]` |
 | 📬 **Newsletter** | Resend-powered signup with audience management and welcome emails |
 | 🔗 **Related Articles** | Bottom-of-article section surfacing up to 5 other posts ranked by shared tags, then publish date |
-| 🎨 **Reader Experience** | Dark/light theme toggle, reading progress bar, back-to-top button, copy-link and social share buttons, and a skip-to-content link for keyboard/screen-reader accessibility — all in a matrix-green design system |
+| 🎨 **Reader Experience** | Dark/light theme toggle, reading progress bar, back-to-top button, copy-link and social share buttons, a skip-to-content link, and a high contrast mode toggle for keyboard/screen-reader/low-vision accessibility — all in a matrix-green design system |
 | 🔍 **SEO-Ready** | Auto-generated `sitemap.xml` and `robots.txt`, static metadata, semantic HTML |
 | 🐳 **Deploy Anywhere** | Vercel-ready, multi-stage Dockerfile, or pure static hosting |
 
@@ -70,7 +70,7 @@ The application lives entirely inside [`mdx-medium-blog-post-provider/`](./mdx-m
 ## ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white) Package
 
 - **Package**: [`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/)
-- **Version**: `2.2.7`
+- **Version**: `2.2.8`
 - **License**: MIT
 
 ## 🛠️ Built With AI Tools

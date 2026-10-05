@@ -43,7 +43,7 @@ Scaffold the blog into an empty directory:
 npx create-next-mdx-blog-app .
 ```
 
-The installer ([`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/), v2.2.7, MIT) clones the app, installs dependencies, and prints the environment setup steps.
+The installer ([`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/), v2.2.8, MIT) clones the app, installs dependencies, and prints the environment setup steps.
 
 ### Option 2 — Manual clone
 
@@ -211,6 +211,7 @@ Wraps the Next.js `<Image>` component with `<figure>`/`<figcaption>` for seamles
 | **View counter** | `src/components/ViewCounter.tsx` | Live per-article view count in a Supabase `view_counts` table, incremented atomically via the `increment_view_count` RPC. Dynamic pages increment server-side; static pages call the `/api/views/[slug]` route after hydration |
 | **Related articles** | `src/components/RelatedArticles.tsx` | Shown at the bottom of every dynamic article; surfaces up to 5 other articles ranked by shared tags (then publish date) via `fetchRelatedArticles()` |
 | **Skip to content** | `src/components/SkipToContent.tsx` | Visually-hidden link at the very top of every page, revealed on keyboard focus, that jumps straight to `<main id="main-content">` — lets keyboard and screen-reader users bypass repeated header/nav on every route |
+| **High contrast mode** | `src/components/ContrastToggle.tsx` | Header toggle next to the theme switch; sets `data-contrast="high"` on `<html>` for solid, higher-contrast colours in both themes. Persisted in `localStorage`, applied before first paint (`ContrastScript.tsx`), and defaults to the OS `prefers-contrast: more` setting |
 
 ## 🤖 AI Features
 
