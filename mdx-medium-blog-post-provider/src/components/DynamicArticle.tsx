@@ -8,6 +8,7 @@ import ReadingProgressBar from "@/components/ReadingProgressBar";
 import BackToTopButton from "@/components/BackToTopButton";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import RelatedArticles from "@/components/RelatedArticles";
+import ArticleJsonLd from "@/components/ArticleJsonLd";
 import { fetchArticle, incrementViewCount } from "@/utils/functions";
 
 // Custom Dynamic Article component encompasses loading article content stored in a Supabase database
@@ -24,6 +25,18 @@ export default async function DynamicArticle({ slug } : { slug: string }): Promi
   else {
     return (
       <div className="min-h-screen flex flex-col bg-background">
+        <ArticleJsonLd
+          path={`/dynamic/${encodeURIComponent(slug)}`}
+          title={articleData.title}
+          description={articleData.description}
+          coverImageURL={articleData.cover_image_url}
+          publishedAt={articleData.date}
+          modifiedAt={articleData.updated_at}
+          authorName={articleData.articleAuthorName}
+          authorDescription={articleData.articleAuthorDescription}
+          authorProfileImageURL={articleData.articleAuthorProfileImageURL}
+          tags={articleData.tags ?? []}
+        />
         <ReadingProgressBar />
         <BackToTopButton />
         <main className="flex-grow px-4 py-8">

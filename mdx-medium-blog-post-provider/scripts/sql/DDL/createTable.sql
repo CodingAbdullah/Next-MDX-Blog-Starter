@@ -12,5 +12,6 @@ CREATE TABLE Article (
   github_gists TEXT[],        -- Array of text values for Gist URLs or IDs
   articleAuthorName VARCHAR NOT NULL,
   articleAuthorDescription VARCHAR NOT NULL,
-  articleAuthorProfileImageURL VARCHAR NOT NULL
+  articleAuthorProfileImageURL VARCHAR NOT NULL,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()  -- Maintained by the trigger in createUpdatedAtTrigger.sql
 );

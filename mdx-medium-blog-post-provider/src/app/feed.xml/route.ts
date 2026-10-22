@@ -1,13 +1,14 @@
 import { fetchArticleFeed } from "@/utils/functions";
 import type { ArticleFeedItem } from "@/utils/functions";
+import { SITE_NAME, SITE_URL } from "@/utils/constants";
 
 // Statically generated at build time, regenerated hourly via ISR
 export const revalidate = 3600;
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+const BASE_URL = SITE_URL;
 
-const CHANNEL_TITLE = "Create Next MDX Blog App";
-const CHANNEL_DESCRIPTION = "Latest articles from the Create Next MDX Blog App";
+const CHANNEL_TITLE = SITE_NAME;
+const CHANNEL_DESCRIPTION = `Latest articles from the ${SITE_NAME}`;
 
 // Escape the five XML-reserved characters for safe embedding in element text
 function escapeXml(value: string): string {

@@ -24,7 +24,7 @@ This project was developed with the help of **Claude** (Anthropic) and **Cursor*
 - [Article Manager CLI](#%EF%B8%8F-article-manager-cli)
 - [Project Scripts](#-project-scripts)
 - [AWS S3 Image Storage](#%EF%B8%8F-aws-s3-image-storage)
-- [SEO: Sitemap & Robots](#%EF%B8%8F-seo-sitemap--robots)
+- [SEO: Sitemap, Robots & Structured Data](#%EF%B8%8F-seo-sitemap-robots--structured-data)
 - [Mobile Responsiveness](#-mobile-responsiveness)
 - [Analytics](#-analytics)
 - [Docker](#-docker)
@@ -43,7 +43,7 @@ Scaffold the blog into an empty directory:
 npx create-next-mdx-blog-app .
 ```
 
-The installer ([`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/), v2.2.8, MIT) clones the app, installs dependencies, and prints the environment setup steps.
+The installer ([`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/), v2.2.9, MIT) clones the app, installs dependencies, and prints the environment setup steps.
 
 ### Option 2 — Manual clone
 
@@ -105,7 +105,7 @@ RESEND_AUDIENCE_ID=
 
 | Variable | Used by | Default |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | Sitemap, robots.txt, summarizer origin allow-list | `http://localhost:3000` |
+| `NEXT_PUBLIC_SITE_URL` | Sitemap, robots.txt, RSS feed, JSON-LD structured data, summarizer origin allow-list | `http://localhost:3000` |
 | `GITHUB_TOKEN` | `<GitHubGist>` GitHub API auth — raises rate limit from 60 to 5,000 req/hr | unauthenticated |
 | `GITHUB_USERNAME` | mdxgists.net URL construction | `CodingAbdullah` |
 | `GIST_BASE_URL` | mdxgists.net link base URL | `https://mdxgists.net` |
@@ -319,7 +319,7 @@ Supabase is integrated **directly in Server Components** — no custom backend A
 
 - **CRUD functions** — `src/utils/functions/crud/` (create, read, update, delete articles)
 - **RPC functions** — `src/utils/functions/rpc/` (e.g. `incrementViewCount`)
-- **SQL scripts** — `scripts/sql/DDL/` (create/alter/drop tables, view-counts table, RPC function) and `scripts/sql/DML/` (insert/fetch/update/delete article statements)
+- **SQL scripts** — `scripts/sql/DDL/` (create/alter/drop tables, view-counts table, RPC functions, `updated_at` trigger) and `scripts/sql/DML/` (insert/fetch/update/delete article statements)
 
 **Ensure your Supabase Row Level Security policies allow the CRUD actions you need** — these are configured in the Supabase console.
 
@@ -366,12 +366,17 @@ The `/scripts` folder contains tooling for project and database setup:
 
 Images referenced in `.mdx` files (via the `MDXImage` component) are served from AWS S3. The allowed external image domain is configured in `next.config.ts` — point it at your own bucket, or swap in another storage service entirely.
 
-## 🗺️ SEO: Sitemap & Robots
+## 🗺️ SEO: Sitemap, Robots & Structured Data
 
-- **`sitemap.xml`** — auto-generated at build time by `src/app/sitemap.ts`, covering all static routes and every dynamic article slug fetched from Supabase
+- **`sitemap.xml`** — auto-generated at build time by `src/app/sitemap.ts`, covering all static routes and every dynamic article slug fetched from Supabase. Each article's `lastModified` comes from its `updated_at` column (falling back to its publish date)
 - **`robots.txt`** — served from `src/app/robots.ts`, permitting all crawlers and pointing them at the sitemap
+- **JSON-LD structured data** — every article page embeds a schema.org [`BlogPosting`](https://schema.org/BlogPosting) document (headline, description, cover image, publish/modified dates, author, publisher, tags) for Google rich results. It is rendered server-side by `src/components/ArticleJsonLd.tsx` and built by `src/utils/functions/seo/buildArticleJsonLd.ts`. Validate a deployed page with Google's [Rich Results Test](https://search.google.com/test/rich-results)
 
-Both use `NEXT_PUBLIC_SITE_URL` as the base URL.
+All of these use `NEXT_PUBLIC_SITE_URL` as the base URL, so set it to your production origin before deploying.
+
+### One-time setup
+
+Run **`scripts/sql/DDL/createUpdatedAtTrigger.sql`** once in the Supabase SQL editor. It adds an `updated_at` column to the `Article` table, backfills it from each row's publish date, and keeps it current on every update. Until it is deployed, `dateModified` falls back to the publish date.
 
 ## 📱 Mobile Responsiveness
 

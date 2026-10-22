@@ -70,7 +70,7 @@ The application lives entirely inside [`mdx-medium-blog-post-provider/`](./mdx-m
 ## ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white) Package
 
 - **Package**: [`create-next-mdx-blog-app`](https://www.npmjs.com/package/create-next-mdx-blog-app/)
-- **Version**: `2.2.8`
+- **Version**: `2.2.9`
 - **License**: MIT
 
 ## 🛠️ Built With AI Tools

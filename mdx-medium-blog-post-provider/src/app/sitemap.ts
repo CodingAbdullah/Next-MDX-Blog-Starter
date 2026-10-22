@@ -1,7 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { fetchAllArticles } from '@/utils/functions';
+import { SITE_URL } from '@/utils/constants';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000').replace(/\/$/, '');
+const BASE_URL = SITE_URL;
 
 // Static routes map
 const STATIC_ROUTES: MetadataRoute.Sitemap = [
@@ -31,6 +32,17 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   },
 ];
 
+// Use the article's own timestamp so crawlers only re-fetch changed posts; fall back to now when missing
+function toLastModified(value: unknown): Date {
+  if (typeof value === 'string') {
+    const parsed = new Date(value);
+    if (!Number.isNaN(parsed.getTime())) {
+      return parsed;
+    }
+  }
+  return new Date();
+}
+
 // Dynamic routes map
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let dynamicRoutes: MetadataRoute.Sitemap = [];
@@ -45,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         )
         .map((article) => ({
           url: `${BASE_URL}/dynamic/${encodeURIComponent(article.slug)}`,
-          lastModified: new Date(),
+          lastModified: toLastModified(article.updated_at ?? article.date),
           changeFrequency: 'weekly' as const,
           priority: 0.9,
         }));

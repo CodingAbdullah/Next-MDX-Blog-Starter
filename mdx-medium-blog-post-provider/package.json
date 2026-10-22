@@ -1,6 +1,6 @@
 {
   "name": "create-next-mdx-blog-app",
-  "version": "2.2.8",
+  "version": "2.2.9",
   "description": "A production-ready technical blog starter kit built with Next.js, MDX, Supabase, and TypeScript.",
   "author": {
     "name": "Abdullah Muhammad",
@@ -37,7 +37,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "doctor": "npx react-doctor@latest"
   },
   "dependencies": {

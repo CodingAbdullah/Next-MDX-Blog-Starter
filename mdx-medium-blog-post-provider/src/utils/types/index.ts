@@ -33,3 +33,4 @@ export type {
     NewsletterSignupVariantClassNames,
     WelcomeEmailContent,
 } from "./NewsletterType";
+export type { default as ArticleJsonLdInputType, ArticleJsonLd, JsonLdPerson, JsonLdOrganization } from "./ArticleJsonLdType";

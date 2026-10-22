@@ -1,12 +1,13 @@
 // Custom Article Canvas Page for creating and publishing a Medium style blog post
 import ArticleAuthorBio from "@/components/ArticleAuthorBio";
 import ArticleHeader from "@/components/ArticleHeader";
-import { ArticleAuthorInfoList, ArticleHeaderInfoList } from "@/utils/constants";
+import { ArticleAuthorInfoList, ArticleHeaderInfoList, SAMPLE_ARTICLE_PUBLISHED_AT } from "@/utils/constants";
 import StaticArticle from "@/components/StaticArticle";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import BackToTopButton from "@/components/BackToTopButton";
 import ViewCounter from "@/components/ViewCounter";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import ArticleJsonLd from "@/components/ArticleJsonLd";
 import type { Metadata } from 'next';
 
 // Generate metadata for the Sample Blog Post page
@@ -26,6 +27,17 @@ export const metadata: Metadata = {
 const SampleBlogPostPage = () => {  
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <ArticleJsonLd
+        path="/sample-blog-post-page"
+        title={ArticleHeaderInfoList.articleTitle}
+        description={ArticleHeaderInfoList.articleDescription}
+        coverImageURL={ArticleHeaderInfoList.articleCoverImageURL.coverImageURL}
+        publishedAt={SAMPLE_ARTICLE_PUBLISHED_AT}
+        authorName={ArticleAuthorInfoList.authorName}
+        authorDescription={ArticleAuthorInfoList.authorDescription}
+        authorProfileImageURL={ArticleAuthorInfoList.authorProfileImageURL}
+        tags={ArticleHeaderInfoList.articleTags}
+      />
       <ReadingProgressBar />
       <BackToTopButton />
       <main id="main-content" className="flex-grow px-4 py-8">

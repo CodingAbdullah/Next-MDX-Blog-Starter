@@ -8,3 +8,4 @@ export { incrementViewCount, searchArticles } from "./rpc";
 export { getSupabaseClient } from "./supabase_client";
 export { getResendClient } from "./resend_client";
 export { subscribeToNewsletter } from "./newsletter";
+export { buildArticleJsonLd, serializeJsonLd } from "./seo";
